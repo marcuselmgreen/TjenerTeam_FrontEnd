@@ -10,6 +10,7 @@ import FuseAnimate from "../../../../@fuse/components/FuseAnimate/FuseAnimate";
 
 let booking =
     {
+        id: "",
         label: "Ny",
         staffType: "",
         numberOfStaff: "",
@@ -47,6 +48,7 @@ class CreateBooking extends Component {
             showFullPage: true,
             bookings: [
                     {
+                        id: this.idGenerator(),
                         label: "Ny",
                         staffType: "",
                         numberOfStaff: "",
@@ -79,6 +81,12 @@ class CreateBooking extends Component {
         }
     }
 
+    idGenerator = () => {
+        let timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+        return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+            return (Math.random() * 16 | 0).toString(16);
+        }).toLowerCase();
+    };
 
 
     handleChangeTab = (e, tab) => {
@@ -89,12 +97,13 @@ class CreateBooking extends Component {
         this.setState({showFullPage: true})
     };
 
-
     addBooking = () => {
         let tempState = {...this.state};
-
         tempState.bookings[this.state.selectedTab].label = tempState.bookings[this.state.selectedTab].staffType;
-        tempState.bookings.push(booking);
+        let newBooking = {...booking};
+        newBooking.id = this.idGenerator();
+        tempState.bookings.push(newBooking);
+        debugger;
         this.setState({tempState});
         this.setState({selectedTab: this.state.selectedTab + 1});
     };
@@ -104,20 +113,27 @@ class CreateBooking extends Component {
     };
 
     deleteBooking = () => {
-        debugger;
         if (this.state.bookings.length > 1) {
             let tempBookings = [...this.state.bookings];
             let book = tempBookings[this.state.selectedTab];
-            tempBookings = tempBookings.filter(b => b.staffType !== book.staffType);
 
+            tempBookings = tempBookings.filter(b => b.id !== book.id);
             this.setState({bookings: tempBookings});
+
+            if (this.state.selectedTab === 0) {
+                this.setState({selectedTab: 0})
+            }
+            else if(this.state.selectedTab === 1 ) {
+                this.setState({selectedTab: 0})
+            } else {
+                this.setState({selectedTab: this.selectedTab - 1})
+            }
         }
     };
 
    /*
    * THE FOLLOWING IS ALL THE METHODS TO CHANGE THE DATA IN THE INPUT FIELD FOR A BOOKING
    * */
-
 
    changeHandler = (e) => {
        let tempState = [...this.state.bookings];

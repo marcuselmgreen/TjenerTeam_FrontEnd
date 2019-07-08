@@ -188,8 +188,8 @@ const Booking = (props) => {
                             <div className="w-full mt-20">
                                 <div className="flex flex-wrap my-2">
                                     <div className="w-full sm:w-1/2 ">
-                                        {selectedTab === bookingLength ?
-                                            null :
+                                        {0 === bookingLength ?
+                                                null :
                                             <div className="w-full ">
                                                 <div className="flex justify-center p-4">
                                                     <DeleteButton

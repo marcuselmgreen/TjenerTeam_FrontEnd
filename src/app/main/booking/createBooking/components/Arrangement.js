@@ -1,5 +1,6 @@
 import React from 'react';
 import {FormControlLabel, Icon, MenuItem, Radio, RadioGroup, TextField} from "@material-ui/core";
+import FormControl from "@material-ui/core/FormControl/FormControl";
 
 const Arrangement = (props) => {
 
@@ -66,35 +67,35 @@ const Arrangement = (props) => {
                                 value="0"
                                 control={<Radio color="primary"/>}
                                 label="Nej"
-                                labelPlacement="right"
+                                labelPlacement="end"
                             />
                             <FormControlLabel
                                 style={{transform: "scale(0.8, 0.8)"}}
                                 value=".50"
                                 control={<Radio color="primary"/>}
                                 label="30 min"
-                                labelPlacement="right"
+                                labelPlacement="end"
                             />
                             <FormControlLabel
                                 style={{transform: "scale(0.8, 0.8)"}}
                                 value="1"
                                 control={<Radio color="primary"/>}
                                 label="1 time"
-                                labelPlacement="right"
+                                labelPlacement="end"
                             />
                             <FormControlLabel
                                 style={{transform: "scale(0.8, 0.8)"}}
                                 value="1.5"
                                 control={<Radio color="primary"/>}
                                 label="1,5 time"
-                                labelPlacement="right"
+                                labelPlacement="end"
                             />
                             <FormControlLabel
                                 style={{transform: "scale(0.8, 0.8)"}}
                                 value="2"
                                 control={<Radio color="primary"/>}
                                 label="2 timer"
-                                labelPlacement="right"
+                                labelPlacement="end"
                             />
                         </RadioGroup>
                     </div>
