@@ -70,7 +70,7 @@ function Login()
 
                         <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
 
-                            <Typography variant="h6" className="md:w-full mb-32 ml-288">HEJ</Typography>
+                            <Typography variant="h6" className="md:w-full mb-32 ml-288">Log ind</Typography>
 
                             <form
                                 name="loginForm"
