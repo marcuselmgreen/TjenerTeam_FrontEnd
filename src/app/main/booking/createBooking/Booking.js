@@ -78,13 +78,16 @@ const Booking = (props) => {
             <Card className="p-40 max-w-lg">
                 <div className="flex flex-wrap my-3 mb-40">
                     <div className="w-full">
-                        <Button
-                            onClick={addBooking}
-                            color="primary"
-                            variant="contained"
-                            className="float-right">
-                            Opret endnu en booking
-                        </Button>
+                        {bookingLength === 3 ?
+                            null :
+                            <Button
+                                onClick={addBooking}
+                                color="primary"
+                                variant="contained"
+                                className="float-right">
+                                Opret endnu en booking
+                            </Button>
+                        }
                     </div>
                 </div>
 

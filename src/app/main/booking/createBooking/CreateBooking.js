@@ -126,7 +126,7 @@ class CreateBooking extends Component {
             else if(this.state.selectedTab === 1 ) {
                 this.setState({selectedTab: 0})
             } else {
-                this.setState({selectedTab: this.selectedTab - 1})
+                this.setState({selectedTab: this.state.selectedTab - 1})
             }
         }
     };
@@ -138,6 +138,14 @@ class CreateBooking extends Component {
    changeHandler = (e) => {
        let tempState = [...this.state.bookings];
        tempState[this.state.selectedTab][e.target.name] = e.target.value;
+       if(
+           e.target.name === "staffType" &&
+           e.target.value === "Bartender" ||
+           e.target.value === "Kok" ||
+           e.target.value === "Opvasker" ||
+           e.target.value === "Tjener") {
+       }
+       tempState[this.state.selectedTab]["label"] = e.target.value;
        this.setState({bookings: tempState})
    };
 
@@ -165,7 +173,7 @@ class CreateBooking extends Component {
                             <FuseAnimate duration={700} animation={{translateX: [0, '100%']}}>
                                 <div>
                                     <AppBar position="static" color="default" >
-                                        <Tabs value={selectedTab} indicatorColor="primary"
+                                        <Tabs value={selectedTab} indicatorColor="primary" className="w-full" style={{overflowY: "auto"}}
                                               onChange={this.handleChangeTab}>
                                             {bookings.map((bookings, index) => (
                                                 <Tab
