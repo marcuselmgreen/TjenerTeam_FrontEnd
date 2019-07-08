@@ -45,7 +45,7 @@ class CreateBooking extends Component {
         super(props);
         this.state = {
             selectedTab: 0,
-            showFullPage: true,
+            showFullPage: false,
             bookings: [
                     {
                         id: this.idGenerator(),
