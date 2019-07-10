@@ -12,6 +12,9 @@ import ContactInformation from "./components/ContactInformation";
 import Arrangement from "./components/Arrangement";
 import Clothing from "./components/Clothing";
 import Questions from "./components/Questions";
+import Pay from "./components/Pay";
+import Bottom from "./components/Bottom";
+import BookingModal from "./components/BookingModal";
 
 
 const time = Time;
@@ -20,7 +23,9 @@ const arrangementTypeValues = ["Firmaevent", "Bryllup", "Julefrokost", "andet"];
 const upperDressSelection = ["Hvid Skjorte", "Sort t-shirt", "Hvid t-shirt", "andet"];
 const lowerDressSelection = ["Sorte bukaer", "Hvide Bukser", "shorts", "andet"];
 const shoeSelection = ["Støvler", "sorte sko", "hvide sko", "andet"];
+const extraHours = [{name: "Nej", value: 0}, {name: "30 min", value: 0.50}, {name: "1 time", value: 1}, {name: "1 time 30 min", value: 1.5} , {name: "2 timer", value: 2}];
 const languageSkillData = ["Dansk og Engelsk", "Kun Dansk", "Kun Engelsk"];
+const transportCostWages = [{name: "nej", value: 0}, {name: "30 min", value: 0.5}, {name: "1 time", value: 1}, {name: "1 timer 30 min", value: 1.5}, {name: "2 timer", value: 2}];
 const gender = ["Mænd", "Kvinder", "Begge køn"];
 const yesAndNo = ["Ja", "nej"];
 
@@ -57,9 +62,15 @@ const Booking = (props) => {
                 languageSkill,
                 staffGender,
                 jobExperience,
+                transportWage,
                 selectedTab,
                 showFullPage,
                 bookingLength,
+                wageTotal,
+                hourlyWage,
+                priceTotal,
+
+                displayModal,
 
                 /*
                     FUNCTIONS
@@ -70,31 +81,32 @@ const Booking = (props) => {
                 createBooking,
                 deleteBooking,
                 changeHandler,
+                displayBookingModalHandler
 
             } = props;
 
     return (
         <div>
-            <Card className="p-40 max-w-lg">
-                <div className="flex flex-wrap my-3 mb-40">
-                    <div className="w-full">
-                        {bookingLength === 3 ?
-                            null :
-                            <Button
-                                onClick={addBooking}
-                                color="primary"
-                                variant="contained"
-                                className="float-right">
-                                Opret endnu en booking
-                            </Button>
-                        }
-                    </div>
-                </div>
+            <Card className="p-24 max-w-lg" style={{backgroundColor: 'rgba(0, 0, 0, 0)', boxShadow: 'none'}}>
+                {/*<div className="flex flex-wrap my-3 mb-40">*/}
+                {/*    <div className="w-full">*/}
+                {/*        {bookingLength === 3 ?*/}
+                {/*            null :*/}
+                {/*            <Button*/}
+                {/*                onClick={addBooking}*/}
+                {/*                color="primary"*/}
+                {/*                variant="contained"*/}
+                {/*                className="float-right">*/}
+                {/*                Opret endnu en booking*/}
+                {/*            </Button>*/}
+                {/*        }*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
                 <div className="flex flex-wrap my-0">
                     <div className="w-full">
                         <h2 className="font-serif text-gray-800 text-md ">HVOR OG HVORNÅR?</h2>
-                        <hr style={{borderTop: '1px solid gray'}}/>
+                        <hr style={{borderTop: '1px solid #cccccc'}}/>
                     </div>
                 </div>
 
@@ -109,6 +121,10 @@ const Booking = (props) => {
                         endTime={endTime}
                         date={date}
                         time={time}/>
+
+                    <div className="w-full mt-12">
+                        <hr style={{borderTop: '1px solid #cccccc'}}/>
+                    </div>
 
                     <ContactInformation
                         contactPerson={contactPerson}
@@ -136,10 +152,11 @@ const Booking = (props) => {
                         <div className="w-full">
                             <div className="w-full mt-12">
                                 <h2 className="font-serif text-gray-800 text-md ">OM JOBBET</h2>
-                                <hr style={{borderTop: '1px solid gray'}}/>
+                                <hr style={{borderTop: '1px solid #cccccc'}}/>
                             </div>
 
                             <Arrangement
+                                extraHours={extraHours}
                                 arrangementType={arrangementType}
                                 changeHandler={changeHandler}
                                 arrangementTypeValues={arrangementTypeValues}
@@ -151,7 +168,7 @@ const Booking = (props) => {
                                 />
 
                             <div className="w-full mt-12 mb-20">
-                                <hr style={{borderTop: '1px solid gray'}}/>
+                                <hr style={{borderTop: '1px solid #cccccc'}}/>
                             </div>
 
                             <Clothing
@@ -168,24 +185,50 @@ const Booking = (props) => {
                                 itemToBring={itemToBring}
                             />
 
+                            {/*<div className="w-full mt-12 mb-20">*/}
+                            {/*    <hr style={{borderTop: '1px solid gray'}}/>*/}
+                            {/*</div>*/}
+
+                            {/*<Questions*/}
+                            {/*    changeHandler={changeHandler}*/}
+                            {/*    languageSkill={languageSkill}*/}
+                            {/*    staffGender={staffGender}*/}
+                            {/*    jobExperience={jobExperience}*/}
+                            {/*    yesAndNo={yesAndNo}*/}
+                            {/*    languageSkillData={languageSkillData}*/}
+                            {/*    gender={gender}*/}
+                            {/*/>*/}
+
+
                             <div className="w-full mt-12 mb-20">
-                                <hr style={{borderTop: '1px solid gray'}}/>
+                                <hr style={{borderTop: '1px solid #cccccc'}}/>
                             </div>
 
-                            <Questions
+                            <Pay
+                                transportWage={transportWage}
                                 changeHandler={changeHandler}
-                                languageSkill={languageSkill}
-                                staffGender={staffGender}
-                                jobExperience={jobExperience}
-                                yesAndNo={yesAndNo}
-                                languageSkillData={languageSkillData}
-                                gender={gender}
+                                transportCostWages={transportCostWages}
+                                wageTotal={wageTotal}
+                                hourlyWage={hourlyWage}
                             />
 
-
                             <div className="w-full mt-12 mb-20">
-                                <hr style={{borderTop: '1px solid gray'}}/>
+                                <hr style={{borderTop: '1px solid #cccccc'}}/>
                             </div>
+
+                            <Bottom
+                                changeHandler={changeHandler}
+                                priceTotal={priceTotal}
+
+                            />
+
+                            <BookingModal
+                                displayModal={displayModal}
+                                displayBookingModalHandler={displayBookingModalHandler}
+                                addBooking={addBooking}
+                                createBooking={createBooking}
+                                />
+
 
 
                             <div className="w-full mt-20">
@@ -212,12 +255,12 @@ const Booking = (props) => {
                                             <div className="w-full">
                                                 <div className="flex justify-center p-4">
                                                     <SubmitButton
-                                                        onClick={createBooking}
+                                                        onClick={displayBookingModalHandler}
                                                         color="secondary"
                                                         variant="contained"
                                                         className="min-w-216 min-h-48 "
                                                         style={{color: "white"}}>
-                                                        Opret Booking
+                                                        Videre
                                                     </SubmitButton>
                                                 </div>
                                             </div>

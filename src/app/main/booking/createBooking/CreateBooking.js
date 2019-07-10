@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Tabs from "@material-ui/core/Tabs/Tabs";
 import Tab from "@material-ui/core/Tab/Tab";
-import Card from "@material-ui/core/Card/Card";
 import Photo from "../../static/tjenerTeam2.png";
-import Photo2 from "../../static/GreyBackground.png";
 import Booking from "./Booking";
 import FuseAnimate from "../../../../@fuse/components/FuseAnimate/FuseAnimate";
 
@@ -36,7 +34,11 @@ let booking =
         itemToBring: "",
         languageSkill: "",
         staffGender: "",
-        jobExperience: ""
+        jobExperience: "",
+        transportWage: "",
+        hourlyWage: "",
+        wageTotal: "",
+        priceTotal: ""
 
     };
 
@@ -45,7 +47,8 @@ class CreateBooking extends Component {
         super(props);
         this.state = {
             selectedTab: 0,
-            showFullPage: false,
+            showFullPage: true,
+            displayModal: false,
             bookings: [
                     {
                         id: this.idGenerator(),
@@ -74,7 +77,11 @@ class CreateBooking extends Component {
                         itemToBring: "",
                         languageSkill: "",
                         staffGender: "",
-                        jobExperience: ""
+                        jobExperience: "",
+                        transportWage: "",
+                        hourlyWage: "",
+                        wageTotal: "",
+                        priceTotal: ""
 
                     }
             ],
@@ -86,6 +93,10 @@ class CreateBooking extends Component {
         return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
             return (Math.random() * 16 | 0).toString(16);
         }).toLowerCase();
+    };
+
+    displayBookingModalHandler = () => {
+      this.setState({displayModal: !this.state.displayModal})
     };
 
 
@@ -105,6 +116,7 @@ class CreateBooking extends Component {
         tempState.bookings.push(newBooking);
         debugger;
         this.setState({tempState});
+        this.setState({displayModal: false});
         this.setState({selectedTab: this.state.selectedTab + 1});
     };
 
@@ -136,16 +148,31 @@ class CreateBooking extends Component {
    * */
 
    changeHandler = (e) => {
+
+       console.log(e.target.name);
+
        let tempState = [...this.state.bookings];
        tempState[this.state.selectedTab][e.target.name] = e.target.value;
+
        if(
            e.target.name === "staffType" &&
            e.target.value === "Bartender" ||
            e.target.value === "Kok" ||
            e.target.value === "Opvasker" ||
            e.target.value === "Tjener") {
+           tempState[this.state.selectedTab]["label"] = e.target.value;
        }
-       tempState[this.state.selectedTab]["label"] = e.target.value;
+       else if (parseFloat(tempState[this.state.selectedTab]["hourlyWage"]) < 0 || isNaN(parseFloat(e.target.value)) ) {
+           tempState[this.state.selectedTab]["wageTotal"] = "0";
+           tempState[this.state.selectedTab]["priceTotal"] = "0";
+       }
+       else if (e.target.name === "hourlyWage" && !isNaN(parseFloat(e.target.value))) {
+                // Calculate the price with bonus (make a function in the future)
+               tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(e.target.value) * 1.1).toFixed(2);
+                // Calculate the total price (make a function in the future)
+               tempState[this.state.selectedTab]["priceTotal"] = (parseFloat(e.target.value) * 1.1).toFixed(2);
+           }
+
        this.setState({bookings: tempState})
    };
 
@@ -158,7 +185,7 @@ class CreateBooking extends Component {
     render() {
 
 
-        const {selectedTab, bookings, showFullPage} = this.state;
+        const {selectedTab, bookings, showFullPage, displayModal} = this.state;
 
 
         return (
@@ -191,6 +218,7 @@ class CreateBooking extends Component {
 
                                                     bookingLength={this.state.bookings.length - 1}
                                                     selectedTab={selectedTab}
+                                                    displayModal={displayModal}
                                                     addBooking={this.addBooking}
                                                     key={index}
                                                     label={bookings.label}
@@ -219,9 +247,14 @@ class CreateBooking extends Component {
                                                     languageSkill={bookings.languageSkill}
                                                     staffGender={bookings.staffGender}
                                                     jobExperience={bookings.jobExperience}
+                                                    transportWage={bookings.transportWage}
+                                                    hourlyWage={bookings.hourlyWage}
+                                                    wageTotal={bookings.wageTotal}
+                                                    priceTotal={bookings.priceTotal}
 
                                                     showFullPageHandler={this.showFullPageHandler}
 
+                                                    displayBookingModalHandler={this.displayBookingModalHandler}
                                                     dateHandler={this.dateHandler}
                                                     createBooking={this.createBooking}
                                                     deleteBooking={this.deleteBooking}

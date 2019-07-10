@@ -28,10 +28,9 @@ const Staff = (props) => {
             <TextField
                 name="staffType"
                 select
-                className="max-w-128 mr-16 "
+                className="min-w-128 mr-16 "
                 id="staffSelection"
                 label="Personale type"
-                helperText="Vælg personale type"
                 margin="normal"
                 value={staffType}
                 variant="outlined"
@@ -60,7 +59,6 @@ const Staff = (props) => {
                 type="number"
                 className="max-w-76 mr-16"
                 id="staffNumber"
-                helperText="Antal personale"
                 label="Antal"
                 margin="normal"
                 value={numberOfStaff}
@@ -70,12 +68,11 @@ const Staff = (props) => {
 
             <TextField
                 name="startTime"
-                className="max-w-92 mr-16"
+                className="min-w-76 mr-16"
                 id="startTime"
                 select
                 value={startTime}
                 label="Start"
-                helperText="Start tidspunkt"
                 margin="normal"
                 variant="outlined"
                 onChange={changeHandler}
@@ -93,7 +90,6 @@ const Staff = (props) => {
                 select
                 value={endTime}
                 label="Slut"
-                helperText="Slut tidspunkt"
                 margin="normal"
                 variant="outlined"
                 onChange={changeHandler}
@@ -104,11 +100,6 @@ const Staff = (props) => {
                     </MenuItem>
                 ))}
             </TextField>
-
-
-            <div className="w-full mt-12">
-                <hr style={{borderTop: '1px solid gray'}}/>
-            </div>
         </div>
     );
 };

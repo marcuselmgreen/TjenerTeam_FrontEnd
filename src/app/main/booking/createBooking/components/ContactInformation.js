@@ -22,7 +22,6 @@ const ContactInformation = (props) => {
                 id="contactPerson"
                 value={contactPerson}
                 label="Kontakt person"
-                helperText="Angiv navn"
                 margin="normal"
                 variant="outlined"
                 onChange={changeHandler}
@@ -35,7 +34,6 @@ const ContactInformation = (props) => {
                 type="number"
                 label="Telefon Nr."
                 value={phoneNumber}
-                helperText="Angiv tlf. nummer"
                 margin="normal"
                 variant="outlined"
                 onChange={changeHandler}
@@ -47,7 +45,6 @@ const ContactInformation = (props) => {
                 id="address"
                 value={address}
                 label="Adresse for arrangement."
-                helperText="Angiv en adresse"
                 margin="normal"
                 variant="outlined"
                 onChange={changeHandler}
@@ -59,7 +56,6 @@ const ContactInformation = (props) => {
                 id="zipCode"
                 type="number"
                 value={zipCode}
-                helperText="Angiv post nummer"
                 label="Post nr."
                 margin="normal"
                 variant="outlined"

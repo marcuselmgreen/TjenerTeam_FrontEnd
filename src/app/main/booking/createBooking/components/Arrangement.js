@@ -1,6 +1,5 @@
 import React from 'react';
 import {FormControlLabel, Icon, MenuItem, Radio, RadioGroup, TextField} from "@material-ui/core";
-import FormControl from "@material-ui/core/FormControl/FormControl";
 
 const Arrangement = (props) => {
 
@@ -12,7 +11,8 @@ const Arrangement = (props) => {
         extraWorkHours,
         foodIncluded,
         accessInformation,
-        jobDescription
+        jobDescription,
+        extraHours
     } = props;
 
     return (
@@ -23,12 +23,11 @@ const Arrangement = (props) => {
                 </div>
                 <TextField
                     name="arrangementType"
-                    className="mr-16"
+                    className="mr-16 w-192"
                     id="arrangementSelection"
                     select
                     value={arrangementType}
                     label="Vælg arrangement type"
-                    helperText="Her kan du vælge type arrangement"
                     margin="normal"
                     variant="outlined"
                     onChange={changeHandler}
@@ -44,7 +43,6 @@ const Arrangement = (props) => {
                     className="max-w-160"
                     name="arrangementTypeOther"
                     id="arrangementName"
-                    helperText="Angiv navn på arrangement type"
                     label="Arrangement type."
                     margin="normal"
                     variant="outlined"
@@ -57,53 +55,29 @@ const Arrangement = (props) => {
                 <div className="flex flex-wrap my-2">
                     <div className="w-full sm:w-1/2">
                         <h4>Kan der forekomme overarbejde?</h4>
-                        <RadioGroup
+                        <TextField
                             name="extraWorkHours"
+                            className="mr-16 min-w-128"
+                            select
+                            value={extraWorkHours}
+                            label="Overarbejdes?"
+                            margin="normal"
+                            variant="outlined"
                             onChange={changeHandler}
-                            value={extraWorkHours}>
-
-                            <FormControlLabel
-                                style={{transform: "scale(0.8, 0.8)"}}
-                                value="0"
-                                control={<Radio color="primary"/>}
-                                label="Nej"
-                                labelPlacement="end"
-                            />
-                            <FormControlLabel
-                                style={{transform: "scale(0.8, 0.8)"}}
-                                value=".50"
-                                control={<Radio color="primary"/>}
-                                label="30 min"
-                                labelPlacement="end"
-                            />
-                            <FormControlLabel
-                                style={{transform: "scale(0.8, 0.8)"}}
-                                value="1"
-                                control={<Radio color="primary"/>}
-                                label="1 time"
-                                labelPlacement="end"
-                            />
-                            <FormControlLabel
-                                style={{transform: "scale(0.8, 0.8)"}}
-                                value="1.5"
-                                control={<Radio color="primary"/>}
-                                label="1,5 time"
-                                labelPlacement="end"
-                            />
-                            <FormControlLabel
-                                style={{transform: "scale(0.8, 0.8)"}}
-                                value="2"
-                                control={<Radio color="primary"/>}
-                                label="2 timer"
-                                labelPlacement="end"
-                            />
-                        </RadioGroup>
+                        >
+                        {extraHours.map((val, index) => (
+                            <MenuItem key={index} value={val.value}>
+                                {val.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
                     </div>
                     <div className="w-full  sm:w-1/2">
                         <div className=""><h4>Er mad inkluderet?</h4></div>
                         <RadioGroup
                             row
                             name="foodIncluded"
+                            className="mt-3"
                             onChange={changeHandler}
                             value={foodIncluded}>
                             <FormControlLabel
