@@ -51,7 +51,7 @@ const Pay = (props) => {
                                     id="hourlyWage"
                                     variant="filled"
                                     label="Timeløn"
-                                    className="float-left max-w-128  mr-3"
+                                    className="float-left max-w-136 mr-3"
                                     margin="normal"
                                     type="number"
                                     value={hourlyWage}
@@ -70,7 +70,7 @@ const Pay = (props) => {
                                     id="wageTotal"
                                     variant="filled"
                                     label="Timeløn"
-                                    className="float-left max-w-128 "
+                                    className="float-left max-w-136 "
                                     margin="normal"
                                     type="number"
                                     value={wageTotal}

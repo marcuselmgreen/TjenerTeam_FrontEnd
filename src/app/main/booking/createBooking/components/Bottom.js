@@ -20,7 +20,7 @@ const Bottom = (props) => {
                             id="wageTotal"
                             variant="filled"
                             label="Totalt"
-                            className="max-w-128 "
+                            className="max-w-192 "
                             margin="normal"
                             type="number"
                             value={priceTotal}

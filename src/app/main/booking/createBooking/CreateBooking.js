@@ -11,7 +11,7 @@ let booking =
         id: "",
         label: "Ny",
         staffType: "",
-        numberOfStaff: "",
+        numberOfStaff: 0,
         date: new Date(),
         startTime: "",
         endTime: "",
@@ -42,6 +42,8 @@ let booking =
 
     };
 
+const vacationExtra = 0.125;
+
 class CreateBooking extends Component {
     constructor(props) {
         super(props);
@@ -54,9 +56,9 @@ class CreateBooking extends Component {
                         id: this.idGenerator(),
                         label: "Ny",
                         staffType: "",
-                        numberOfStaff: "",
+                        numberOfStaff: "1",
                         date: new Date(),
-                        startTime: "",
+                        startTime: "00:00",
                         endTime: "",
                         contactPerson: "",
                         phoneNumber: "",
@@ -121,7 +123,7 @@ class CreateBooking extends Component {
     };
 
     createBooking = () => {
-        console.log(this.state.bookings)
+        this.wageExtra()
     };
 
     deleteBooking = () => {
@@ -149,8 +151,6 @@ class CreateBooking extends Component {
 
    changeHandler = (e) => {
 
-       console.log(e.target.name);
-
        let tempState = [...this.state.bookings];
        tempState[this.state.selectedTab][e.target.name] = e.target.value;
 
@@ -166,12 +166,19 @@ class CreateBooking extends Component {
            tempState[this.state.selectedTab]["wageTotal"] = "0";
            tempState[this.state.selectedTab]["priceTotal"] = "0";
        }
-       else if (e.target.name === "hourlyWage" && !isNaN(parseFloat(e.target.value))) {
-                // Calculate the price with bonus (make a function in the future)
-               tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(e.target.value) * 1.1).toFixed(2);
+       else if ((e.target.name === "hourlyWage")  && !isNaN(parseFloat(e.target.value))) {
+
+               tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(e.target.value) +  (e.target.value * vacationExtra) + this.diffWagePay()).toFixed(2);
                 // Calculate the total price (make a function in the future)
-               tempState[this.state.selectedTab]["priceTotal"] = (parseFloat(e.target.value) * 1.1).toFixed(2);
+
+                let val = parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]).toFixed(2);
+
+                tempState[this.state.selectedTab]["priceTotal"] = val.toString();
            }
+       else if (e.target.name === "numberOfStaff") {
+               let val = parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]);
+               tempState[this.state.selectedTab]["priceTotal"] = val.toString();
+       }
 
        this.setState({bookings: tempState})
    };
@@ -179,8 +186,48 @@ class CreateBooking extends Component {
    dateHandler = (date) => {
        let tempState = [...this.state.bookings];
        tempState[this.state.selectedTab].date = date;
+        let nrVal = tempState[this.state.selectedTab]["hourlyWage"];
+
+       if(!isNaN(parseFloat(nrVal))) {
+           tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(nrVal) +  (nrVal * vacationExtra) + this.diffWagePay()).toFixed(2);
+           tempState[this.state.selectedTab]["priceTotal"] = parseFloat(tempState[this.state.selectedTab]["wageTotal"] * tempState[this.state.selectedTab]["numberOfStaff"]
+           ).toFixed(2);
+       }
        this.setState({bookings: tempState});
    };
+
+
+   diffWagePay = () => {
+       let dateDiff = this.diffDateCalculator();
+
+       if (dateDiff <= 24) {
+           return 99;
+       } else if (dateDiff > 24 && dateDiff <= 48) {
+           return 80;
+       } else {
+           return 30;
+       }
+   };
+
+   diffDateCalculator = () => {
+     let currentDate = new Date();
+
+     let bookedDate = this.state.bookings[this.state.selectedTab]['date'];
+
+     let bookedTime = this.state.bookings[this.state.selectedTab]['startTime'];
+
+     let bookedDate_hour = parseInt(bookedTime.slice(0, 2));
+     let bookedDate_min = parseInt(bookedTime.slice(3, 5));
+
+     let newBookedDate = new Date(bookedDate.getFullYear(), bookedDate.getMonth(), bookedDate.getDate(), bookedDate_hour, bookedDate_min);
+
+     console.log(newBookedDate);
+     console.log(currentDate);
+
+     let val = Math.abs(newBookedDate - currentDate);
+     return Math.ceil(val / (1000 * 60 * 60 ));
+   };
+
 
     render() {
 
