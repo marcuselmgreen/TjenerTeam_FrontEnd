@@ -5,6 +5,9 @@ import Tab from "@material-ui/core/Tab/Tab";
 import Photo from "../../static/tjenerTeam2.png";
 import Booking from "./Booking";
 import FuseAnimate from "../../../../@fuse/components/FuseAnimate/FuseAnimate";
+import {connect} from "react-redux";
+import * as bookingActions from "../actions/BookingActions";
+import {bindActionCreators} from "redux";
 
 let booking =
     {
@@ -43,6 +46,7 @@ let booking =
     };
 
 const vacationExtra = 0.125;
+const staff = ["Tjener", "Bartender", "Kok", "Opvasker"];
 
 class CreateBooking extends Component {
     constructor(props) {
@@ -122,9 +126,14 @@ class CreateBooking extends Component {
         this.setState({selectedTab: this.state.selectedTab + 1});
     };
 
-    createBooking = () => {
-        this.wageExtra()
-    };
+    // createBooking = () => {
+    //     let bookings = [...this.state.bookings];
+    //     bookings.map(b => {
+    //         this.props.actions.createBooking(b)
+    //     });
+    //
+    //
+    // };
 
     deleteBooking = () => {
         if (this.state.bookings.length > 1) {
@@ -149,35 +158,56 @@ class CreateBooking extends Component {
    * THE FOLLOWING IS ALL THE METHODS TO CHANGE THE DATA IN THE INPUT FIELD FOR A BOOKING
    * */
 
+
+   checkStaffType = (value) => {
+        staff.map(staff => {
+            if (value === staff) {
+                return true;
+            }
+        });
+       return false;
+   };
+
    changeHandler = (e) => {
 
+       console.log(e.target.name);
        let tempState = [...this.state.bookings];
        tempState[this.state.selectedTab][e.target.name] = e.target.value;
 
+       // CHECKS THE LABEL ON THE TOP
        if(
-           e.target.name === "staffType" &&
-           e.target.value === "Bartender" ||
-           e.target.value === "Kok" ||
-           e.target.value === "Opvasker" ||
-           e.target.value === "Tjener") {
+           e.target.name === "staffType" && this.checkStaffType(e.target.value)) {
            tempState[this.state.selectedTab]["label"] = e.target.value;
        }
-       else if (parseFloat(tempState[this.state.selectedTab]["hourlyWage"]) < 0 || isNaN(parseFloat(e.target.value)) ) {
+
+
+       // IF HOURLY WAGE IS 0 SET ALL VALUES TO ZERO
+       else if (parseFloat(tempState[this.state.selectedTab]["hourlyWage"]) < 1 || isNaN(parseFloat(e.target.value)) ) {
            tempState[this.state.selectedTab]["wageTotal"] = "0";
            tempState[this.state.selectedTab]["priceTotal"] = "0";
        }
+
+       // IF HOURLY WAGE IS OVER 0 SET VALUES
        else if ((e.target.name === "hourlyWage")  && !isNaN(parseFloat(e.target.value))) {
 
-               tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(e.target.value) +  (e.target.value * vacationExtra) + this.diffWagePay()).toFixed(2);
-                // Calculate the total price (make a function in the future)
+           // SETS VALUES FOR WAGETOTAL
+           tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(e.target.value) + (e.target.value * vacationExtra) + this.diffWagePay()).toFixed(2);
 
-                let val = parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]).toFixed(2);
+           // SETS TOTAL PRICE
+           let val = parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]).toFixed(2);
 
-                tempState[this.state.selectedTab]["priceTotal"] = val.toString();
-           }
+           tempState[this.state.selectedTab]["priceTotal"] = val.toString();
+       }
        else if (e.target.name === "numberOfStaff") {
+
+           if (tempState[this.state.selectedTab]["numberOfStaff"] > 0) {
                let val = parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]);
                tempState[this.state.selectedTab]["priceTotal"] = val.toString();
+           } else {
+               tempState[this.state.selectedTab]["hourlyWage"] = "0";
+               tempState[this.state.selectedTab]["wageTotal"] = "0";
+               tempState[this.state.selectedTab]["priceTotal"] = "0";
+           }
        }
 
        this.setState({bookings: tempState})
@@ -300,6 +330,7 @@ class CreateBooking extends Component {
                                                     priceTotal={bookings.priceTotal}
 
                                                     showFullPageHandler={this.showFullPageHandler}
+                                                    staff={staff}
 
                                                     displayBookingModalHandler={this.displayBookingModalHandler}
                                                     dateHandler={this.dateHandler}
@@ -324,4 +355,23 @@ class CreateBooking extends Component {
     }
 }
 
-export default CreateBooking;
+function mapStateToProps() {
+    return {
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: {
+            createBooking: bindActionCreators(bookingActions.createBooking, dispatch)
+        }
+    }
+}
+
+
+export default
+    connect(
+        mapStateToProps,
+        mapDispatchToProps)
+    (CreateBooking);

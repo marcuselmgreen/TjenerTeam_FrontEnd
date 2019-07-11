@@ -9,12 +9,18 @@ import './react-table-defaults';
 import './react-chartjs-2-defaults';
 import './styles/index.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import App from 'app/App';
 
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import configureStore from './app/redux/store';
+
+
 ReactDOM.render(
-    <App/>,
+    <Provider store={configureStore()}>
+        <App/>
+    </Provider>,
     document.getElementById('root')
 );
 

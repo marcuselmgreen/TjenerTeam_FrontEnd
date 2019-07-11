@@ -18,7 +18,6 @@ import BookingModal from "./components/BookingModal";
 
 
 const time = Time;
-const staff = ["Tjener", "Bartender", "Kok", "Opvasker"];
 const arrangementTypeValues = ["Firmaevent", "Bryllup", "Julefrokost", "andet"];
 const upperDressSelection = ["Hvid Skjorte", "Sort t-shirt", "Hvid t-shirt", "andet"];
 const lowerDressSelection = ["Sorte bukaer", "Hvide Bukser", "shorts", "andet"];
@@ -71,6 +70,7 @@ const Booking = (props) => {
                 priceTotal,
 
                 displayModal,
+                staff,
 
                 /*
                     FUNCTIONS

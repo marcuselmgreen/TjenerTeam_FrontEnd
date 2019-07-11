@@ -10,6 +10,8 @@ import AppContext from './AppContext';
 import routes from './fuse-configs/routesConfig';
 import {create} from 'jss';
 import {StylesProvider, jssPreset, createGenerateClassName} from '@material-ui/styles';
+import { connect } from 'react-redux';
+import {bookingActions} from "./main/booking/actions/BookingActions";
 
 const jss = create({
     ...jssPreset(),
@@ -43,4 +45,5 @@ const App = () => {
     );
 };
 
-export default App;
+
+export default connect()(App);
