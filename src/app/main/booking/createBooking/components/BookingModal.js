@@ -12,7 +12,8 @@ const BookingModal = (props) => {
         displayModal,
         displayBookingModalHandler,
         addBooking,
-        createBooking
+        createBooking,
+        bookingLength
     } = props;
 
     function rand() {
@@ -53,11 +54,11 @@ const BookingModal = (props) => {
             >
                 <div style={modalStyle} className={classes.paper}>
                     <h2>Tak for din booking!</h2>
-                    <h3 className="mt-24">Du har nu følgende muligheder</h3>
+                    <h3 className="mt-24">{bookingLength === 3 ? "Du kan ikke tilføje flere bookings. Tryk videre" : "Du har nu følgende muligheder"}</h3>
                     <div className="flex flex-row my-2 ">
                         <div className="w-full sm:w-1/2 p-4">
                             <Button
-                                disabled
+                                disabled={bookingLength === 3}
                                 onClick={addBooking}
                                 color="primary"
                                 variant="contained"

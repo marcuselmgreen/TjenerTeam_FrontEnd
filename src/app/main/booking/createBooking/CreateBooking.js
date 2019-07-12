@@ -18,7 +18,6 @@ const vacationExtra = 0.125;
 const staff = ["Tjener", "Bartender", "Kok", "Opvasker"];
 
 
-
 class CreateBooking extends Component {
     constructor(props) {
         super(props);
@@ -80,17 +79,11 @@ class CreateBooking extends Component {
 
     displayBookingModalHandler = () => {
 
-        console.log(this.state.bookings)
-
         const validation = this.validator.validate(this.state.bookings[this.state.selectedTab]);
-        console.log(this.state.bookings)
-        console.log("TEST")
-        console.log(validation)
         const tempBookings = [...this.state.bookings];
-        tempBookings[this.state.selectedTab].validation = validation
+        tempBookings[this.state.selectedTab].validation = validation;
 
         this.submitted = true;
-        console.log(this.submitted)
 
         if(validation.isValid) {
             this.setState({displayModal: !this.state.displayModal})
@@ -150,6 +143,40 @@ class CreateBooking extends Component {
         }
     };
 
+
+    workHours = () => {
+
+        let {startTime, endTime} = this.state.bookings[this.state.selectedTab];
+
+        startTime = startTime.replace(":", ".");
+        endTime = endTime.replace(":", ".");
+
+        if(startTime.charAt(3) === "3") {
+            startTime = startTime.substring(0, 3) + '5';
+        }
+
+        if(endTime.charAt(3) === "3") {
+            endTime = endTime.substring(0, 3) + '5';
+        }
+
+
+        startTime = parseFloat(startTime);
+        endTime = parseFloat(endTime);
+
+        // If endTime is less than startTime + 24 hours, and plus the rest with Math.abs
+        if(endTime < startTime) {
+            return (Math.abs(startTime - endTime) * 24);
+        }
+        // If endTime is bigger than starTime, then just do Math.abs
+        else if(endTime > startTime) {
+            return Math.abs(startTime - endTime);
+        }
+        else {
+            return 1;
+        }
+
+    };
+
     /*
     * THE FOLLOWING IS ALL THE METHODS TO CHANGE THE DATA IN THE INPUT FIELD FOR A BOOKING
     * */
@@ -163,34 +190,46 @@ class CreateBooking extends Component {
         return false;
     };
 
+
+    setTotalPrice =  (tempState) => {
+        // SETS TOTAL PRICE
+        return parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]).toFixed(2) * this.workHours();
+    };
+
+
     changeHandler = (e) => {
 
-        console.log(e.target.name);
         let tempState = [...this.state.bookings];
         tempState[this.state.selectedTab][e.target.name] = e.target.value;
 
         // CHECKS THE LABEL ON THE TOP
         if(
-            e.target.name === "staffType" && this.checkStaffType(e.target.value)) {
+            e.target.name == "staffType") {
             tempState[this.state.selectedTab]["label"] = e.target.value;
         }
-
-
         // IF HOURLY WAGE IS 0 SET ALL VALUES TO ZERO
-        else if (parseFloat(tempState[this.state.selectedTab]["hourlyWage"]) < 1 || isNaN(parseFloat(e.target.value)) ) {
-            tempState[this.state.selectedTab]["wageTotal"] = "0";
+        else if (parseFloat(tempState[this.state.selectedTab]["hourlyWage"]) < 1 || e.target.name === "hourlyWage" && isNaN(e.target.value)){
             tempState[this.state.selectedTab]["priceTotal"] = "0";
         }
-
         // IF HOURLY WAGE IS OVER 0 SET VALUES
-        else if ((e.target.name === "hourlyWage")  && !isNaN(parseFloat(e.target.value))) {
+        else if ((e.target.name === "hourlyWage")) {
 
-            // SETS VALUES FOR WAGETOTAL
-            tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(e.target.value) + (e.target.value * vacationExtra) + this.diffWagePay()).toFixed(2);
+            if (e.target.value > 0) {
+                // SETS VALUES FOR WAGETOTAL
+                tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(e.target.value) + (e.target.value * vacationExtra) + this.diffWagePay()).toFixed(2);
+                // SETS TOTAL PRICE
+                let val = this.setTotalPrice(tempState);
+                tempState[this.state.selectedTab]["priceTotal"] = val.toString();
+            }
+            else {
+                tempState[this.state.selectedTab]["wageTotal"] = "0";
+                tempState[this.state.selectedTab]["priceTotal"] = "0";
+            }
+        }
+        else if (e.target.name === "startTime"|| e.target.name === "endTime") {
 
             // SETS TOTAL PRICE
-            let val = parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]).toFixed(2);
-
+            let val = this.setTotalPrice(tempState);
             tempState[this.state.selectedTab]["priceTotal"] = val.toString();
         }
         else if (e.target.name === "numberOfStaff") {
@@ -204,9 +243,9 @@ class CreateBooking extends Component {
                 tempState[this.state.selectedTab]["priceTotal"] = "0";
             }
         }
-
         this.setState({bookings: tempState})
     };
+
 
     dateHandler = (date) => {
         let tempState = [...this.state.bookings];
@@ -245,9 +284,6 @@ class CreateBooking extends Component {
         let bookedDate_min = parseInt(bookedTime.slice(3, 5));
 
         let newBookedDate = new Date(bookedDate.getFullYear(), bookedDate.getMonth(), bookedDate.getDate(), bookedDate_hour, bookedDate_min);
-
-        console.log(newBookedDate);
-        console.log(currentDate);
 
         let val = Math.abs(newBookedDate - currentDate);
         return Math.ceil(val / (1000 * 60 * 60 ));
@@ -345,7 +381,6 @@ class CreateBooking extends Component {
                 </div>
                 <div className="w-2/5 ">
                     {/*<img src={Photo2} className="" alt="tjenerTeam2" style={{height: '100%', width: '100%'}} />*/}
-
                     <img src={Photo} className="w-2xl fixed " alt="tjenerTeam2" />
                 </div>
             </div>

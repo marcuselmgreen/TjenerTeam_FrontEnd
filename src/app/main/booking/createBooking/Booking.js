@@ -233,6 +233,7 @@ const Booking = (props) => {
                                 displayBookingModalHandler={displayBookingModalHandler}
                                 addBooking={addBooking}
                                 createBooking={createBooking}
+                                bookingLength={bookingLength}
                             />
 
 
