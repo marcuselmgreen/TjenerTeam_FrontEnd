@@ -1,5 +1,7 @@
 import React from 'react';
 import {FormControlLabel, Icon, MenuItem, Radio, RadioGroup, TextField} from "@material-ui/core";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
 
 const Arrangement = (props) => {
 
@@ -12,7 +14,8 @@ const Arrangement = (props) => {
         foodIncluded,
         accessInformation,
         jobDescription,
-        extraHours
+        extraHours,
+        validation
     } = props;
 
     return (
@@ -27,6 +30,7 @@ const Arrangement = (props) => {
                     id="arrangementSelection"
                     select
                     value={arrangementType}
+                    helperText={<span style={{color: 'red'}}>{validation.arrangementType.message}</span>}
                     label="Vælg arrangement type"
                     margin="normal"
                     variant="outlined"
@@ -60,44 +64,48 @@ const Arrangement = (props) => {
                             className="mr-16 min-w-128"
                             select
                             value={extraWorkHours}
+                            helperText={<span style={{color: 'red'}}>{validation.extraWorkHours.message}</span>}
                             label="Overarbejdes?"
                             margin="normal"
                             variant="outlined"
                             onChange={changeHandler}
                         >
-                        {extraHours.map((val, index) => (
-                            <MenuItem key={index} value={val.value}>
-                                {val.name}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+                            {extraHours.map((val, index) => (
+                                <MenuItem key={index} value={val.value}>
+                                    {val.name}
+                                </MenuItem>
+                            ))}
+                        </TextField>
                     </div>
                     <div className="w-full  sm:w-1/2">
                         <div className=""><h4>Er mad inkluderet?</h4></div>
-                        <RadioGroup
-                            row
-                            name="foodIncluded"
-                            className="mt-3"
-                            onChange={changeHandler}
-                            value={foodIncluded}>
-                            <FormControlLabel
-                                style={{transform: "scale(0.8, 0.8)"}}
-                                value="yes"
-                                control={<Radio color="primary"/>}
-                                label="Ja"
-                                labelPlacement="bottom"
-                            />
-                            <Icon fontSize="large"
-                                  className="ml-8 mr-3 mt-8">local_dining</Icon>
-                            <FormControlLabel
-                                style={{transform: "scale(0.8, 0.8)"}}
-                                className=""
-                                value="no"
-                                control={<Radio color="primary"/>}
-                                label="Nej"
-                                labelPlacement="bottom"
-                            />
-                        </RadioGroup>
+                        <FormControl>
+                            <RadioGroup
+                                row
+                                name="foodIncluded"
+                                className="mt-3"
+                                onChange={changeHandler}
+                                value={foodIncluded}>
+                                <FormControlLabel
+                                    style={{transform: "scale(0.8, 0.8)"}}
+                                    value="yes"
+                                    control={<Radio color="primary"/>}
+                                    label="Ja"
+                                    labelPlacement="bottom"
+                                />
+                                <Icon fontSize="large"
+                                      className="ml-8 mr-3 mt-8">local_dining</Icon>
+                                <FormControlLabel
+                                    style={{transform: "scale(0.8, 0.8)"}}
+                                    className=""
+                                    value="no"
+                                    control={<Radio color="primary"/>}
+                                    label="Nej"
+                                    labelPlacement="bottom"
+                                />
+                            </RadioGroup>
+                            <FormHelperText><span style={{color: 'red'}}>{validation.foodIncluded.message}</span></FormHelperText>
+                        </FormControl>
                     </div>
                 </div>
             </div>
@@ -110,6 +118,7 @@ const Arrangement = (props) => {
                             name="jobDescription"
                             id="outlined-multiline-flexible"
                             label="Beskrivelse"
+                            helperText={<span style={{color: 'red'}}>{validation.jobDescription.message}</span>}
                             multiline
                             rowsMax="20"
                             value={jobDescription}

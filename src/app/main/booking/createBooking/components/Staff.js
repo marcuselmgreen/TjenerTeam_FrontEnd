@@ -1,6 +1,7 @@
 import React from 'react';
 import {MenuItem, TextField} from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
+import '../Booking.css';
 
 import {
     DatePicker,
@@ -8,6 +9,7 @@ import {
 } from "@material-ui/pickers";
 
 const Staff = (props) => {
+
 
     const {
         staffType,
@@ -18,6 +20,7 @@ const Staff = (props) => {
         startTime,
         endTime,
         date,
+        validation,
         time} = props;
 
     return (
@@ -30,7 +33,9 @@ const Staff = (props) => {
                 select
                 className="min-w-128 mr-16 "
                 id="staffSelection"
+                style={{borderColor: 'red'}}
                 label="Personale type"
+                helperText={<span style={{color: 'red'}}>{validation.staffType.message}</span>}
                 margin="normal"
                 value={staffType}
                 variant="outlined"
@@ -42,23 +47,25 @@ const Staff = (props) => {
                     </MenuItem>
                 ))}
             </TextField>
-
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <DatePicker
-                    className="max-w-128 mt-16 mr-16"
-                    autoOk
-                    label="Date"
-                    inputVariant="outlined"
-                    format="dd/MM/yyyy"
-                    value={date}
-                    onChange={(date) => dateHandler(date)}/>
+            <MuiPickersUtilsProvider utils={DateFnsUtils} >
+                    <DatePicker
+                        className="max-w-128 mt-16 mr-16 "
+                        autoOk
+                        label="Date"
+                        helperText={<span style={{color: 'red'}}>{validation.date.message}</span>}
+                        inputVariant="outlined"
+                        format="dd/MM/yyyy"
+                        value={date}
+                        onChange={(date) => dateHandler(date)}/>
             </MuiPickersUtilsProvider>
+
 
             <TextField
                 name="numberOfStaff"
                 type="number"
-                className="max-w-76 mr-16"
+                className="max-w-76 mr-16 "
                 id="staffNumber"
+                helperText={<span style={{color: 'red'}}>{validation.numberOfStaff.message}</span>}
                 label="Antal"
                 margin="normal"
                 value={numberOfStaff}
@@ -72,6 +79,7 @@ const Staff = (props) => {
                 id="startTime"
                 select
                 value={startTime}
+                helperText={<span style={{color: 'red'}}>{validation.startTime.message}</span>}
                 label="Start"
                 margin="normal"
                 variant="outlined"
@@ -85,9 +93,10 @@ const Staff = (props) => {
 
             <TextField
                 name="endTime"
-                className=" max-w-92 mr-16"
+                className="min-w-76 mr-16"
                 id="endTime"
                 select
+                helperText={<span style={{color: 'red'}}>{validation.endTime.message}</span>}
                 value={endTime}
                 label="Slut"
                 margin="normal"
@@ -103,5 +112,6 @@ const Staff = (props) => {
         </div>
     );
 };
+
 
 export default Staff;

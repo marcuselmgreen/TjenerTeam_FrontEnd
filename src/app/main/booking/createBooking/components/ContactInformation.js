@@ -9,6 +9,7 @@ const ContactInformation = (props) => {
         phoneNumber,
         address,
         zipCode,
+        validation,
     } = props;
 
     return (
@@ -21,6 +22,7 @@ const ContactInformation = (props) => {
                 className="mr-16 max-w-256"
                 id="contactPerson"
                 value={contactPerson}
+                helperText={<span style={{color: 'red'}}>{validation.contactPerson.message}</span>}
                 label="Kontakt person"
                 margin="normal"
                 variant="outlined"
@@ -31,6 +33,7 @@ const ContactInformation = (props) => {
                 name="phoneNumber"
                 className="max-w-192 mr-16"
                 id="phoneNumber"
+                helperText={<span style={{color: 'red'}}>{validation.phoneNumber.message}</span>}
                 type="number"
                 label="Telefon Nr."
                 value={phoneNumber}
@@ -43,6 +46,7 @@ const ContactInformation = (props) => {
                 name="address"
                 className="w-full sm:w-2/3 mr-16"
                 id="address"
+                helperText={<span style={{color: 'red'}}>{validation.address.message}</span>}
                 value={address}
                 label="Adresse for arrangement."
                 margin="normal"
@@ -54,6 +58,7 @@ const ContactInformation = (props) => {
                 name="zipCode"
                 className="w-1/3 max-w-92"
                 id="zipCode"
+                helperText={<span style={{color: 'red'}}>{validation.zipCode.message}</span>}
                 type="number"
                 value={zipCode}
                 label="Post nr."

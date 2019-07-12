@@ -9,7 +9,8 @@ const Pay = (props) => {
         transportCostWages,
         transportWage,
         hourlyWage,
-        wageTotal
+        wageTotal,
+        validation
     } = props;
 
     return (
@@ -26,6 +27,7 @@ const Pay = (props) => {
                             className="mr-16 w-192"
                             id="transportCost"
                             select
+                            helperText={<span style={{color: 'red'}}>{validation.transportWage.message}</span>}
                             value={transportWage}
                             label="Transport tillæg?"
                             margin="normal"
@@ -51,6 +53,7 @@ const Pay = (props) => {
                                     id="hourlyWage"
                                     variant="filled"
                                     label="Timeløn"
+                                    helperText={<span style={{color: 'red'}}>{validation.hourlyWage.message}</span>}
                                     className="float-left max-w-136 mr-3"
                                     margin="normal"
                                     type="number"

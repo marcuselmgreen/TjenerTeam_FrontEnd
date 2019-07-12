@@ -57,6 +57,7 @@ const BookingModal = (props) => {
                     <div className="flex flex-row my-2 ">
                         <div className="w-full sm:w-1/2 p-4">
                             <Button
+                                disabled
                                 onClick={addBooking}
                                 color="primary"
                                 variant="contained"

@@ -10,7 +10,8 @@ const Questions = (props) => {
         jobExperience,
         yesAndNo,
         languageSkillData,
-        gender
+        gender,
+        validation
     } = props;
 
     return (
@@ -26,6 +27,7 @@ const Questions = (props) => {
                         className="w-full "
                         id="languagee"
                         select
+                        helperText={<span style={{color: 'red'}}>{validation.languageSkill.message}</span>}
                         value={languageSkill}
                         onChange={changeHandler}
                         label="Sprogkompetencer"
@@ -45,6 +47,7 @@ const Questions = (props) => {
                         className="w-full"
                         id="gender"
                         select
+                        helperText={<span style={{color: 'red'}}>{validation.staffGender.message}</span>}
                         value={staffGender}
                         onChange={changeHandler}
                         label="Fortrukket køn"
@@ -64,6 +67,7 @@ const Questions = (props) => {
                         className="w-full"
                         id="experience"
                         select
+                        helperText={<span style={{color: 'red'}}>{validation.jobExperience.message}</span>}
                         value={jobExperience}
                         onChange={changeHandler}
                         label="Erfaring?"

@@ -18,10 +18,10 @@ import BookingModal from "./components/BookingModal";
 
 
 const time = Time;
-const arrangementTypeValues = ["Firmaevent", "Bryllup", "Julefrokost", "andet"];
-const upperDressSelection = ["Hvid Skjorte", "Sort t-shirt", "Hvid t-shirt", "andet"];
-const lowerDressSelection = ["Sorte bukaer", "Hvide Bukser", "shorts", "andet"];
-const shoeSelection = ["Støvler", "sorte sko", "hvide sko", "andet"];
+const arrangementTypeValues = ["Firmaevent", "Bryllup", "Julefrokost", "Andet"];
+const upperDressSelection = ["Hvid Skjorte", "Sort Skjorte", "Intet krav", "Andet"];
+const lowerDressSelection = ["Sorte bukser", "Hvide Bukser", "Shorts", "Intet krav", "Andet"];
+const shoeSelection = ["Sorte Sko", "Hvide Sko", "Intet krav", "Andet"];
 const extraHours = [{name: "Nej", value: 0}, {name: "30 min", value: 0.50}, {name: "1 time", value: 1}, {name: "1 time 30 min", value: 1.5} , {name: "2 timer", value: 2}];
 const languageSkillData = ["Dansk og Engelsk", "Kun Dansk", "Kun Engelsk"];
 const transportCostWages = [{name: "nej", value: 0}, {name: "30 min", value: 0.5}, {name: "1 time", value: 1}, {name: "1 timer 30 min", value: 1.5}, {name: "2 timer", value: 2}];
@@ -30,60 +30,61 @@ const yesAndNo = ["Ja", "nej"];
 
 const Booking = (props) => {
 
-        const
-            {
-                /*
-                    VALUES
-                 */
-                label,
-                staffType,
-                numberOfStaff,
-                date,
-                startTime,
-                endTime,
-                contactPerson,
-                phoneNumber,
-                address,
-                zipCode,
-                arrangementType,
-                arrangementTypeOther,
-                extraWorkHours,
-                foodIncluded,
-                jobDescription,
-                accessInformation,
-                upperDressCode,
-                upperDressCodeOther,
-                lowerDressCode,
-                lowerDressCodeOther,
-                shoesDressCode,
-                shoesDressCodeOther,
-                itemToBring,
-                languageSkill,
-                staffGender,
-                jobExperience,
-                transportWage,
-                selectedTab,
-                showFullPage,
-                bookingLength,
-                wageTotal,
-                hourlyWage,
-                priceTotal,
+    const
+        {
+            /*
+                VALUES
+             */
+            label,
+            staffType,
+            numberOfStaff,
+            date,
+            startTime,
+            endTime,
+            contactPerson,
+            phoneNumber,
+            address,
+            zipCode,
+            arrangementType,
+            arrangementTypeOther,
+            extraWorkHours,
+            foodIncluded,
+            jobDescription,
+            accessInformation,
+            upperDressCode,
+            upperDressCodeOther,
+            lowerDressCode,
+            lowerDressCodeOther,
+            shoesDressCode,
+            shoesDressCodeOther,
+            itemToBring,
+            languageSkill,
+            staffGender,
+            jobExperience,
+            transportWage,
+            selectedTab,
+            showFullPage,
+            bookingLength,
+            wageTotal,
+            hourlyWage,
+            priceTotal,
 
-                displayModal,
-                staff,
+            displayModal,
+            staff,
+            validation,
 
-                /*
-                    FUNCTIONS
-                 */
-                showFullPageHandler,
-                addBooking,
-                dateHandler,
-                createBooking,
-                deleteBooking,
-                changeHandler,
-                displayBookingModalHandler
+            /*
+                FUNCTIONS
+             */
+            showFullPageHandler,
+            addBooking,
+            dateHandler,
+            createBooking,
+            deleteBooking,
+            changeHandler,
+            displayBookingModalHandler
 
-            } = props;
+        } = props;
 
     return (
         <div>
@@ -120,7 +121,8 @@ const Booking = (props) => {
                         startTime={startTime}
                         endTime={endTime}
                         date={date}
-                        time={time}/>
+                        time={time}
+                        validation={validation}/>
 
                     <div className="w-full mt-12">
                         <hr style={{borderTop: '1px solid #cccccc'}}/>
@@ -131,7 +133,8 @@ const Booking = (props) => {
                         changeHandler={changeHandler}
                         phoneNumber={phoneNumber}
                         address={address}
-                        zipCode={zipCode}/>
+                        zipCode={zipCode}
+                        validation={validation}/>
 
                     {!showFullPage &&
                     <div className="w-full">
@@ -165,7 +168,7 @@ const Booking = (props) => {
                                 foodIncluded={foodIncluded}
                                 accessInformation={accessInformation}
                                 jobDescription={jobDescription}
-                                />
+                                validation={validation}/>
 
                             <div className="w-full mt-12 mb-20">
                                 <hr style={{borderTop: '1px solid #cccccc'}}/>
@@ -183,21 +186,23 @@ const Booking = (props) => {
                                 shoeSelection={shoeSelection}
                                 shoesDressCodeOther={shoesDressCodeOther}
                                 itemToBring={itemToBring}
+                                validation={validation}
                             />
 
-                            {/*<div className="w-full mt-12 mb-20">*/}
-                            {/*    <hr style={{borderTop: '1px solid gray'}}/>*/}
-                            {/*</div>*/}
+                            <div className="w-full mt-12 mb-20">
+                                <hr style={{borderTop: '1px solid gray'}}/>
+                            </div>
 
-                            {/*<Questions*/}
-                            {/*    changeHandler={changeHandler}*/}
-                            {/*    languageSkill={languageSkill}*/}
-                            {/*    staffGender={staffGender}*/}
-                            {/*    jobExperience={jobExperience}*/}
-                            {/*    yesAndNo={yesAndNo}*/}
-                            {/*    languageSkillData={languageSkillData}*/}
-                            {/*    gender={gender}*/}
-                            {/*/>*/}
+                            <Questions
+                                changeHandler={changeHandler}
+                                languageSkill={languageSkill}
+                                staffGender={staffGender}
+                                jobExperience={jobExperience}
+                                yesAndNo={yesAndNo}
+                                languageSkillData={languageSkillData}
+                                gender={gender}
+                                validation={validation}
+                            />
 
 
                             <div className="w-full mt-12 mb-20">
@@ -210,6 +215,7 @@ const Booking = (props) => {
                                 transportCostWages={transportCostWages}
                                 wageTotal={wageTotal}
                                 hourlyWage={hourlyWage}
+                                validation={validation}
                             />
 
                             <div className="w-full mt-12 mb-20">
@@ -227,7 +233,7 @@ const Booking = (props) => {
                                 displayBookingModalHandler={displayBookingModalHandler}
                                 addBooking={addBooking}
                                 createBooking={createBooking}
-                                />
+                            />
 
 
 
@@ -235,7 +241,7 @@ const Booking = (props) => {
                                 <div className="flex flex-wrap my-2">
                                     <div className="w-full sm:w-1/2 ">
                                         {0 === bookingLength ?
-                                                null :
+                                            null :
                                             <div className="w-full ">
                                                 <div className="flex justify-center p-4">
                                                     <DeleteButton
