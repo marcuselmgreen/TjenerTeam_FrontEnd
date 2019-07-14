@@ -40,8 +40,8 @@ export function submitLoginWithFireBase({username, password})
                     'auth/email-already-in-use',
                     'auth/invalid-email',
                     'auth/operation-not-allowed',
-                    'auth/user-not-found',
-                    'auth/user-disabled'
+                    'auth/corporation-not-found',
+                    'auth/corporation-disabled'
                 ];
                 const passwordErrorCodes = [
                     'auth/weak-password',

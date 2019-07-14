@@ -10,8 +10,8 @@ import * as bookingActions from "../actions/BookingActions";
 import {bindActionCreators} from "redux";
 import FormValidator from '../../validator/FormValidator';
 import {BookingFormValidator} from "../../validator/forms/BookingFormValidator";
-import {booking} from './BookingTemplate';
-
+import {booking} from './others/BookingTemplate';
+import {idGenerator} from '../../common/IdGenerator'
 
 
 const vacationExtra = 0.125;
@@ -21,18 +21,15 @@ const staff = ["Tjener", "Bartender", "Kok", "Opvasker"];
 class CreateBooking extends Component {
     constructor(props) {
         super(props);
-
         this.validator = new FormValidator(BookingFormValidator);
-
         this.submitted = false;
-
         this.state = {
             selectedTab: 0,
-            showFullPage: true,
+            showFullPage: false,
             displayModal: false,
             bookings: [
                 {
-                    id: this.idGenerator(),
+                    id: idGenerator(),
                     label: "Ny",
                     staffType: "",
                     numberOfStaff: "1",
@@ -70,29 +67,18 @@ class CreateBooking extends Component {
     }
 
 
-    idGenerator = () => {
-        let timestamp = (new Date().getTime() / 1000 | 0).toString(16);
-        return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
-            return (Math.random() * 16 | 0).toString(16);
-        }).toLowerCase();
-    };
-
     displayBookingModalHandler = () => {
 
         const validation = this.validator.validate(this.state.bookings[this.state.selectedTab]);
         const tempBookings = [...this.state.bookings];
         tempBookings[this.state.selectedTab].validation = validation;
-
         this.submitted = true;
-
         if(validation.isValid) {
             this.setState({displayModal: !this.state.displayModal})
         }
-
         // Force re render the component
         this.setState({state: this.state})
     };
-
 
     handleChangeTab = (e, tab) => {
         this.setState({selectedTab: tab})
@@ -106,7 +92,7 @@ class CreateBooking extends Component {
         let tempState = {...this.state};
         tempState.bookings[this.state.selectedTab].label = tempState.bookings[this.state.selectedTab].staffType;
         let newBooking = {...booking};
-        newBooking.id = this.idGenerator();
+        newBooking.id = idGenerator();
         tempState.bookings.push(newBooking);
         debugger;
         this.setState({tempState});
@@ -115,13 +101,10 @@ class CreateBooking extends Component {
     };
 
     createBooking = () => {
-
         // let bookings = [...this.state.bookings];
         // bookings.map(b => {
         //     this.props.actions.createBooking(b)
         // });
-
-
     };
 
     deleteBooking = () => {
@@ -145,7 +128,6 @@ class CreateBooking extends Component {
 
 
     workHours = () => {
-
         let {startTime, endTime} = this.state.bookings[this.state.selectedTab];
 
         startTime = startTime.replace(":", ".");
@@ -154,12 +136,9 @@ class CreateBooking extends Component {
         if(startTime.charAt(3) === "3") {
             startTime = startTime.substring(0, 3) + '5';
         }
-
         if(endTime.charAt(3) === "3") {
             endTime = endTime.substring(0, 3) + '5';
         }
-
-
         startTime = parseFloat(startTime);
         endTime = parseFloat(endTime);
 
@@ -181,14 +160,14 @@ class CreateBooking extends Component {
     * THE FOLLOWING IS ALL THE METHODS TO CHANGE THE DATA IN THE INPUT FIELD FOR A BOOKING
     * */
 
-    checkStaffType = (value) => {
-        staff.map(staff => {
-            if (value === staff) {
-                return true;
-            }
-        });
-        return false;
-    };
+    // checkStaffType = (value) => {
+    //     staff.map(staff => {
+    //         if (value === staff) {
+    //             return true;
+    //         }
+    //     });
+    //     return false;
+    // };
 
 
     setTotalPrice =  (tempState) => {
@@ -243,6 +222,7 @@ class CreateBooking extends Component {
                 tempState[this.state.selectedTab]["priceTotal"] = "0";
             }
         }
+
         this.setState({bookings: tempState})
     };
 
@@ -254,8 +234,8 @@ class CreateBooking extends Component {
 
         if(!isNaN(parseFloat(nrVal))) {
             tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(nrVal) +  (nrVal * vacationExtra) + this.diffWagePay()).toFixed(2);
-            tempState[this.state.selectedTab]["priceTotal"] = parseFloat(tempState[this.state.selectedTab]["wageTotal"] * tempState[this.state.selectedTab]["numberOfStaff"]
-            ).toFixed(2);
+            let val = this.setTotalPrice(tempState);
+            tempState[this.state.selectedTab]["priceTotal"] = val.toString();
         }
         this.setState({bookings: tempState});
     };
@@ -263,7 +243,6 @@ class CreateBooking extends Component {
 
     diffWagePay = () => {
         let dateDiff = this.diffDateCalculator();
-
         if (dateDiff <= 24) {
             return 99;
         } else if (dateDiff > 24 && dateDiff <= 48) {
@@ -275,28 +254,19 @@ class CreateBooking extends Component {
 
     diffDateCalculator = () => {
         let currentDate = new Date();
-
         let bookedDate = this.state.bookings[this.state.selectedTab]['date'];
-
         let bookedTime = this.state.bookings[this.state.selectedTab]['startTime'];
-
         let bookedDate_hour = parseInt(bookedTime.slice(0, 2));
         let bookedDate_min = parseInt(bookedTime.slice(3, 5));
-
         let newBookedDate = new Date(bookedDate.getFullYear(), bookedDate.getMonth(), bookedDate.getDate(), bookedDate_hour, bookedDate_min);
-
         let val = Math.abs(newBookedDate - currentDate);
         return Math.ceil(val / (1000 * 60 * 60 ));
     };
 
 
     render() {
-
-
         const {selectedTab, bookings, showFullPage, displayModal} = this.state;
-
         let validation = this.submitted ? this.validator.validate(this.state.bookings[selectedTab]) : this.state.bookings[selectedTab].validation;
-
 
         return (
             <div className="md:flex ">
@@ -319,7 +289,6 @@ class CreateBooking extends Component {
                                         ))}
                                     </Tabs>
                                 </AppBar>
-
                                 {
                                     bookings.map((bookings, index) => (
                                         (selectedTab === index &&

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Button} from "@material-ui/core";
-import Time from '../../common/clockTime';
+import Time from './others/ClockTime';
 
 import {FuseAnimate} from '@fuse';
 import './Booking.css';
@@ -87,23 +87,8 @@ const Booking = (props) => {
         } = props;
 
     return (
-        <div>
+        <>
             <Card className="p-24 max-w-lg" style={{backgroundColor: 'rgba(0, 0, 0, 0)', boxShadow: 'none'}}>
-                {/*<div className="flex flex-wrap my-3 mb-40">*/}
-                {/*    <div className="w-full">*/}
-                {/*        {bookingLength === 3 ?*/}
-                {/*            null :*/}
-                {/*            <Button*/}
-                {/*                onClick={addBooking}*/}
-                {/*                color="primary"*/}
-                {/*                variant="contained"*/}
-                {/*                className="float-right">*/}
-                {/*                Opret endnu en booking*/}
-                {/*            </Button>*/}
-                {/*        }*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-
                 <div className="flex flex-wrap my-0">
                     <div className="w-full">
                         <h2 className="font-serif text-gray-800 text-md ">HVOR OG HVORNÅR?</h2>
@@ -236,8 +221,6 @@ const Booking = (props) => {
                                 bookingLength={bookingLength}
                             />
 
-
-
                             <div className="w-full mt-20">
                                 <div className="flex flex-wrap my-2">
                                     <div className="w-full sm:w-1/2 ">
@@ -280,7 +263,7 @@ const Booking = (props) => {
                     }
                 </div>
             </Card>
-        </div>
+        </>
     );
 };
 

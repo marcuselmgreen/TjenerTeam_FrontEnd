@@ -424,7 +424,7 @@ class FuseUtils {
         }
         /**
          * if auth array is empty means,
-         * allow only user role is guest (null or empty[])
+         * allow only corporation role is guest (null or empty[])
          */
         else if ( authArr.length === 0 )
         {
@@ -432,13 +432,13 @@ class FuseUtils {
             return !userRole || userRole.length === 0;
         }
         /**
-         * Check if user has grants
+         * Check if corporation has grants
          */
         else
         {
             // console.info("auth arr:", authArr);
             /*
-            Check if user role is array,
+            Check if corporation role is array,
             */
             if ( userRole && Array.isArray(userRole) )
             {
@@ -446,7 +446,7 @@ class FuseUtils {
             }
 
             /*
-            Check if user role is string,
+            Check if corporation role is string,
             */
             return authArr.includes(userRole);
         }

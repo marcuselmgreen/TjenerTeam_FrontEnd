@@ -49,8 +49,8 @@ export function registerWithFirebase(model)
             .catch(error => {
                 const usernameErrorCodes = [
                     'auth/operation-not-allowed',
-                    'auth/user-not-found',
-                    'auth/user-disabled'
+                    'auth/corporation-not-found',
+                    'auth/corporation-disabled'
                 ];
 
                 const emailErrorCodes = [

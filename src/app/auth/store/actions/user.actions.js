@@ -13,7 +13,7 @@ export const REMOVE_USER_DATA = '[USER] REMOVE DATA';
 export const USER_LOGGED_OUT = '[USER] LOGGED OUT';
 
 /**
- * Set user data from Auth0 token data
+ * Set corporation data from Auth0 token data
  */
 export function setUserDataAuth0(tokenData)
 {
@@ -33,7 +33,7 @@ export function setUserDataAuth0(tokenData)
 }
 
 /**
- * Set user data from Firebase data
+ * Set corporation data from Firebase data
  */
 export function setUserDataFirebase(user, authUser)
 {
@@ -43,12 +43,12 @@ export function setUserDataFirebase(user, authUser)
         user.data.settings.layout &&
         user.data.settings.layout.style )
     {
-        // Set user data but do not update
+        // Set corporation data but do not update
         return setUserData(user);
     }
     else
     {
-        // Create missing user settings
+        // Create missing corporation settings
         return createUserSettingsFirebase(authUser);
     }
 }

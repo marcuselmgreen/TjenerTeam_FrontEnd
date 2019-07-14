@@ -33,7 +33,7 @@ class Auth extends Component {
             this.props.showMessage({message: 'Logging in with JWT'});
 
             /**
-             * Sign in and retrieve user data from Api
+             * Sign in and retrieve corporation data from Api
              */
             jwtService.signInWithToken()
                 .then(user => {
@@ -89,7 +89,7 @@ class Auth extends Component {
             this.props.showMessage({message: 'Logging in with Auth0'});
 
             /**
-             * Retrieve user data from Auth0
+             * Retrieve corporation data from Auth0
              */
             auth0Service.getUserData().then(tokenData => {
 
@@ -126,7 +126,7 @@ class Auth extends Component {
                 this.props.showMessage({message: 'Logging in with Firebase'});
 
                 /**
-                 * Retrieve user data from Firebase
+                 * Retrieve corporation data from Firebase
                  */
                 firebaseService.getUserData(authUser.uid).then(user => {
 

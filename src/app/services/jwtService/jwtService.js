@@ -17,7 +17,7 @@ class jwtService extends FuseUtils.EventEmitter {
             return new Promise((resolve, reject) => {
                 if ( err.response.status === 401 && err.config && !err.config.__isRetryRequest )
                 {
-                    // if you ever get an unauthorized response, logout the user
+                    // if you ever get an unauthorized response, logout the corporation
                     this.emit('onAutoLogout', 'Invalid access_token');
                     this.setSession(null);
                 }
@@ -109,7 +109,7 @@ class jwtService extends FuseUtils.EventEmitter {
     };
 
     updateUserData = (user) => {
-        return axios.post('/api/auth/user/update', {
+        return axios.post('/api/auth/corporation/update', {
             user: user
         });
     };

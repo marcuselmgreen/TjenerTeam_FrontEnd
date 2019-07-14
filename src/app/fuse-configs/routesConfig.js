@@ -5,11 +5,15 @@ import {ExampleConfig} from 'app/main/example/ExampleConfig';
 import {LoginConfig} from "../main/login/LoginConfig";
 import Login from "../main/login/Login";
 import {CreateBookingConfig} from "../main/booking/createBooking/CreateBookingConfig";
+import {CreateCorporationConfig} from "../main/corporation/CreateCorporationConfig";
+import CreateBooking from "../main/booking/createBooking/CreateBooking";
+import CreateCorporation from "../main/corporation/CreateCorporation";
 
 const routeConfigs = [
     ExampleConfig,
     LoginConfig,
-    CreateBookingConfig
+    CreateBookingConfig,
+    CreateCorporationConfig
 ];
 
 const routes = [
@@ -24,8 +28,12 @@ const routes = [
     },
     {
         path     :'/createBooking',
-        component: CreateBookingConfig
+        component: CreateBooking
     },
+    {
+        path     :'/createUser',
+        component: CreateCorporation
+    }
 ];
 
 export default routes;

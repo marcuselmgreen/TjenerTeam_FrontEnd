@@ -138,7 +138,7 @@ class auth0Service {
                 resolve(response.data);
             }).catch(error => {
                 // handle error
-                console.warn('Cannot retrieve user data', error);
+                console.warn('Cannot retrieve corporation data', error);
                 reject(error);
             });
         });
