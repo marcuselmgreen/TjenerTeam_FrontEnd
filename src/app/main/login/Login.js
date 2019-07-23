@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Button, Card, CardContent, Checkbox, Divider, FormControl, FormControlLabel, TextField, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/styles';
 import {darken} from '@material-ui/core/styles/colorManipulator';
@@ -6,7 +6,10 @@ import {FuseAnimate} from '@fuse';
 import {useForm} from '@fuse/hooks';
 import {Link} from 'react-router-dom';
 import clsx from 'clsx';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import Image from './tjenerteam2.jpg'
+import * as user from '../../auth/store/actions/login.actions'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -16,28 +19,47 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function Login() {
-    const classes = useStyles();
+const {form, handleChange, resetForm} = useForm({
+    email: '',
+    password: '',
+    remember: true
+});
 
-    const {form, handleChange, resetForm} = useForm({
-        email: '',
-        password: '',
-        remember: true
-    });
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+            remember: false
+        }
+    }
 
-    function isFormValid() {
+
+    isFormValid = () => {
         return (
             form.email.length > 0 &&
             form.password.length > 0
         );
-    }
+    };
 
-    function handleSubmit(ev) {
-        ev.preventDefault();
-        resetForm();
-    }
+    onChange = (e) => {
+        const tempState = {...this.state};
+        tempState[e.target.name] = e.target.value;
+        this.setState({tempState})
+    };
+
+    handleSubmit = (ev) => {
+        const {email, password, remember} = this.state;
+        this.props.actions.submitLogin(email, password, remember);
+    };
+
+    render() {
+        const classes = useStyles();
+        const {email, password, remember} = this.state;
 
     return (
+
         <div style={{width: '100%'}}
              className={clsx(classes.root, "flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0")}>
 
@@ -72,21 +94,14 @@ function Login() {
 
                         <Typography variant="h6" className="md:w-full mb-32 ml-288">Log ind</Typography>
 
-                        <form
-                            name="loginForm"
-                            noValidate
-                            className="flex flex-col justify-center w-full"
-                            onSubmit={handleSubmit}
-                        >
-
                             <TextField
                                 className="mb-16"
                                 label="Email"
                                 autoFocus
                                 type="email"
                                 name="email"
-                                value={form.email}
-                                onChange={handleChange}
+                                value={email}
+                                onChange={this.onChange}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -97,8 +112,8 @@ function Login() {
                                 label="Kodeord"
                                 type="password"
                                 name="password"
-                                value={form.password}
-                                onChange={handleChange}
+                                value={password}
+                                onChange={this.onChange}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -111,16 +126,16 @@ function Login() {
                                         control={
                                             <Checkbox
                                                 name="remember"
-                                                checked={form.remember}
-                                                onChange={handleChange}/>
+                                                value={remember}
+                                                onChange={this.onChange}/>
                                         }
                                         label="Husk mig"
                                     />
                                 </FormControl>
 
-                                <Link className="font-medium" to="/pages/auth/forgot-password-2">
-                                    Glemt kodeord?
-                                </Link>
+                                {/*    <Link className="font-medium" to="/pages/auth/forgot-password-2">*/}
+                                {/*        Glemt kodeord?*/}
+                                {/*    </Link>*/}
                             </div>
 
                             <Button
@@ -128,32 +143,30 @@ function Login() {
                                 color="primary"
                                 className="w-full mx-auto mt-16"
                                 aria-label="LOG IN"
-                                disabled={!isFormValid()}
+                                disabled={!this.isFormValid}
+                                onClick={this.handleSubmit}
                             >
                                 LOGIN
                             </Button>
+                        {/*<div className="my-24 flex items-center justify-center">*/}
+                        {/*    <Divider className="w-32"/>*/}
+                        {/*    <span className="mx-8 font-bold">ELLER</span>*/}
+                        {/*    <Divider className="w-32"/>*/}
+                        {/*</div>*/}
 
-                        </form>
+                        {/*<Button variant="contained" color="secondary" size="small"*/}
+                        {/*        className="normal-case w-192 mb-8">*/}
+                        {/*    Log ind med Google*/}
+                        {/*</Button>*/}
 
-                        <div className="my-24 flex items-center justify-center">
-                            <Divider className="w-32"/>
-                            <span className="mx-8 font-bold">ELLER</span>
-                            <Divider className="w-32"/>
-                        </div>
-
-                        <Button variant="contained" color="secondary" size="small"
-                                className="normal-case w-192 mb-8">
-                            Log ind med Google
-                        </Button>
-
-                        <Button variant="contained" color="primary" size="small"
-                                className="normal-case w-192">
-                            Log ind med Facebook
-                        </Button>
+                        {/*<Button variant="contained" color="primary" size="small"*/}
+                        {/*        className="normal-case w-192">*/}
+                        {/*    Log ind med Facebook*/}
+                        {/*</Button>*/}
 
                         <div className="flex flex-col items-center justify-center pt-32 pb-24">
                             <span className="font-medium">Har du ikke en profil endnu?</span>
-                            <Link className="font-medium" to="/pages/auth/register-2">Opret ny profil </Link>
+                            <Link className="font-medium" to="/createCorporation">Opret ny profil </Link>
                         </div>
 
                     </CardContent>
@@ -162,6 +175,27 @@ function Login() {
         </div>
     );
 }
+}
 
-export default Login;
+function mapStateToProps(state) {
+    return {
+        success: state.success
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: {
+            submitLogin: bindActionCreators(user.submitLogin, dispatch)
+        }
+    }
+}
+
+
+export default
+connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+(Login);
 

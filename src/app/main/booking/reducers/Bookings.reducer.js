@@ -1,12 +1,14 @@
 /*
- src/reducers/BookingReducer.js
+ src/reducers/Bookings.reducer.js
 */
-
-import initialState from '../../../redux/initialState';
 
 import * as actionsTypes from '../actions/ActionTypes';
 
-export default (state = initialState.bookings, action) => {
+let initialState = {
+    bookings: []
+};
+
+export default function bookings(state = initialState.bookings, action) {
     switch (action.type) {
 
         case actionsTypes.CREATE_BOOKING_SUCCESS:

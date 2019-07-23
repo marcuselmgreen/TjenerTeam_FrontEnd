@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {handleError, handleResponse} from './ApiUtils';
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3000/api";
 
 export function getBookingsById(userName) {
     return axios(baseUrl + '/bookings/?userName=' + userName)

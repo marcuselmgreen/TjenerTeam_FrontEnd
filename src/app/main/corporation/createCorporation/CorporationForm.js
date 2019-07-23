@@ -22,9 +22,9 @@ const CorporationForm = (props) => {
         password,
         confirmPassword,
         gdpr,
-        onChange,
         validation,
 
+        changeHandler,
         submitHandler
     } = props;
 
@@ -32,12 +32,12 @@ const CorporationForm = (props) => {
         <Card className="p-24 max-w-lg" style={{backgroundColor: 'rgba(0, 0, 0, 0)', boxShadow: 'none'}}>
             <div className="w-full">
                 <Top
-                    name={name}
+                    email={email}
                     cvr={cvr}
                     address={address}
                     zipCode={zipCode}
                     city={city}
-                    onChange={onChange}
+                    changeHandler={changeHandler}
                     validation={validation}
                 />
             </div>
@@ -50,7 +50,7 @@ const CorporationForm = (props) => {
                 <Bottom
                     contactPerson={contactPerson}
                     department={department}
-                    email={email}
+                    name={name}
                     phoneNumber={phoneNumber}
                     billingEmail={billingEmail}
                     ean={ean}
@@ -58,6 +58,7 @@ const CorporationForm = (props) => {
                     confirmPassword={confirmPassword}
                     gdpr={gdpr}
                     validation={validation}
+                    changeHandler={changeHandler}
                 />
             </div>
 
@@ -69,14 +70,14 @@ const CorporationForm = (props) => {
                 <div className="flex-wrap flex my-2">
                     <div className="w-full sm:w-1/2">
                         <div className="flex justify-center p-4">
-                            <BackButton
-                                onClick={""}
-                                color="secondary"
-                                variant="contained"
-                                className="min-w-216 min-h-48 "
-                                style={{color: "white"}}>
-                                Tilbage
-                            </BackButton>
+                            {/*<BackButton*/}
+                            {/*    onClick={submitHandler}*/}
+                            {/*    color="secondary"*/}
+                            {/*    variant="contained"*/}
+                            {/*    className="min-w-216 min-h-48 "*/}
+                            {/*    style={{color: "white"}}>*/}
+                            {/*    Tilbage*/}
+                            {/*</BackButton>*/}
                         </div>
                     </div>
                     <div className="w-full sm:w-1/2">
@@ -87,7 +88,7 @@ const CorporationForm = (props) => {
                                 variant="contained"
                                 className="min-w-216 min-h-48 "
                                 style={{color: "white"}}>
-                                Videre
+                                Opret
                             </SubmitButton>
                         </div>
                     </div>

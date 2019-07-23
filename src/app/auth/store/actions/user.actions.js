@@ -7,6 +7,7 @@ import firebase from 'firebase/app';
 import firebaseService from 'app/services/firebaseService';
 import auth0Service from 'app/services/auth0Service';
 import jwtService from 'app/services/jwtService';
+import authRoles from "../../authRoles";
 
 export const SET_USER_DATA = '[USER] SET DATA';
 export const REMOVE_USER_DATA = '[USER] REMOVE DATA';
@@ -91,11 +92,10 @@ export function createUserSettingsFirebase(authUser)
 export function setUserData(user)
 {
     return (dispatch) => {
-
         /*
         Set User Settings
          */
-        dispatch(setDefaultSettings(user.data.settings));
+        // dispatch(setDefaultSettings(user.data.settings));
 
         /*
         Set User Data

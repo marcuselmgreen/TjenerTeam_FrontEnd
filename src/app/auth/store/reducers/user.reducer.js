@@ -1,7 +1,8 @@
 import * as Actions from '../actions';
+import authRoles from "../../authRoles";
 
 const initialState = {
-    role: [],//guest
+    role: "",
     data: {
         'displayName': 'John Doe',
         'photoURL'   : 'assets/images/avatars/Velazquez.jpg',

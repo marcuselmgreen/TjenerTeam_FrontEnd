@@ -6,7 +6,7 @@ import Photo from "../../static/tjenerTeam2.png";
 import Booking from "./Booking";
 import FuseAnimate from "../../../../@fuse/components/FuseAnimate/FuseAnimate";
 import {connect} from "react-redux";
-import * as bookingActions from "../actions/BookingActions";
+import * as bookingActions from "../actions/Booking.actions";
 import {bindActionCreators} from "redux";
 import FormValidator from '../../validator/FormValidator';
 import {BookingFormValidator} from "../../validator/forms/BookingFormValidator";
@@ -101,10 +101,10 @@ class CreateBooking extends Component {
     };
 
     createBooking = () => {
-        // let bookings = [...this.state.bookings];
-        // bookings.map(b => {
-        //     this.props.actions.createBooking(b)
-        // });
+        let bookings = [...this.state.bookings];
+        bookings.map(b => {
+            this.props.actions.createBooking(b)
+        });
     };
 
     deleteBooking = () => {
@@ -155,19 +155,6 @@ class CreateBooking extends Component {
         }
 
     };
-
-    /*
-    * THE FOLLOWING IS ALL THE METHODS TO CHANGE THE DATA IN THE INPUT FIELD FOR A BOOKING
-    * */
-
-    // checkStaffType = (value) => {
-    //     staff.map(staff => {
-    //         if (value === staff) {
-    //             return true;
-    //         }
-    //     });
-    //     return false;
-    // };
 
 
     setTotalPrice =  (tempState) => {

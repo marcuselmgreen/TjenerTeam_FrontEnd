@@ -2,10 +2,7 @@ import * as Actions from '../actions';
 
 const initialState = {
     success: false,
-    error  : {
-        username: null,
-        password: null
-    }
+    jwtToken: null,
 };
 
 const login = function (state = initialState, action) {
@@ -14,8 +11,9 @@ const login = function (state = initialState, action) {
         case Actions.LOGIN_SUCCESS:
         {
             return {
-                ...initialState,
-                success: true
+                ...state,
+                success: true,
+                jwtToken: action.jwtToken,
             };
         }
         case Actions.LOGIN_ERROR:

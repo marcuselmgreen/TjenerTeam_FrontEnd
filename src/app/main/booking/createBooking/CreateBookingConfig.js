@@ -1,5 +1,6 @@
 
 import CreateBooking from "./CreateBooking";
+import authRoles from "../../../auth/authRoles";
 
 export const CreateBookingConfig = {
     settings: {
@@ -7,6 +8,7 @@ export const CreateBookingConfig = {
             config: {}
         }
     },
+    auth: authRoles.corporation,
     routes  : [
         {
             path     : '/createBooking',

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import FuseUtils from '@fuse/FuseUtils';
+import setup from "../../config/setup";
 
 class jwtService extends FuseUtils.EventEmitter {
 
@@ -68,24 +69,19 @@ class jwtService extends FuseUtils.EventEmitter {
 
     signInWithEmailAndPassword = (email, password) => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/auth', {
-                data: {
-                    email,
-                    password
-                }
-            }).then(response => {
-                if ( response.data.user )
+            axios.post(setup.apiEndpoint + '/auth/signIn', {email, password})
+                .then(response => {
+                if ( response.data )
                 {
-                    this.setSession(response.data.access_token);
-                    resolve(response.data.user);
+                    resolve(response.data)
                 }
-                else
-                {
-                    reject(response.data.error);
-                }
-            });
+                })
+                .catch(error => {
+                    console.log("Could not sign in. " + error)
+                });
         });
     };
+
 
     signInWithToken = () => {
         return new Promise((resolve, reject) => {
@@ -117,6 +113,7 @@ class jwtService extends FuseUtils.EventEmitter {
     setSession = access_token => {
         if ( access_token )
         {
+            console.log(access_token)
             localStorage.setItem('jwt_access_token', access_token);
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
         }

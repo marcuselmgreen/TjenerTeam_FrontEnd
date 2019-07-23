@@ -3,36 +3,26 @@ import {Redirect} from 'react-router-dom';
 import {FuseUtils} from '@fuse';
 import {ExampleConfig} from 'app/main/example/ExampleConfig';
 import {LoginConfig} from "../main/login/LoginConfig";
-import Login from "../main/login/Login";
 import {CreateBookingConfig} from "../main/booking/createBooking/CreateBookingConfig";
-import {CreateCorporationConfig} from "../main/corporation/CreateCorporationConfig";
-import CreateBooking from "../main/booking/createBooking/CreateBooking";
-import CreateCorporation from "../main/corporation/CreateCorporation";
+import {CreateCorporationConfig} from "../main/corporation/createCorporation/CreateCorporationConfig";
+import {FrontPageConfig} from "../main/frontpage/FrontPageConfig";
+import {HomeCorporationConfig} from "../main/corporation/homeCorporation/HomeCorporationConfig";
+
 
 const routeConfigs = [
     ExampleConfig,
     LoginConfig,
     CreateBookingConfig,
-    CreateCorporationConfig
+    CreateCorporationConfig,
+    FrontPageConfig,
+    HomeCorporationConfig
+
 ];
 
 const routes = [
     ...FuseUtils.generateRoutesFromConfigs(routeConfigs),
     {
-        path     : '/',
-        component: () => <Redirect to="/example"/>
-    },
-    {
-        path     :'/login',
-        component: Login
-    },
-    {
-        path     :'/createBooking',
-        component: CreateBooking
-    },
-    {
-        path     :'/createUser',
-        component: CreateCorporation
+        component: () => <Redirect to="/frontpage"/>
     }
 ];
 
