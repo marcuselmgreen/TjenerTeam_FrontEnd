@@ -19,12 +19,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const {form, handleChange, resetForm} = useForm({
-    email: '',
-    password: '',
-    remember: true
-});
-
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -38,8 +32,8 @@ class Login extends Component {
 
     isFormValid = () => {
         return (
-            form.email.length > 0 &&
-            form.password.length > 0
+            this.state.email.length > 0 &&
+            this.state.password.length > 0
         );
     };
 
@@ -49,7 +43,7 @@ class Login extends Component {
         this.setState({tempState})
     };
 
-    handleSubmit = (ev) => {
+    handleSubmit = () => {
         const {email, password, remember} = this.state;
         this.props.actions.submitLogin(email, password, remember);
     };
