@@ -10,11 +10,11 @@ export function submitLogin(email, password, rememberUser) {
     return function(dispatch) {
         jwtService.signInWithEmailAndPassword(email, password)
             .then((data) => {
-                console.log(data);
                 dispatch(setUserData(data.user));
-                setBearerTokenOnAxis(data.access_token);
+                // setBearerTokenOnAxis(data.access_token);
+                console.log(data)
                 storeTokenLocally(rememberUser, data.access_token);
-                return dispatch({type: LOGIN_SUCCESS, jwtService: data.access_token});
+                return dispatch({type: LOGIN_SUCCESS, jwtToken: data.access_token},);
             })
             .catch(error => {
                 return {

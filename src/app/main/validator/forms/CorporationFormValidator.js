@@ -79,9 +79,16 @@ export const CorparationFormValidator =
             message: 'Mangler at bekræfte kodeord'
         },
         {
+            field: 'confirmPassword',
+            method: (confirmation, state) => (state.password === confirmation),
+            validWhen: true,
+            message: 'Kodeordene er ikke ens'
+        },
+        {
             field: 'gdpr',
             method: 'isEmpty',
             validWhen: false,
             message: 'Mangler at vælge'
         }
     ];
+

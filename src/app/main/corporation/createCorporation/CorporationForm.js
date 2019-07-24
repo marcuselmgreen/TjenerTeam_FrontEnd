@@ -4,6 +4,8 @@ import Top from "./components/Top";
 import Bottom from "./components/Bottom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {blue, green} from "@material-ui/core/colors";
+import Password from "./components/Password";
+import Terms from "./components/Terms";
 
 const CorporationForm = (props) => {
 
@@ -23,74 +25,136 @@ const CorporationForm = (props) => {
         confirmPassword,
         gdpr,
         validation,
+        currentView,
 
+        plusChangeView,
+        minusChangeView,
         changeHandler,
         submitHandler
     } = props;
 
     return (
         <Card className="p-24 max-w-lg" style={{backgroundColor: 'rgba(0, 0, 0, 0)', boxShadow: 'none'}}>
-            <div className="w-full">
-                <Top
-                    email={email}
-                    cvr={cvr}
-                    address={address}
-                    zipCode={zipCode}
-                    city={city}
-                    changeHandler={changeHandler}
-                    validation={validation}
-                />
-            </div>
+            {currentView === 0 ?
+                <>
+                    <div className="w-full">
 
-            <div className="w-full mt-12">
-                <hr style={{borderTop: '1px solid #cccccc'}}/>
-            </div>
+                        <Top
+                            email={email}
+                            cvr={cvr}
+                            address={address}
+                            zipCode={zipCode}
+                            city={city}
+                            changeHandler={changeHandler}
+                            validation={validation}
+                        />
+                    </div>
 
-            <div className="flex flex-wrap my-0">
-                <Bottom
-                    contactPerson={contactPerson}
-                    department={department}
-                    name={name}
-                    phoneNumber={phoneNumber}
-                    billingEmail={billingEmail}
-                    ean={ean}
-                    password={password}
-                    confirmPassword={confirmPassword}
-                    gdpr={gdpr}
-                    validation={validation}
-                    changeHandler={changeHandler}
-                />
-            </div>
+                    <div className="w-full mt-12">
+                        <hr style={{borderTop: '1px solid #cccccc'}}/>
+                    </div>
+                </>
+                : null
+            }
 
-            <div className="w-full mt-12">
-                <hr style={{borderTop: '1px solid #cccccc'}}/>
-            </div>
+            {currentView === 1 ?
+                <div className="flex flex-wrap ">
+                    <Bottom
+                        contactPerson={contactPerson}
+                        department={department}
+                        name={name}
+                        phoneNumber={phoneNumber}
+                        billingEmail={billingEmail}
+                        ean={ean}
+                        password={password}
+                        confirmPassword={confirmPassword}
+                        gdpr={gdpr}
+                        validation={validation}
+                        changeHandler={changeHandler}
+                    />
+                </div>
+                : null
+            }
+
+            {currentView === 2 ?
+                <>
+                    <div className="flex flex-wrap ">
+                        <Password
+                            password={password}
+                            confirmPassword={confirmPassword}
+                            changeHandler={changeHandler}
+                            validation={validation}
+                        />
+                    </div>
+
+                    <div className="w-full mt-12">
+                        <hr style={{borderTop: '1px solid #cccccc'}}/>
+                    </div>
+                </>
+                : null
+            }
+
+            {currentView === 3 ?
+                <>
+                    <div className="flex flex-wrap ">
+                        <Terms
+                            gdpr={gdpr}
+                            validation={validation}
+                            changeHandler={changeHandler}
+                        />
+                    </div>
+
+                    <div className="w-full mt-5">
+                        <hr style={{borderTop: '1px solid #cccccc'}}/>
+                    </div>
+                </>
+                : null
+            }
 
             <div className="w-full mt-10">
                 <div className="flex-wrap flex my-2">
                     <div className="w-full sm:w-1/2">
-                        <div className="flex justify-center p-4">
-                            {/*<BackButton*/}
-                            {/*    onClick={submitHandler}*/}
-                            {/*    color="secondary"*/}
-                            {/*    variant="contained"*/}
-                            {/*    className="min-w-216 min-h-48 "*/}
-                            {/*    style={{color: "white"}}>*/}
-                            {/*    Tilbage*/}
-                            {/*</BackButton>*/}
-                        </div>
+                        { currentView > 0 ?
+                            <div className="flex justify-center p-4">
+                                <BackButton
+                                    onClick={minusChangeView}
+                                    color="secondary"
+                                    variant="contained"
+                                    className="min-w-216 min-h-48 "
+                                    style={{color: "white"}}>
+                                    Tilbage
+                                </BackButton>
+                            </div>
+                            : null
+                        }
                     </div>
                     <div className="w-full sm:w-1/2">
-                        <div className="flex justify-center p-4">
-                            <SubmitButton
-                                onClick={submitHandler}
-                                color="secondary"
-                                variant="contained"
-                                className="min-w-216 min-h-48 "
-                                style={{color: "white"}}>
-                                Opret
-                            </SubmitButton>
-                        </div>
+
+                        {currentView !== 3 ?
+                            <div className="flex justify-center p-4">
+                                <SubmitButton
+                                    onClick={plusChangeView}
+                                    color="secondary"
+                                    variant="contained"
+                                    className="min-w-216 min-h-48 "
+                                    style={{color: "white"}}>
+                                    Videre
+                                </SubmitButton>
+                            </div>
+
+                            :
+
+                            <div className="flex justify-center p-4">
+                                <SubmitButton
+                                    onClick={submitHandler}
+                                    color="secondary"
+                                    variant="contained"
+                                    className="min-w-216 min-h-48 "
+                                    style={{color: "white"}}>
+                                    Opret
+                                </SubmitButton>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

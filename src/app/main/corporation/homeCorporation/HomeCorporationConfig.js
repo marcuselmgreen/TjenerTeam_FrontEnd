@@ -23,7 +23,7 @@ export const HomeCorporationConfig = {
             }
         }
     },
-    auth: authRoles.corporation,
+    // auth: authRoles.corporation,
     routes  : [
         {
             path     : '/homeCorporation',

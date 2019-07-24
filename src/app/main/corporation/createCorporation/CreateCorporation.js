@@ -9,6 +9,10 @@ import {CorparationFormValidator} from "../../validator/forms/CorporationFormVal
 import * as corporationUser from "../actions/Corporation.actions";
 import * as GlobalPaths from '../../../GlobalPaths';
 import authRoles from "../../../auth/authRoles";
+import withStyles from "@material-ui/core/styles/withStyles";
+import {green} from "@material-ui/core/colors";
+import {Button, Card, CardContent} from "@material-ui/core";
+import Image from "../../login/tjenerteam2.jpg";
 
 class CreateCorporation extends Component {
     constructor(props) {
@@ -16,6 +20,7 @@ class CreateCorporation extends Component {
         this.validator = new FormValidator(CorparationFormValidator);
         this.submitted = false;
         this.state = {
+            currentView: 0,
             displayModal: false,
             corporation: {
                 id: idGenerator(),
@@ -39,6 +44,14 @@ class CreateCorporation extends Component {
         }
     }
 
+    plusChangeView = () => {
+        this.setState({currentView: this.state.currentView + 1});
+    };
+
+    minusChangeView = () => {
+        this.setState({currentView: this.state.currentView - 1});
+    };
+
     changeHandler = (e) => {
         let tempState = {...this.state.corporation};
         tempState[e.target.name] = e.target.value;
@@ -53,7 +66,7 @@ class CreateCorporation extends Component {
         tempCorporation.validation = validation;
         console.log(this.state.corporation);
         this.submitted = true;
-        if(validation.isValid) {
+        if (validation.isValid) {
 
             this.props.actions.createdCorporationUser(this.state.corporation);
             this.props.history.push(GlobalPaths.login);
@@ -77,45 +90,59 @@ class CreateCorporation extends Component {
             ean,
             password,
             confirmPassword,
-            gdpr
+            gdpr,
+            currentView
         } = this.state;
 
         let validation = this.submitted ? this.validator.validate(this.state.corporation) : this.state.corporation.validation;
         return (
-            <div className="md:flex ">
-                <div className=" bg-white max-w-lg"  >
-                    <div className="p-40 ">
+            <>
+                <div style={{
+                    width: '100%',
+                    backgroundImage: "url(" + Photo + ")",
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
+                <Card className="w-full max-w-2xl mx-auto m-16 md:m-0" square>
+                    <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
                         <h1 className="font-sans text-4xl text-gray-800">Opret virksomhed</h1>
-                        <p className="py-10 text-gray-800 font-sans text-lg">Opret dig Gratis som bruger af TjenerTeamet - du betaler kun, hvis du booker personale.
+                        <p className="py-10 text-gray-800 font-sans text-lg">Opret dig Gratis som bruger af
+                            TjenerTeamet - du betaler kun, hvis du booker personale.
                         </p>
-                            <CorporationForm
-                                name={name}
-                                cvr={cvr}
-                                address={address}
-                                zipCode={zipCode}
-                                city={city}
-                                contactPerson={contactPerson}
-                                department={department}
-                                email={email}
-                                phoneNumber={phoneNumber}
-                                billingEmail={billingEmail}
-                                ean={ean}
-                                password={password}
-                                confirmPassword={confirmPassword}
-                                gdpr={gdpr}
-                                submitHandler={this.submitHandler}
-                                changeHandler={this.changeHandler}
-                                validation={validation}
-                            />
-                    </div>
+                        <CorporationForm
+                            name={name}
+                            cvr={cvr}
+                            address={address}
+                            zipCode={zipCode}
+                            city={city}
+                            contactPerson={contactPerson}
+                            department={department}
+                            email={email}
+                            phoneNumber={phoneNumber}
+                            billingEmail={billingEmail}
+                            ean={ean}
+                            password={password}
+                            confirmPassword={confirmPassword}
+                            gdpr={gdpr}
+                            submitHandler={this.submitHandler}
+                            changeHandler={this.changeHandler}
+                            plusChangeView={this.plusChangeView}
+                            minusChangeView={this.minusChangeView}
+                            validation={validation}
+                            currentView={currentView}
+                        />
+                    </CardContent>
+                </Card>
                 </div>
-                <div className="w-2/5 ">
-                    <img src={Photo} className="w-2xl fixed " alt="tjenerTeam2" />
-                </div>
-            </div>
+                {/*<div>*/}
+                {/*    <img src={Photo} className="w-2xl fixed " alt="tjenerTeam2"/>*/}
+                {/*</div>*/}
+            </>
         );
     }
 }
+
 
 
 function mapStateToProps(state) {
@@ -132,8 +159,8 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default
-connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps)
 (CreateCorporation);
+
