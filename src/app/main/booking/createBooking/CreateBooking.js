@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Tabs from "@material-ui/core/Tabs/Tabs";
 import Tab from "@material-ui/core/Tab/Tab";
-import Photo from "../../static/tjenerTeam2.png";
 import Booking from "./Booking";
 import FuseAnimate from "../../../../@fuse/components/FuseAnimate/FuseAnimate";
 import {connect} from "react-redux";
@@ -12,6 +11,8 @@ import FormValidator from '../../validator/FormValidator';
 import {BookingFormValidator} from "../../validator/forms/BookingFormValidator";
 import {booking} from './others/BookingTemplate';
 import {idGenerator} from '../../common/IdGenerator'
+import {Card, CardContent} from "@material-ui/core";
+import Image from "../../login/tjenerteam2.jpg";
 
 
 const vacationExtra = 0.125;
@@ -256,9 +257,15 @@ class CreateBooking extends Component {
         let validation = this.submitted ? this.validator.validate(this.state.bookings[selectedTab]) : this.state.bookings[selectedTab].validation;
 
         return (
-            <div className="md:flex ">
-                <div className=" bg-white max-w-lg"  >
-                    <div className="p-40 ">
+            <div style={{
+                width: '100%',
+                backgroundImage: "url(" + Image + ")",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
+            <Card className="w-full max-w-2xl mx-auto m-16 md:m-0" square>
+                <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
                         <h1 className="font-sans text-4xl text-gray-800">Opret booking</h1>
                         <p className="py-10 text-gray-800 font-sans text-lg">Udfyld formularen og den sendes ud til
                             vores personale kl. 12:00<br/>
@@ -333,12 +340,8 @@ class CreateBooking extends Component {
                                 }
                             </div>
                         </FuseAnimate>
-                    </div>
-                </div>
-                <div className="w-2/5 ">
-                    {/*<img src={Photo2} className="" alt="tjenerTeam2" style={{height: '100%', width: '100%'}} />*/}
-                    <img src={Photo} className="w-2xl fixed " alt="tjenerTeam2" />
-                </div>
+                </CardContent>
+            </Card>
             </div>
         );
     }

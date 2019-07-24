@@ -8,7 +8,7 @@ export const CreateBookingConfig = {
             config: {}
         }
     },
-    auth: authRoles.corporation,
+    // auth: authRoles.corporation,
     routes  : [
         {
             path     : '/createBooking',
