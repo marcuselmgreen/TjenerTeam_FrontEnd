@@ -21,6 +21,7 @@ export function loadAllBookings() {
         return bookingApi
             .getAllBookings()
             .then(bookings => {
+                console.log(bookings)
                 dispatch(loadAllBookingsSuccess(bookings))
             })
             .catch(error => {

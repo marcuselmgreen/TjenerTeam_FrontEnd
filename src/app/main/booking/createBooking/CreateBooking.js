@@ -61,6 +61,8 @@ class CreateBooking extends Component {
                     hourlyWage: "",
                     wageTotal: "",
                     priceTotal: "",
+                    selectedStaff: [],
+                    appliedStaff: [],
                     validation: this.validator.valid()
                 }
             ],
@@ -271,7 +273,6 @@ class CreateBooking extends Component {
                             vores personale kl. 12:00<br/>
                             Er arrangement tættere end 48 timer, sendes jobbet ud til vores personale med det samme!
                         </p>
-                        <FuseAnimate duration={700} animation={{translateX: [0, '100%']}}>
                             <div>
                                 <AppBar position="static" color="default" >
                                     <Tabs value={selectedTab} indicatorColor="primary" className="w-full" style={{overflowY: "auto"}}
@@ -339,7 +340,6 @@ class CreateBooking extends Component {
                                     ))
                                 }
                             </div>
-                        </FuseAnimate>
                 </CardContent>
             </Card>
             </div>

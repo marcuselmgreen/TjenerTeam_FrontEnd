@@ -9,9 +9,7 @@ import {CorparationFormValidator} from "../../validator/forms/CorporationFormVal
 import * as corporationUser from "../actions/Corporation.actions";
 import * as GlobalPaths from '../../../GlobalPaths';
 import authRoles from "../../../auth/authRoles";
-import withStyles from "@material-ui/core/styles/withStyles";
-import {green} from "@material-ui/core/colors";
-import {Button, Card, CardContent} from "@material-ui/core";
+import {Card, CardContent} from "@material-ui/core";
 import Image from "../../login/tjenerteam2.jpg";
 
 class CreateCorporation extends Component {

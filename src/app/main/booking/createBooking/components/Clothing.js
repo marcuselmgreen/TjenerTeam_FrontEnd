@@ -41,7 +41,7 @@ const Clothing = (props) => {
                             </MenuItem>
                         ))}
                     </TextField>
-                    {upperDressCode === "andet" &&
+                    {upperDressCode === "Andet" &&
                     <TextField
                         name="upperDressCodeOther"
                         className="max-w-128 mt-16"
@@ -72,7 +72,7 @@ const Clothing = (props) => {
                             </MenuItem>
                         ))}
                     </TextField>
-                    {lowerDressCode === "andet" &&
+                    {lowerDressCode === "Andet" &&
                     <TextField
                         name="lowerDressCodeOther"
                         className="max-w-128  mt-16"
@@ -103,7 +103,7 @@ const Clothing = (props) => {
                             </MenuItem>
                         ))}
                     </TextField>
-                    {shoesDressCode === "andet" &&
+                    {shoesDressCode === "Andet" &&
                     <TextField
                         name="shoesDressCodeOther"
                         className="max-w-128 mr-20 mt-16"
