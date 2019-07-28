@@ -3,7 +3,6 @@ import AppBar from "@material-ui/core/AppBar/AppBar";
 import Tabs from "@material-ui/core/Tabs/Tabs";
 import Tab from "@material-ui/core/Tab/Tab";
 import Booking from "./Booking";
-import FuseAnimate from "../../../../@fuse/components/FuseAnimate/FuseAnimate";
 import {connect} from "react-redux";
 import * as bookingActions from "../actions/Booking.actions";
 import {bindActionCreators} from "redux";
@@ -31,6 +30,7 @@ class CreateBooking extends Component {
             bookings: [
                 {
                     id: idGenerator(),
+                    createdByCorporation_user: this.props.user._id,
                     label: "Ny",
                     staffType: "",
                     numberOfStaff: "1",
@@ -347,9 +347,9 @@ class CreateBooking extends Component {
     }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
     return {
-
+        user: state.auth.user
     }
 }
 

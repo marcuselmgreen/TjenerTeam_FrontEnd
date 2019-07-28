@@ -26,7 +26,7 @@ export default function bookings(state = initialState.bookings, action) {
             return state;
 
         case actionsTypes.LOAD_ALL_BOOKINGS_SUCCESS:
-            return state;
+            return action.bookings;
 
         case actionsTypes.LOAD_ALL_BOOKINGS_FAILED:
             return state;
