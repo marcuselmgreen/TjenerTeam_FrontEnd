@@ -10,7 +10,8 @@ const Active = (props) => {
 
     const {
         activeBookings,
-        showSpinner
+        showSpinner,
+        selectedBookingHandler
     } = props;
 
     return (
@@ -25,7 +26,7 @@ const Active = (props) => {
             <>
                 <h1>Aktive Bookings</h1>
                 {activeBookings.map((b, i) => (
-                    <Card key={i} className="min-h-160 m-5 ">
+                    <Card onClick={() => selectedBookingHandler(b)} key={i} className="min-h-160 m-5 ">
                         <CardContent>
                             {/* DATE */}
                             <div className="w-full mt-20">

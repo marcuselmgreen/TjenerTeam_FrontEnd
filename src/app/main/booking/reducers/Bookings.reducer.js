@@ -20,7 +20,7 @@ export default function bookings(state = initialState.bookings, action) {
             return state;
 
         case actionsTypes.DELETE_BOOKING_SUCCESS:
-            return state;
+            return state.filter(booking => booking !== action.booking);
 
         case actionsTypes.DELETE_BOOKING_FAILED:
             return state;

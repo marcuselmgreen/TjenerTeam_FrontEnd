@@ -8,6 +8,7 @@ import * as bookingActions from "../../../booking/actions/Booking.actions";
 import Dialog from "@material-ui/core/Dialog";
 import ShowBooking from "./components/active/ShowBooking";
 import {DialogContent} from "@material-ui/core";
+import {idGenerator} from "../../../common/IdGenerator";
 
 
 class MyBookings extends Component {
@@ -16,10 +17,59 @@ class MyBookings extends Component {
         this.state = {
             selectedTab: 0,
             activeBookings: [],
-            showSpinner: true
+            showSpinner: true,
+            showModal: false,
+            showDeleteModal: false,
+            booking: {
+                label: "Ny",
+                staffType: "",
+                numberOfStaff: "1",
+                date: new Date(),
+                startTime: "",
+                endTime: "",
+                contactPerson: "",
+                phoneNumber: "",
+                address: "",
+                zipCode: "",
+                arrangementType: "",
+                arrangementTypeOther: "",
+                extraWorkHours: "",
+                foodIncluded: "",
+                jobDescription: "",
+                accessInformation: "",
+                upperDressCode: "",
+                upperDressCodeOther: "",
+                lowerDressCode: "",
+                lowerDressCodeOther: "",
+                shoesDressCode: "",
+                shoesDressCodeOther: "",
+                itemToBring: "",
+                languageSkill: "",
+                staffGender: "",
+                jobExperience: "",
+                transportWage: "",
+                hourlyWage: "",
+                wageTotal: "",
+                priceTotal: "",
+                selectedStaff: [],
+                appliedStaff: [],
+            }
         }
     }
 
+    deleteBookingHandler = () => {
+        console.log(this.state.booking);
+        this.props.actions.deleteBooking(this.state.booking);
+        this.setState({showModal: false, showDeleteModal: false})
+    };
+
+    showDeleteModalHandler = () => {
+        this.setState({showDeleteModal: !this.state.showDeleteModal})
+    };
+
+    showModalHandler = () => {
+        this.setState({showModal: !this.state.showModal})
+    };
 
     componentWillReceiveProps(prevProps) {
         if (prevProps.bookings !== this.props.bookings) {
@@ -27,6 +77,12 @@ class MyBookings extends Component {
             this.setState({activeBookings: tempBookings, showSpinner: false});
         }
     }
+
+    selectedBookingHandler = (book) => {
+        this.setState({booking: book, showModal: true}, function () {
+            console.log(this.state.booking)
+        });
+    };
 
     componentDidMount() {
         this.props.actions.loadBookings();
@@ -37,7 +93,7 @@ class MyBookings extends Component {
     };
 
     render() {
-        const {selectedTab, activeBookings, showSpinner} = this.state;
+        const {selectedTab, activeBookings, showSpinner, showModal, booking, showDeleteModal} = this.state;
         return (
             <div>
                 <Tabs TabIndicatorProps={{style: {backgroundColor: "white"}}} className="mt-5" variant="scrollable"
@@ -48,6 +104,7 @@ class MyBookings extends Component {
                 </Tabs>
                 {selectedTab === 0 &&
                 <Active
+                    selectedBookingHandler={this.selectedBookingHandler}
                     showSpinner={showSpinner}
                     activeBookings={activeBookings}
                 />}
@@ -55,12 +112,17 @@ class MyBookings extends Component {
                 {selectedTab === 2 && <h1>Kladder</h1>}
 
                 <Dialog
-                    onClose={""}
+                    onClose={this.showModalHandler}
                     croll={'paper'}
                     aria-labelledby="simple-dialog-title"
-                    open={true}>
+                    open={showModal}>
                     <DialogContent style={{padding: '0px', margin: '0px'}} className="w-full" >
-                        <ShowBooking/>
+                        <ShowBooking
+                            booking={booking}
+                            showDeleteModal={showDeleteModal}
+                            showDeleteModalHandler={this.showDeleteModalHandler}
+                            deleteBookingHandler={this.deleteBookingHandler}
+                        />
                     </DialogContent>
                 </Dialog>
             </div>
@@ -77,7 +139,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            loadBookings: bindActionCreators(bookingActions.loadAllBookings, dispatch)
+            loadBookings: bindActionCreators(bookingActions.loadAllBookings, dispatch),
+            deleteBooking: bindActionCreators(bookingActions.deleteBooking, dispatch)
         }
     }
 }

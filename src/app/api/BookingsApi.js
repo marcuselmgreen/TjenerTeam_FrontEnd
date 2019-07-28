@@ -25,7 +25,7 @@ export function createBooking(booking) {
 }
 
 export function deleteBooking(booking) {
-    let id = booking.id;
+    let id = booking._id;
     return axios.delete(baseUrl + '/bookings/' + id)
         .then(handleResponse)
         .catch(handleError)

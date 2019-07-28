@@ -42,7 +42,7 @@ const Arrangement = (props) => {
                         </MenuItem>
                     ))}
                 </TextField>
-                {arrangementType === "andet" &&
+                {arrangementType === "Andet" &&
                 <TextField
                     className="max-w-160"
                     name="arrangementTypeOther"
