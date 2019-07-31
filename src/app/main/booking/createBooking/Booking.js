@@ -71,7 +71,7 @@ const Booking = (props) => {
             displayModal,
             staff,
             validation,
-
+            loggedIn,
             /*
                 FUNCTIONS
              */
@@ -81,7 +81,8 @@ const Booking = (props) => {
             createBooking,
             deleteBooking,
             changeHandler,
-            displayBookingModalHandler
+            displayBookingModalHandler,
+            nextStepBooking
 
         } = props;
 
@@ -213,6 +214,8 @@ const Booking = (props) => {
                             />
 
                             <BookingModal
+                                nextStepBooking={nextStepBooking}
+                                loggedIn={loggedIn}
                                 displayModal={displayModal}
                                 displayBookingModalHandler={displayBookingModalHandler}
                                 addBooking={addBooking}

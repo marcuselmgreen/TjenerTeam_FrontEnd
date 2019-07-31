@@ -25,7 +25,6 @@ class CreateBooking extends Component {
         this.submitted = false;
         this.state = {
             selectedTab: 0,
-            showFullPage: true,
             displayModal: false,
             bookings: [
                 {
@@ -44,7 +43,7 @@ class CreateBooking extends Component {
                     arrangementType: "",
                     arrangementTypeOther: "",
                     extraWorkHours: "",
-                    foodIncluded: false,
+                    foodIncluded: "",
                     jobDescription: "",
                     accessInformation: "",
                     upperDressCode: "",
@@ -87,7 +86,7 @@ class CreateBooking extends Component {
     };
 
     showFullPageHandler = () => {
-        this.setState({showFullPage: true})
+        this.props.actions.showFullCreateBookingPage();
     };
 
     addBooking = () => {
@@ -106,6 +105,13 @@ class CreateBooking extends Component {
         let bookings = [...this.state.bookings];
         this.props.actions.createBooking(bookings);
         this.props.history.push(GlobalPaths.homeCorporation);
+    };
+
+
+    nextStepBooking = () => {
+        let bookings = [...this.state.bookings];
+        this.props.actions.saveBookings(bookings);
+        this.props.history.push(GlobalPaths.createCorporation);
     };
 
     deleteBooking = () => {
@@ -196,7 +202,8 @@ class CreateBooking extends Component {
 
 
     render() {
-        const {selectedTab, bookings, showFullPage, displayModal} = this.state;
+        const {showFullPage, loggedIn} = this.props;
+        const {selectedTab, bookings, displayModal} = this.state;
         let validation = this.submitted ? this.validator.validate(this.state.bookings[selectedTab]) : this.state.bookings[selectedTab].validation;
 
         return (
@@ -271,12 +278,14 @@ class CreateBooking extends Component {
                                             showFullPageHandler={this.showFullPageHandler}
                                             staff={staff}
                                             validation={validation}
+                                            loggedIn={loggedIn}
 
                                             displayBookingModalHandler={this.displayBookingModalHandler}
                                             dateHandler={this.dateHandler}
                                             createBooking={this.createBooking}
                                             deleteBooking={this.deleteBooking}
                                             changeHandler={this.changeHandler}
+                                            nextStepBooking={this.nextStepBooking}
                                         />
                                     )
                                 ))
@@ -291,14 +300,18 @@ class CreateBooking extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.user
+        user: state.auth.user,
+        showFullPage: state.bookings.showFullCreateBookingPage,
+        loggedIn: state.auth.login.success
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            createBooking: bindActionCreators(bookingActions.createBooking, dispatch)
+            createBooking: bindActionCreators(bookingActions.createBooking, dispatch),
+            saveBookings: bindActionCreators(bookingActions.selectBooking, dispatch),
+            showFullCreateBookingPage: bindActionCreators(bookingActions.showFullCreateBookingPage, dispatch)
         }
     }
 }

@@ -13,7 +13,8 @@ import {Link, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import Image from './tjenerteam2.jpg'
-import * as user from '../../auth/store/actions/login.actions'
+import * as userActions from '../../auth/store/actions/login.actions'
+import * as bookingActions from '../booking/actions/Booking.actions'
 
 class Login extends Component {
     constructor(props) {
@@ -48,6 +49,7 @@ class Login extends Component {
         if(validation.isValid) {
             const {email, password, remember} = this.state;
             this.props.actions.submitLogin(email, password, remember);
+            this.props.actions.showFullCreateBookingPage();
         }
         this.setState({state: this.state});
     };
@@ -142,7 +144,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            submitLogin: bindActionCreators(user.submitLogin, dispatch)
+            submitLogin: bindActionCreators(userActions.submitLogin, dispatch),
+            showFullCreateBookingPage: bindActionCreators(bookingActions.showFullCreateBookingPage, dispatch)
         }
     }
 }

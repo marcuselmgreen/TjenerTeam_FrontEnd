@@ -153,3 +153,12 @@ export function updateBooking(booking) {
             })
     }
 }
+
+
+export function showFullCreateBookingPage() {
+    return function(dispatch) {
+        dispatch({
+            type: actionsTypes.SHOW_FULL_CREATE_BOOKING_PAGE
+        })
+    }
+}

@@ -3,7 +3,8 @@ import * as actionsTypes from '../actions/ActionTypes';
 let initialState = {
     allBookings: [],
     booking: null,
-    error: null
+    error: null,
+    showFullCreateBookingPage: false,
 };
 
 
@@ -56,7 +57,6 @@ export default function bookings(state = initialState, action) {
             return tempState;
 
 
-
         case actionsTypes.UPDATE_BOOKING_SUCCESS:
             return state;
 
@@ -66,11 +66,14 @@ export default function bookings(state = initialState, action) {
             return tempState;
 
 
-
         case actionsTypes.SELECT_BOOKING_SUCCESS:
             tempState.booking = action.booking;
             return tempState;
 
+
+        case actionsTypes.SHOW_FULL_CREATE_BOOKING_PAGE:
+            tempState.showFullCreateBookingPage = true;
+            return tempState;
         default:
             return state
     }

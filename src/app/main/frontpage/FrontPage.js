@@ -11,8 +11,7 @@ const styles = () => ({
 class FrontPage extends Component {
 
     routeCreateAccount = () => {
-        let path = globaldPaths.createCorporation;
-        this.props.history.push(path);
+        this.props.history.push(globaldPaths.createBooking);
     };
 
     // routeCreateBookingAndAccount() {
@@ -46,7 +45,7 @@ class FrontPage extends Component {
                                     onClick={this.routeCreateAccount}
                                     className="w-full h-full"
                                     style={{color: "white", textTransform: "none"}}>
-                                    Kom Igang
+                                    Kom igang
                                 </SubmitButton>
                             </div>
                             <div className="text-center">

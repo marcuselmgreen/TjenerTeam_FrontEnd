@@ -12,7 +12,9 @@ const BookingModal = (props) => {
         displayBookingModalHandler,
         addBooking,
         createBooking,
-        bookingLength
+        bookingLength,
+        loggedIn,
+        nextStepBooking
     } = props;
 
     function rand() {
@@ -29,6 +31,7 @@ const BookingModal = (props) => {
             transform: `translate(-${top}%, -${left}%)`,
         };
     }
+
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
 
@@ -56,12 +59,21 @@ const BookingModal = (props) => {
                                 </Button>
                             </div>
                             <div className="w-full sm:w-1/2 p-4">
-                                <SubmitButton
-                                    variant="contained"
-                                    className="w-full min-h-72 sm:max-h-52 sm:min-h-52"
-                                    style={{color: "white"}}
-                                    onClick={createBooking}
-                                ><span style={{fontSize: "12px"}}>Videre</span></SubmitButton>
+                                {loggedIn ?
+                                    <SubmitButton
+                                        variant="contained"
+                                        className="w-full min-h-72 sm:max-h-52 sm:min-h-52"
+                                        style={{color: "white"}}
+                                        onClick={createBooking}
+                                    ><span style={{fontSize: "12px"}}>Opret</span></SubmitButton>
+                                    :
+                                    <SubmitButton
+                                        variant="contained"
+                                        className="w-full min-h-72 sm:max-h-52 sm:min-h-52"
+                                        style={{color: "white"}}
+                                        onClick={nextStepBooking}
+                                    ><span style={{fontSize: "12px"}}>Videre</span></SubmitButton>
+                                }
                             </div>
                         </div>
                     </Card>
@@ -80,7 +92,6 @@ const SubmitButton = withStyles(theme => ({
         },
     },
 }))(Button);
-
 
 
 export default BookingModal;
