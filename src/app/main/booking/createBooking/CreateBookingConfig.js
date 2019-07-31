@@ -1,7 +1,6 @@
 
 import CreateBooking from "./CreateBooking";
 import authRoles from "../../../auth/authRoles";
-
 export const CreateBookingConfig = {
     settings: {
         layout: {

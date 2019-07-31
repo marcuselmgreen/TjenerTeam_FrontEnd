@@ -13,10 +13,23 @@ export const CorparationFormValidator =
             message: 'Mangler email'
         },
         {
+            field: 'email',
+            method: 'isEmail',
+            validWhen: true,
+            message: 'Ikke gyldig email'
+        },
+        {
             field: 'cvr',
             method: 'isEmpty',
             validWhen: false,
             message: 'Mangler cvr'
+        },
+        {
+            field: 'cvr',
+            method: 'isLength',
+            args: [{min:8, max: 8}],
+            validWhen: true,
+            message: 'Ikke gyldigt CVR'
         },
         {
             field: 'address',
@@ -61,6 +74,12 @@ export const CorparationFormValidator =
             message: 'Mangler email'
         },
         {
+            field: 'billingEmail',
+            method: 'isEmail',
+            validWhen: true,
+            message: 'Ikke gyldig email'
+        },
+        {
             field: 'ean',
             method: 'isEmpty',
             validWhen: false,
@@ -76,19 +95,26 @@ export const CorparationFormValidator =
             field: 'confirmPassword',
             method: 'isEmpty',
             validWhen: false,
-            message: 'Mangler at bekræfte kodeord'
+            message: 'Bekræft kodeord'
         },
         {
             field: 'confirmPassword',
             method: (confirmation, state) => (state.password === confirmation),
             validWhen: true,
-            message: 'Kodeordene er ikke ens'
+            message: 'Kodeordene stemmer ikke overens'
         },
         {
             field: 'gdpr',
             method: 'isEmpty',
             validWhen: false,
             message: 'Mangler at vælge'
+        },
+        {
+            field: 'gdpr',
+            method: 'isLength',
+            args: [{min:5, max: 5}],
+            validWhen: false,
+            message: 'Tryk "ja" for at oprette en virksomhed'
         }
     ];
 

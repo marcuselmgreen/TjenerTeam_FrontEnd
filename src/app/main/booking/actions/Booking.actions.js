@@ -21,10 +21,41 @@ export function loadAllBookings() {
         return bookingApi
             .getAllBookings()
             .then(bookings => {
+
                 dispatch(loadAllBookingsSuccess(bookings))
             })
             .catch(error => {
-                dispatch(loadAllBookingsFailed())
+                dispatch(loadAllBookingsFailed(error))
+            });
+    }
+}
+
+export function loadCorporationBookingsFailed(error) {
+    return {
+        type: actionsTypes.LOAD_CORPORATION_BOOKINGS_FAILED,
+        error
+    }
+}
+
+export function loadCorporationBookingsSuccess(bookings, corporation) {
+    return {
+        type: actionsTypes.LOAD_CORPORATION_BOOKINGS_SUCCESS,
+        bookings,
+        corporation
+
+    }
+}
+
+
+export function loadCorporationBookings(corporation) {
+    return function(dispatch) {
+        return bookingApi
+            .getAllBookings()
+            .then(bookings => {
+                dispatch(loadCorporationBookingsSuccess(bookings, corporation))
+            })
+            .catch(error => {
+                dispatch(loadCorporationBookingsFailed(error))
             });
     }
 }
@@ -43,10 +74,10 @@ export function createBookingFailed(error) {
     }
 }
 
-export function createBooking(booking) {
+export function createBooking(bookings) {
     return function(dispatch) {
         return bookingApi
-            .createBooking(booking)
+            .createBooking(bookings)
             .then(booking => {
                 dispatch(createBookingSuccess(booking))
             })
@@ -84,6 +115,17 @@ export function deleteBooking(booking) {
     }
 }
 
+export function selectBooking(booking) {
+   return function(dispatch) {
+       dispatch({
+           type: actionsTypes.SELECT_BOOKING_SUCCESS,
+           booking
+       })
+   }
+}
+
+
+
 
 export function updateBookingSuccess(booking) {
     return {
@@ -107,7 +149,7 @@ export function updateBooking(booking) {
                 dispatch(updateBookingSuccess(booking))
             )
             .catch(error => {
-                dispatch(updateBookingFailed(booking))
+                dispatch(updateBookingFailed(error))
             })
     }
 }

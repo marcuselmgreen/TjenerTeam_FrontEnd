@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
-import {green, grey, lightBlue} from "@material-ui/core/colors";
+import {grey, lightBlue} from "@material-ui/core/colors";
 import * as globaldPaths from '../../GlobalPaths';
 
-const styles = theme => ({
+const styles = () => ({
     layoutRoot: {}
 });
 
@@ -27,10 +27,9 @@ class FrontPage extends Component {
 
 
     render() {
-        const {classes} = this.props;
         return (
             <div style={{
-                backgroundImage: "url(" + "http://www.tjenerteamet.dk/uploads/2/5/9/3/25935474/background-images/1469395321.png" + ")",
+                backgroundImage: "url(http://www.tjenerteamet.dk/uploads/2/5/9/3/25935474/background-images/1469395321.png)",
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat'

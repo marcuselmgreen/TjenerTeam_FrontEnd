@@ -28,13 +28,13 @@ const Terms = (props) => {
                             value={gdpr}>
                             <FormControlLabel
                                 className=""
-                                value="no"
+                                value='Neeej'
                                 control={<Radio color="primary"/>}
                                 labelPlacement="bottom"
                                 label={"Nej"}/>
 
                             <FormControlLabel
-                                value="yes"
+                                value="true"
                                 control={<Radio color="secondary"/>}
                                 labelPlacement="bottom"
                                 label={"Ja"}/>

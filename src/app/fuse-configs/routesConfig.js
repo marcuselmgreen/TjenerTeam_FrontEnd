@@ -7,6 +7,7 @@ import {CreateBookingConfig} from "../main/booking/createBooking/CreateBookingCo
 import {CreateCorporationConfig} from "../main/corporation/createCorporation/CreateCorporationConfig";
 import {FrontPageConfig} from "../main/frontpage/FrontPageConfig";
 import {HomeCorporationConfig} from "../main/corporation/homeCorporation/HomeCorporationConfig";
+import {EditBookingConfig} from "../main/booking/editBooking/EditBookingConfig";
 
 
 const routeConfigs = [
@@ -15,7 +16,8 @@ const routeConfigs = [
     CreateBookingConfig,
     CreateCorporationConfig,
     FrontPageConfig,
-    HomeCorporationConfig
+    HomeCorporationConfig,
+    EditBookingConfig
 
 ];
 

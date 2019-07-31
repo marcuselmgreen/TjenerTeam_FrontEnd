@@ -1,5 +1,4 @@
 import * as Actions from '../actions';
-import authRoles from "../../authRoles";
 
 const initialState = {
     role: "",

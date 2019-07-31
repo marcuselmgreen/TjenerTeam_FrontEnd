@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
+import FormValidator from "../validator/FormValidator";
+import {LoginFormValidator} from '../validator/forms/LoginFormValidator';
 import {
     Button,
     Card,
     CardContent,
-    Checkbox,
-    FormControl,
-    FormControlLabel,
     TextField,
     Typography
 } from '@material-ui/core';
@@ -19,10 +18,13 @@ import * as user from '../../auth/store/actions/login.actions'
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.validator = new FormValidator(LoginFormValidator);
+        this.submitted = false;
         this.state = {
             email: '',
             password: '',
-            remember: true
+            remember: true,
+            validation: this.validator.valid()
         }
     }
 
@@ -33,24 +35,29 @@ class Login extends Component {
         this.setState(tempState);
     };
 
-    toggleCheckBox = () => {
-        this.setState({remember: !this.state.remember})
-    };
-
     isFormValid = () => {
         return (this.state.email.length > 0 && this.state.password.length > 0);
     };
 
     handleSubmit = () => {
-        const {email, password, remember} = this.state;
-        this.props.actions.submitLogin(email, password, remember);
+        const validation = this.validator.validate(this.state);
+        const tempState = {...this.state};
+        tempState.validation = validation;
+
+        this.submitted = true;
+        if(validation.isValid) {
+            const {email, password, remember} = this.state;
+            this.props.actions.submitLogin(email, password, remember);
+        }
+        this.setState({state: this.state});
     };
 
     render() {
-        const {email, password, remember} = this.state;
+        const {email, password} = this.state;
+
+        let validation = this.submitted ? this.validator.validate(this.state) : this.state.validation;
 
         if (this.props.success) return <Redirect to="/homeCorporation"/>;
-
         return (
             <div style={{
                 width: '100%',
@@ -84,6 +91,7 @@ class Login extends Component {
                                 label="Email"
                                 autoFocus
                                 type="email"
+                                helperText={<span style={{color: 'red'}}>{validation.email.message}</span>}
                                 name="email"
                                 value={email}
                                 onChange={this.onChange}
@@ -95,6 +103,7 @@ class Login extends Component {
                                 className="mb-16"
                                 label="Kodeord"
                                 type="password"
+                                helperText={<span style={{color: 'red'}}>{validation.password.message}</span>}
                                 name="password"
                                 value={password}
                                 onChange={this.onChange}
@@ -102,20 +111,6 @@ class Login extends Component {
                                 required
                                 fullWidth
                             />
-                            {/*<div className="flex items-center justify-between">*/}
-                            {/*    <FormControl>*/}
-                            {/*        <FormControlLabel*/}
-                            {/*            control={*/}
-                            {/*                <Checkbox*/}
-                            {/*                    name="remember"*/}
-                            {/*                    value={remember}*/}
-                            {/*                    checked={this.state.remember}*/}
-                            {/*                    onChange={this.toggleCheckBox}/>*/}
-                            {/*            }*/}
-                            {/*            label="Husk mig"*/}
-                            {/*        />*/}
-                            {/*    </FormControl>*/}
-                            {/*</div>*/}
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -155,6 +150,5 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)
-(Login);
+)(Login);
 

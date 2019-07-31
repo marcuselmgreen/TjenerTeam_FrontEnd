@@ -6,28 +6,30 @@ import Photo from "../../static/tjenerTeam2.png";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import MyBookings from './myBookings/MyBookings';
+import * as GlobalPaths from "../../../GlobalPaths";
 
 class HomeCorporation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTab: 1
+            selectedTab: 0
         }
-
     }
 
-
     createBooking = () => {
-        this.props.history.push('/createBooking');
+        this.props.history.push(GlobalPaths.createBooking);
     };
 
     changeHandler = (e, tab) => {
         this.setState({selectedTab: tab})
     };
 
+    nextPage = () => {
+        this.props.history.push(GlobalPaths.editBooking);
+    };
+
 
     render() {
-
         const {selectedTab} = this.state;
 
         return (
@@ -57,7 +59,7 @@ class HomeCorporation extends Component {
                             </Tabs>
                                 <hr className="w-full" style={{borderTop: '1px solid gray', margin: '0px'}}/>
                             {selectedTab === 0 && <h1>Beskeder (Ikke færdigt)</h1>}
-                            {selectedTab === 1 && <MyBookings/>}
+                            {selectedTab === 1 && <MyBookings nextPage={this.nextPage}/>}
                             {selectedTab === 2 && <h1>Afsluttede bookings (ikke færdigt)</h1>}
                             {selectedTab === 3 && <h1>Favoritter (ikke færdigt)</h1>}
 

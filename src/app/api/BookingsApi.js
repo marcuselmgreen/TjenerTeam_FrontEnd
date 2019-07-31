@@ -18,8 +18,8 @@ export function getAllBookings() {
 // NOW IT WILL MAKE SEVERAL HTTP CALLS
 // BECAUSE THE API CAN'T HANDLE THE DATA CORRECT.
 // THIS WILL CHANGE WHEN BACKEND IS DEVELOPED!!
-export function createBooking(booking) {
-    return axios.post(baseUrl + '/bookings', booking)
+export function createBooking(bookings) {
+    return axios.post(baseUrl + '/bookings', bookings)
         .then(handleResponse)
         .catch(handleError)
 }
@@ -32,7 +32,7 @@ export function deleteBooking(booking) {
 }
 
 export function updateBooking(booking) {
-    let id = booking.id;
+    let id = booking._id;
     return axios.put(baseUrl+'/bookings/'+ id, booking)
         .then(handleResponse)
         .catch(handleError)

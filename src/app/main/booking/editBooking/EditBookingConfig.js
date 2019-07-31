@@ -1,7 +1,7 @@
-import HomeCorporation from "./HomeCorporation";
+import EditBooking from "./EditBooking";
 import authRoles from "../../../auth/authRoles";
 
-export const HomeCorporationConfig = {
+export const EditBookingConfig = {
     settings: {
         layout: {
             config: {
@@ -26,8 +26,8 @@ export const HomeCorporationConfig = {
     auth: authRoles.corporation,
     routes  : [
         {
-            path     : '/homeCorporation',
-            component: HomeCorporation
+            path     : '/editBooking',
+            component: EditBooking
         }
     ]
 };

@@ -15,27 +15,26 @@ import Questions from "./components/Questions";
 import Pay from "./components/Pay";
 import Bottom from "./components/Bottom";
 import BookingModal from "./components/BookingModal";
+import {
+    arrangementTypeValues,
+    upperDressSelection,
+    lowerDressSelection,
+    shoeSelection,
+    extraHours,
+    languageSkillData,
+    transportCostWages,
+    gender,
+    yesAndNo
+} from './helper_functions/Selections'
 
 
 const time = Time;
-const arrangementTypeValues = ["Firmaevent", "Bryllup", "Julefrokost", "Andet"];
-const upperDressSelection = ["Hvid Skjorte", "Sort Skjorte", "Intet krav", "Andet"];
-const lowerDressSelection = ["Sorte bukser", "Hvide Bukser", "Shorts", "Intet krav", "Andet"];
-const shoeSelection = ["Sorte Sko", "Hvide Sko", "Intet krav", "Andet"];
-const extraHours = [{name: "Nej", value: 0}, {name: "30 min", value: 0.50}, {name: "1 time", value: 1}, {name: "1 time 30 min", value: 1.5} , {name: "2 timer", value: 2}];
-const languageSkillData = ["Dansk og Engelsk", "Kun Dansk", "Kun Engelsk"];
-const transportCostWages = [{name: "nej", value: 0}, {name: "30 min", value: 0.5}, {name: "1 time", value: 1}, {name: "1 timer 30 min", value: 1.5}, {name: "2 timer", value: 2}];
-const gender = ["Mænd", "Kvinder", "Begge køn"];
-const yesAndNo = ["Ja", "nej"];
+
 
 const Booking = (props) => {
 
     const
         {
-            /*
-                VALUES
-             */
-            label,
             staffType,
             numberOfStaff,
             date,

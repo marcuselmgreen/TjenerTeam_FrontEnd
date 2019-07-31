@@ -10,7 +10,6 @@ import * as corporationUser from "../actions/Corporation.actions";
 import * as GlobalPaths from '../../../GlobalPaths';
 import authRoles from "../../../auth/authRoles";
 import {Card, CardContent} from "@material-ui/core";
-import Image from "../../login/tjenerteam2.jpg";
 
 class CreateCorporation extends Component {
     constructor(props) {
@@ -105,9 +104,7 @@ class CreateCorporation extends Component {
                 <Card className="w-full max-w-2xl mx-auto m-16 md:m-0" square>
                     <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
                         <h1 className="font-sans text-4xl text-gray-800">Opret virksomhed</h1>
-                        <p className="py-10 text-gray-800 font-sans text-lg">Opret dig Gratis som bruger af
-                            TjenerTeamet - du betaler kun, hvis du booker personale.
-                        </p>
+                        <p className="py-10 text-gray-800 font-sans text-lg">Opret dig Gratis som bruger af TjenerTeamet - du betaler kun, hvis du booker personale.</p>
                         <CorporationForm
                             name={name}
                             cvr={cvr}
@@ -133,9 +130,6 @@ class CreateCorporation extends Component {
                     </CardContent>
                 </Card>
                 </div>
-                {/*<div>*/}
-                {/*    <img src={Photo} className="w-2xl fixed " alt="tjenerTeam2"/>*/}
-                {/*</div>*/}
             </>
         );
     }
@@ -159,6 +153,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps)
-(CreateCorporation);
+    mapDispatchToProps)(CreateCorporation);
 

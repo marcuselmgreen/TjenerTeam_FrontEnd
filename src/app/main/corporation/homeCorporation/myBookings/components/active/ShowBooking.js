@@ -14,6 +14,7 @@ const ShowBooking = (props) => {
         booking,
         showDeleteModalHandler,
         deleteBookingHandler,
+        editBookingHandler,
         showDeleteModal
     } = props;
 
@@ -223,32 +224,36 @@ const ShowBooking = (props) => {
 
                     <div className="w-full">
                         <div className="flex flex-wrap my-4">
-                            <div className="w-full sm:w-1/4">
+                            <div className="w-full sm:w-1/5">
                                 <h5 className="mt-3">Beskrivelse</h5>
                                 <p>{booking.staffType}</p>
                             </div>
-                            <div className="w-full sm:w-1/4">
-                                <h5 className="mt-3">Timer</h5>
-                                <p>{}</p>
+                            <div className="w-full sm:w-1/5">
+                                <h5 className="mt-3">Antal</h5>
+                                <p>{booking.numberOfStaff}</p>
                             </div>
-                            <div className="w-full sm:w-1/4">
-                                <h5 className="mt-3">Enhedsprins</h5>
-                                <p>168.75 kr.</p>
+                            <div className="w-full sm:w-1/5">
+                                <h5 className="mt-3">Tid</h5>
+                                <p>{booking.startTime + '-' + booking.endTime}</p>
                             </div>
-                            <div className="w-full sm:w-1/4">
+                            <div className="w-full sm:w-1/5">
+                                <h5 className="mt-3">Enhedspris</h5>
+                                <p>{booking.hourlyWage + ' kr'}</p>
+                            </div>
+                            <div className="w-full sm:w-1/5">
                                 <h5 className="mt-3">Pris</h5>
-                                <p>2020.25 kr.</p>
+                                <p>{booking.priceTotal + ' kr'}</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="w-full mt-10">
                         <div className="flex flex-wrap my-4">
-                            <div className="w-full sm:w-3/4">
+                            <div className="w-full sm:w-4/5">
                                 <h5 className="">I alt eks. moms</h5>
                             </div>
-                            <div className='w-full sm:w-1/4'>
-                                <p>2000.34 kr</p>
+                            <div className='w-full sm:w-1/5'>
+                                <p>0 kr</p>
                             </div>
                         </div>
                     </div>
@@ -267,7 +272,9 @@ const ShowBooking = (props) => {
                                 </DeleteButton>
                             </div>
                             <div className="w-full sm:w-2/5">
-                                <EditButton style={{color: "white"}}>
+                                <EditButton
+                                    onClick={editBookingHandler}
+                                    style={{color: "white"}}>
                                     Rediger Booking
                                 </EditButton>
                             </div>
@@ -325,16 +332,6 @@ const EditButton = withStyles(theme => ({
         backgroundColor: grey[500],
         '&:hover': {
             backgroundColor: grey[300],
-        },
-    },
-}))(Button);
-
-const cancelButton = withStyles(theme => ({
-    root: {
-        color: theme.palette.getContrastText(grey[800]),
-        backgroundColor: grey[800],
-        '&:hover': {
-            backgroundColor: grey[700],
         },
     },
 }))(Button);

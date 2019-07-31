@@ -88,7 +88,7 @@ const Arrangement = (props) => {
                                 value={foodIncluded}>
                                 <FormControlLabel
                                     style={{transform: "scale(0.8, 0.8)"}}
-                                    value="yes"
+                                    value='true'
                                     control={<Radio color="primary"/>}
                                     label="Ja"
                                     labelPlacement="bottom"
@@ -98,7 +98,7 @@ const Arrangement = (props) => {
                                 <FormControlLabel
                                     style={{transform: "scale(0.8, 0.8)"}}
                                     className=""
-                                    value="no"
+                                    value='false'
                                     control={<Radio color="primary"/>}
                                     label="Nej"
                                     labelPlacement="bottom"

@@ -57,7 +57,7 @@ const CorporationForm = (props) => {
                 : null
             }
 
-            {currentView === 1 ?
+            {currentView === 0 ?
                 <div className="flex flex-wrap ">
                     <Bottom
                         contactPerson={contactPerson}
@@ -76,7 +76,7 @@ const CorporationForm = (props) => {
                 : null
             }
 
-            {currentView === 2 ?
+            {currentView === 0 ?
                 <>
                     <div className="flex flex-wrap ">
                         <Password
@@ -94,7 +94,7 @@ const CorporationForm = (props) => {
                 : null
             }
 
-            {currentView === 3 ?
+            {currentView === 0 ?
                 <>
                     <div className="flex flex-wrap ">
                         <Terms
@@ -130,7 +130,7 @@ const CorporationForm = (props) => {
                     </div>
                     <div className="w-full sm:w-1/2">
 
-                        {currentView !== 3 ?
+                        {currentView !== 0 ?
                             <div className="flex justify-center p-4">
                                 <SubmitButton
                                     onClick={plusChangeView}
@@ -141,9 +141,7 @@ const CorporationForm = (props) => {
                                     Videre
                                 </SubmitButton>
                             </div>
-
                             :
-
                             <div className="flex justify-center p-4">
                                 <SubmitButton
                                     onClick={submitHandler}
