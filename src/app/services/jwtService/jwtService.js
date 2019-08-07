@@ -69,7 +69,7 @@ class jwtService extends FuseUtils.EventEmitter {
 
     signInWithEmailAndPassword = (email, password) => {
         return new Promise((resolve, reject) => {
-            axios.post(setup.apiEndpoint + '/auth/signIn', {email, password})
+            axios.post(setup.apiAuthEndpoint + '/auth/signIn', {email, password})
                 .then(response => {
                 if ( response.data )
                 {
@@ -85,7 +85,7 @@ class jwtService extends FuseUtils.EventEmitter {
 
     signInWithToken = () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/auth/access-token', {
+            axios.get(setup.apiAuthEndpoint+ '/auth/access-token', {
                 data: {
                     access_token: this.getAccessToken()
                 }

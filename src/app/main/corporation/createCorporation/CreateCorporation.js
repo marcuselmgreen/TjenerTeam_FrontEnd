@@ -57,6 +57,7 @@ class CreateCorporation extends Component {
 
     };
 
+
     submitHandler = () => {
         const validation = this.validator.validate(this.state.corporation);
         const tempCorporation = {...this.state.corporation};
@@ -64,12 +65,18 @@ class CreateCorporation extends Component {
         console.log(this.state.corporation);
         this.submitted = true;
         if (validation.isValid) {
-
-            this.props.actions.createdCorporationUser(this.state.corporation);
-            this.props.history.push(GlobalPaths.login);
+            debugger;
+            if(!this.props.loggedIn && this.props.bookings !== null) {
+                this.props.actions.createCorporationAndBookings(this.state.corporation, this.props.bookings);
+                this.props.history.push(GlobalPaths.login);
+            } else {
+                this.props.actions.createdCorporationUser(this.state.corporation);
+                this.props.history.push(GlobalPaths.login);
+            }
         }
         this.setState({state: this.state});
     };
+
 
 
     render() {
@@ -90,6 +97,8 @@ class CreateCorporation extends Component {
             gdpr,
             currentView
         } = this.state;
+
+        let {loggedIn} = this.props;
 
         let validation = this.submitted ? this.validator.validate(this.state.corporation) : this.state.corporation.validation;
         return (
@@ -124,8 +133,10 @@ class CreateCorporation extends Component {
                             changeHandler={this.changeHandler}
                             plusChangeView={this.plusChangeView}
                             minusChangeView={this.minusChangeView}
+                            submitHandler={this.submitHandler}
                             validation={validation}
                             currentView={currentView}
+                            loggedIn={loggedIn}
                         />
                     </CardContent>
                 </Card>
@@ -139,14 +150,17 @@ class CreateCorporation extends Component {
 
 function mapStateToProps(state) {
     return {
-        corporation_user: state.corporation_user
+        corporation_user: state.corporation_user,
+        loggedIn: state.auth.login.success,
+        bookings: state.bookings.booking
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            createdCorporationUser: bindActionCreators(corporationUser.createCorporationUser, dispatch)
+            createdCorporationUser: bindActionCreators(corporationUser.createCorporationUser, dispatch),
+            createCorporationAndBookings: bindActionCreators(corporationUser.createCorporationAndBooking, dispatch)
         }
     }
 }

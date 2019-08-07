@@ -7,6 +7,7 @@ import {bindActionCreators} from "redux";
 import * as bookingActions from '../actions/Booking.actions'
 import FormValidator from "../../validator/FormValidator";
 import {BookingFormValidator} from "../../validator/forms/BookingFormValidator";
+import * as GlobalPaths from "../../../GlobalPaths";
 
 class EditBooking extends Component {
     constructor(props) {
@@ -50,6 +51,7 @@ class EditBooking extends Component {
 
     editSubmitHandler = () => {
         this.props.actions.updateBooking(this.state.booking);
+        this.props.history.push(GlobalPaths.homeCorporation);
     };
 
     changeHandler = (e) => {

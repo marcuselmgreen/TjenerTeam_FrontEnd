@@ -49,7 +49,7 @@ class Login extends Component {
         if(validation.isValid) {
             const {email, password, remember} = this.state;
             this.props.actions.submitLogin(email, password, remember);
-            this.props.actions.showFullCreateBookingPage();
+            // this.props.actions.showFullCreateBookingPage();
         }
         this.setState({state: this.state});
     };

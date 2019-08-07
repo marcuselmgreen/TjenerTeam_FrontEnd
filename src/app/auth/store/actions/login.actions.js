@@ -8,6 +8,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
 export function submitLogin(email, password, rememberUser) {
     return function(dispatch) {
+        debugger;
         jwtService.signInWithEmailAndPassword(email, password)
             .then((data) => {
                 dispatch(setUserData(data.user));

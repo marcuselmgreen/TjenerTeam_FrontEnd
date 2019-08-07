@@ -197,7 +197,7 @@ const FusePageSimple = React.forwardRef(function (props, ref) {
                         )}
 
                         {props.contentToolbar && (
-                            <div className={classes.toolbar}>
+                            <div className={classes.AppHeader}>
                                 {props.contentToolbar}
                             </div>
                         )}

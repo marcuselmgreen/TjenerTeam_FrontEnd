@@ -168,7 +168,7 @@ export function logoutUser()
         }
 
         history.push({
-            pathname: '/'
+            pathname: '/frontpage'
         });
 
         switch ( user.from )

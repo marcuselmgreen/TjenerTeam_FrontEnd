@@ -17,7 +17,7 @@ const Active = (props) => {
     return (
         <> {showSpinner ?
 
-            <div className="flex flex-col h-screen my-auto items-center bgimg bg-cover">
+            <div className="flex flex-col my-auto items-center bgimg bg-cover">
                 <CircularProgress className="mt-40" size={60}/>
                 <h3 className="mt-10">Indlæser bookings</h3>
             </div>
@@ -41,17 +41,19 @@ const Active = (props) => {
                                             <div>
                                                 <Typography color="textSecondary" gutterBottom>
                                                         <span style={{fontSize: '35px'}}
-                                                              className="pl-1">{moment(b.date).format('ll').slice(0, 2).toUpperCase()}</span>
+                                                              className="pl-1">{moment(b.date).format('ll').slice(1, 2).toUpperCase() === '.' ?
+                                                            moment(b.date).format('ll').slice(0, 1).toUpperCase(): moment(b.date).format('ll').slice(0, 2).toUpperCase() }</span>
                                                 </Typography>
                                             </div>
                                             <div>
                                                 <span style={{fontSize: '29px'}}
-                                                      className="pl-1">{moment(b.date).format('ll').slice(4, 7).toUpperCase()}</span>
+                                                      className="pl-1">{moment(b.date).format('ll').slice(1, 2).toUpperCase() === '.' ?
+                                                            moment(b.date).format('ll').slice(3, 6).toUpperCase() : moment(b.date).format('ll').slice(4, 7).toUpperCase()}</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="w-full sm:w-7/12  mt-2">
+                                    <div className="w-full sm:w-7/12 sm:pl-3  mt-2">
                                         <div className="pl-2 min-w-full">
                                             <div className="mt-6 min-h-32">
                                                 <span className="ml-2" style={{

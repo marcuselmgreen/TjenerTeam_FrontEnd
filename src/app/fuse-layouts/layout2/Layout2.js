@@ -71,9 +71,9 @@ function Layout2(props)
             {({routes}) => (
                 <div id="fuse-layout" className={clsx(classes.root, config.mode)}>
 
-                    {config.leftSidePanel.display && (
-                        <LeftSideLayout2/>
-                    )}
+                    {/*{config.leftSidePanel.display && (*/}
+                    {/*    <LeftSideLayout2/>*/}
+                    {/*)}*/}
 
                     <div className="flex flex-1 flex-col overflow-hidden relative">
 
@@ -85,13 +85,13 @@ function Layout2(props)
                             {/*<NavbarWrapperLayout2/>*/}
                         {/*)}*/}
 
-                        {config.toolbar.display && config.toolbar.position === 'below' && (
-                            <ToolbarLayout2/>
-                        )}
+                        {/*{config.AppHeader.display && config.AppHeader.position === 'below' && (*/}
+                        {/*    <ToolbarLayout2/>*/}
+                        {/*)}*/}
 
                         <FuseScrollbars className={classes.content}>
 
-                            <FuseDialog/>
+                            {/*<FuseDialog/>*/}
 
                             <div className="flex flex-auto flex-col relative">
 
@@ -117,11 +117,11 @@ function Layout2(props)
 
                     </div>
 
-                    {config.rightSidePanel.display && (
-                        <RightSideLayout2/>
-                    )}
+                    {/*{config.rightSidePanel.display && (*/}
+                    {/*    <RightSideLayout2/>*/}
+                    {/*)}*/}
 
-                    <FuseMessage/>
+                    {/*<FuseMessage/>*/}
                 </div>)}
         </AppContext.Consumer>
     );

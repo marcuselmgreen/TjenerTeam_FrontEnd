@@ -28,7 +28,7 @@ class CreateBooking extends Component {
             displayModal: false,
             bookings: [
                 {
-                    id: idGenerator(),
+                    _id: idGenerator(),
                     createdByCorporation_user: this.props.user._id,
                     label: "Ny",
                     staffType: "",
@@ -93,7 +93,7 @@ class CreateBooking extends Component {
         let tempState = {...this.state};
         tempState.bookings[this.state.selectedTab].label = tempState.bookings[this.state.selectedTab].staffType;
         let newBooking = {...booking};
-        newBooking.id = idGenerator();
+        newBooking._id = idGenerator();
         tempState.bookings.push(newBooking);
         debugger;
         this.setState({tempState});
@@ -119,7 +119,7 @@ class CreateBooking extends Component {
             let tempBookings = [...this.state.bookings];
             let book = tempBookings[this.state.selectedTab];
 
-            tempBookings = tempBookings.filter(b => b.id !== book.id);
+            tempBookings = tempBookings.filter(b => b._id !== book._id);
             this.setState({bookings: tempBookings});
 
             if (this.state.selectedTab === 0) {

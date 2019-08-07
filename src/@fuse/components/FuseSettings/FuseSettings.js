@@ -240,7 +240,7 @@ function FuseSettings(props)
                 </FormControl>
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormLabel component="legend" className="text-14">Toolbar</FormLabel>
-                    <ThemeSelect value={settings.theme.toolbar} name="theme.toolbar" handleChange={handleChange}/>
+                    <ThemeSelect value={settings.theme.AppHeader} name="theme.toolbar" handleChange={handleChange}/>
                 </FormControl>
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormLabel component="legend" className="text-14">Footer</FormLabel>

@@ -120,7 +120,7 @@ function getThemeOptions(themes, settings)
     return {
         mainTheme   : themes[settings.theme.main],
         navbarTheme : themes[settings.theme.navbar],
-        toolbarTheme: themes[settings.theme.toolbar],
+        toolbarTheme: themes[settings.theme.AppHeader],
         footerTheme : themes[settings.theme.footer],
         ...updateMainThemeVariations(settings.theme.main)
     }

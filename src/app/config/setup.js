@@ -1,3 +1,4 @@
 export default {
-    apiEndpoint: 'http://localhost:3000'
+    apiAuthEndpoint: 'https://tjener-team-api.herokuapp.com',
+    apiEndPoint: 'https://tjener-team-api.herokuapp.com/api'
 }

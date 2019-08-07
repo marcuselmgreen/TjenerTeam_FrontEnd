@@ -25,12 +25,12 @@ function ToolbarLayout2(props)
             <AppBar id="fuse-toolbar" className="flex relative z-10" color="default">
                 <Toolbar className="container p-0 lg:px-24">
 
-                    {config.navbar.display && (
-                        <Hidden lgUp>
-                            <NavbarMobileToggleButton className="w-64 h-64 p-0"/>
-                            <div className={classes.separator}/>
-                        </Hidden>
-                    )}
+                    {/*{config.navbar.display && (*/}
+                    {/*    <Hidden lgUp>*/}
+                    {/*        <NavbarMobileToggleButton className="w-64 h-64 p-0"/>*/}
+                    {/*        <div className={classes.separator}/>*/}
+                    {/*    </Hidden>*/}
+                    {/*)}*/}
 
                     <div className="flex flex-1">
                         {/*<Hidden mdDown>*/}
@@ -46,11 +46,11 @@ function ToolbarLayout2(props)
 
                         {/*<FuseSearch/>*/}
 
-                        <Hidden lgUp>
+                        {/*<Hidden lgUp>*/}
 
-                            <div className={classes.separator}/>
+                        {/*    <div className={classes.separator}/>*/}
 
-                        </Hidden>
+                        {/*</Hidden>*/}
 
                         <div className={classes.separator}/>
 

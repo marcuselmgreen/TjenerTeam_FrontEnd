@@ -79,7 +79,7 @@ function Layout3(props)
 
                     <div className="flex flex-1 flex-col overflow-hidden relative">
 
-                        {config.toolbar.display && config.toolbar.position === 'above' && (
+                        {config.AppHeader.display && config.AppHeader.position === 'above' && (
                             <ToolbarLayout3/>
                         )}
 
@@ -87,7 +87,7 @@ function Layout3(props)
                             <NavbarWrapperLayout3/>
                         )}
 
-                        {config.toolbar.display && config.toolbar.position === 'below' && (
+                        {config.AppHeader.display && config.AppHeader.position === 'below' && (
                             <ToolbarLayout3/>
                         )}
 

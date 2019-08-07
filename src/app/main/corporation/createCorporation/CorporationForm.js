@@ -26,6 +26,7 @@ const CorporationForm = (props) => {
         gdpr,
         validation,
         currentView,
+        loggedIn,
 
         plusChangeView,
         minusChangeView,
@@ -143,14 +144,14 @@ const CorporationForm = (props) => {
                             </div>
                             :
                             <div className="flex justify-center p-4">
-                                <SubmitButton
-                                    onClick={submitHandler}
-                                    color="secondary"
-                                    variant="contained"
-                                    className="min-w-216 min-h-48 "
-                                    style={{color: "white"}}>
-                                    Opret
-                                </SubmitButton>
+                                    <SubmitButton
+                                        onClick={submitHandler}
+                                        color="secondary"
+                                        variant="contained"
+                                        className="min-w-216 min-h-48 "
+                                        style={{color: "white"}}>
+                                        Opret
+                                    </SubmitButton>
                             </div>
                         }
                     </div>

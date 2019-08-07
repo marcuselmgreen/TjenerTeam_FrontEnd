@@ -35,12 +35,14 @@ const ShowBooking = (props) => {
                                     <div>
                                         <Typography color="textSecondary" gutterBottom>
                                                         <span style={{fontSize: '35px'}}
-                                                              className="pl-1">{moment(booking.date).format('ll').slice(0, 2).toUpperCase()}</span>
+                                                              className="pl-1">{moment(booking.date).format('ll').slice(1, 2).toUpperCase() === '.' ?
+                                                            moment(booking.date).format('ll').slice(0, 1).toUpperCase(): moment(booking.date).format('ll').slice(0, 2).toUpperCase() }</span>
                                         </Typography>
                                     </div>
                                     <div>
                                                 <span style={{fontSize: '29px'}}
-                                                      className="pl-1">{moment(booking.date).format('ll').slice(4, 7).toUpperCase()}</span>
+                                                      className="pl-1">{moment(booking.date).format('ll').slice(1, 2).toUpperCase() === '.' ?
+                                                    moment(booking.date).format('ll').slice(3, 6).toUpperCase() : moment(booking.date).format('ll').slice(4, 7).toUpperCase()}</span>
                                     </div>
                                 </div>
                             </div>
