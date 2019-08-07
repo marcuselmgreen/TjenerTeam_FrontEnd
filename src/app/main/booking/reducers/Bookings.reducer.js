@@ -74,6 +74,12 @@ export default function bookings(state = initialState, action) {
         case actionsTypes.SHOW_FULL_CREATE_BOOKING_PAGE:
             tempState.showFullCreateBookingPage = true;
             return tempState;
+
+
+        case actionsTypes.HIDE_FULL_CREATE_BOOKING_PAGE:
+            tempState.showFullCreateBookingPage = false;
+            return tempState;
+
         default:
             return state
     }

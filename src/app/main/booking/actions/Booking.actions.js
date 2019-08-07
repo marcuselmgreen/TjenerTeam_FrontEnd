@@ -162,3 +162,12 @@ export function showFullCreateBookingPage() {
         })
     }
 }
+
+export function hideFullCreateBookingPage() {
+    return function(dispatch) {
+        dispatch({
+            type: actionsTypes.HIDE_FULL_CREATE_BOOKING_PAGE
+        })
+    }
+}
+

@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as userActions from "../../auth/store/actions/user.actions"
 import * as loginActions from "../../auth/store/actions/login.actions"
+import * as bookingActions from '../../main/booking/actions/Booking.actions';
 
 const styles = theme => ({
     root: {
@@ -33,6 +34,7 @@ class AppHeader extends Component {
     }
 
     logOutHandler = () => {
+        this.props.actions.hideFullCreateBookingPage();
         this.props.actions.logOut();
         this.props.actions.logUserOut();
     };
@@ -69,7 +71,8 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: {
             logUserOut: bindActionCreators(userActions.logoutUser, dispatch),
-            logOut: bindActionCreators(loginActions.logout, dispatch)
+            logOut: bindActionCreators(loginActions.logout, dispatch),
+            hideFullCreateBookingPage: bindActionCreators(bookingActions.hideFullCreateBookingPage, dispatch)
 
         }
     }
