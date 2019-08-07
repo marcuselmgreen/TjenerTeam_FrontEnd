@@ -3,6 +3,7 @@ import {setInitialSettings} from 'app/store/actions/fuse';
 import _ from '@lodash';
 import store from 'app/store';
 import * as Actions from 'app/store/actions';
+import * as loginActions from './login.actions'
 import firebase from 'firebase/app';
 import firebaseService from 'app/services/firebaseService';
 import auth0Service from 'app/services/auth0Service';
@@ -180,6 +181,7 @@ export function logoutUser()
             }
             case 'auth0':
             {
+
                 auth0Service.logout();
                 break;
             }

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 
 
 export function submitLogin(email, password, rememberUser) {
@@ -13,7 +14,6 @@ export function submitLogin(email, password, rememberUser) {
             .then((data) => {
                 dispatch(setUserData(data.user));
                 setBearerTokenOnAxis(data.access_token);
-                console.log(data)
                 storeTokenLocally(rememberUser, data.access_token);
                 return dispatch({type: LOGIN_SUCCESS, jwtToken: data.access_token},);
             })
@@ -24,6 +24,13 @@ export function submitLogin(email, password, rememberUser) {
                 }
             })
     }
+}
+
+export function logout() {
+    return function(dispatch) {
+        debugger;
+        return dispatch({type: LOG_OUT_SUCCESS})
+    };
 }
 
 

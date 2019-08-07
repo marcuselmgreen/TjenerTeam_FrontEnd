@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import {grey, lightBlue} from "@material-ui/core/colors";
-import * as globaldPaths from '../../GlobalPaths';
+import * as globalPaths from '../../GlobalPaths';
 import {AppBar} from "@material-ui/core";
 
 const styles = () => ({
@@ -12,7 +12,7 @@ const styles = () => ({
 class FrontPage extends Component {
 
     routeCreateAccount = () => {
-        this.props.history.push(globaldPaths.createBooking);
+        this.props.history.push(globalPaths.createBooking);
     };
 
     // routeCreateBookingAndAccount() {
@@ -21,8 +21,7 @@ class FrontPage extends Component {
     // }
 
     routeLogin = () => {
-        let path = globaldPaths.login;
-        this.props.history.push(path);
+        this.props.history.push(globalPaths.login);
     };
 
 

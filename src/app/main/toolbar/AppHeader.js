@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as userActions from "../../auth/store/actions/user.actions"
+import * as loginActions from "../../auth/store/actions/login.actions"
 
 const styles = theme => ({
     root: {
@@ -33,6 +34,7 @@ class AppHeader extends Component {
 
     logOutHandler = () => {
         this.props.actions.logOut();
+        this.props.actions.logUserOut();
     };
 
 
@@ -66,7 +68,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            logOut: bindActionCreators(userActions.logoutUser, dispatch)
+            logUserOut: bindActionCreators(userActions.logoutUser, dispatch),
+            logOut: bindActionCreators(loginActions.logout, dispatch)
+
         }
     }
 }

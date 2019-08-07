@@ -23,6 +23,14 @@ const login = function (state = initialState, action) {
                 error  : action.payload
             };
         }
+
+        case Actions.LOG_OUT_SUCCESS:
+            return {
+                ...state,
+                success: false,
+                jwtToken: null
+            };
+
         default:
         {
             return state
