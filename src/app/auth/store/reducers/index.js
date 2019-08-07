@@ -6,7 +6,6 @@ import register from './register.reducer';
 const authReducers = combineReducers({
     user,
     login,
-    register
 });
 
 export default authReducers

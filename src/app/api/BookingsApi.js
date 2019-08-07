@@ -2,8 +2,6 @@ import axios from 'axios';
 import {handleError, handleResponse} from './ApiUtils';
 import setup from "../config/setup";
 
-const baseUrl = "https://tjener-team-api.herokuapp.com/api";
-
 export function getBookingsById(userName) {
     return axios(setup.apiEndPoint + '/bookings/?userName=' + userName)
         .then(handleResponse)

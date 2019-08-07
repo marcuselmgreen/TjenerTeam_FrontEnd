@@ -2,14 +2,13 @@
 import * as actionsTypes from '../actions/ActionTypes';
 
 let initialState = {
-    corporation_user: null
 };
 
-export default function corporation_user(state = initialState.corporation_user, action) {
+export default function corporation_user(state = initialState, action) {
     switch (action.type) {
 
         case actionsTypes.CREATE_CORPORATION_USER_SUCCESS:
-            return action.user;
+            return state;
 
         case actionsTypes.CREATE_CORPORATION_USER_FAILED:
             return state;

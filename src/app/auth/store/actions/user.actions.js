@@ -5,8 +5,6 @@ import store from 'app/store';
 import * as Actions from 'app/store/actions';
 import * as loginActions from './login.actions'
 import firebase from 'firebase/app';
-import firebaseService from 'app/services/firebaseService';
-import auth0Service from 'app/services/auth0Service';
 import jwtService from 'app/services/jwtService';
 
 export const SET_USER_DATA = '[USER] SET DATA';
@@ -16,17 +14,16 @@ export const USER_LOGGED_OUT = '[USER] LOGGED OUT';
 /**
  * Set corporation data from Auth0 token data
  */
-export function setUserDataAuth0(tokenData)
-{
+export function setUserDataAuth0(tokenData) {
     const user = {
         role: ['admin'],
         from: 'auth0',
         data: {
             displayName: tokenData.username,
-            photoURL   : tokenData.picture,
-            email      : tokenData.email,
-            settings   : (tokenData.user_metadata && tokenData.user_metadata.settings) ? tokenData.user_metadata.settings : {},
-            shortcuts  : (tokenData.user_metadata && tokenData.user_metadata.shortcuts) ? tokenData.user_metadata.shortcuts : []
+            photoURL: tokenData.picture,
+            email: tokenData.email,
+            settings: (tokenData.user_metadata && tokenData.user_metadata.settings) ? tokenData.user_metadata.settings : {},
+            shortcuts: (tokenData.user_metadata && tokenData.user_metadata.shortcuts) ? tokenData.user_metadata.shortcuts : []
         }
     };
 
@@ -36,19 +33,15 @@ export function setUserDataAuth0(tokenData)
 /**
  * Set corporation data from Firebase data
  */
-export function setUserDataFirebase(user, authUser)
-{
-    if ( user && user.data &&
+export function setUserDataFirebase(user, authUser) {
+    if (user && user.data &&
         user.data.settings &&
         user.data.settings.theme &&
         user.data.settings.layout &&
-        user.data.settings.layout.style )
-    {
+        user.data.settings.layout.style) {
         // Set corporation data but do not update
         return setUserData(user);
-    }
-    else
-    {
+    } else {
         // Create missing corporation settings
         return createUserSettingsFirebase(authUser);
     }
@@ -57,8 +50,7 @@ export function setUserDataFirebase(user, authUser)
 /**
  * Create User Settings with Firebase data
  */
-export function createUserSettingsFirebase(authUser)
-{
+export function createUserSettingsFirebase(authUser) {
     return (dispatch, getState) => {
         const guestUser = getState().auth.user;
         const fuseDefaultSettings = getState().fuse.settings.defaults;
@@ -69,13 +61,13 @@ export function createUserSettingsFirebase(authUser)
          */
         const user = _.merge({}, guestUser,
             {
-                uid : authUser.uid,
+                uid: authUser.uid,
                 from: 'firebase',
                 role: ["admin"],
                 data: {
                     displayName: authUser.displayName,
-                    email      : authUser.email,
-                    settings   : {...fuseDefaultSettings}
+                    email: authUser.email,
+                    settings: {...fuseDefaultSettings}
                 }
             }
         );
@@ -89,8 +81,7 @@ export function createUserSettingsFirebase(authUser)
 /**
  * Set User Data
  */
-export function setUserData(user)
-{
+export function setUserData(user) {
     return (dispatch) => {
         /*
         Set User Settings
@@ -101,7 +92,7 @@ export function setUserData(user)
         Set User Data
          */
         dispatch({
-            type   : SET_USER_DATA,
+            type: SET_USER_DATA,
             payload: user
         })
     }
@@ -110,8 +101,7 @@ export function setUserData(user)
 /**
  * Update User Settings
  */
-export function updateUserSettings(settings)
-{
+export function updateUserSettings(settings) {
     return (dispatch, getState) => {
         const oldUser = getState().auth.user;
         const user = _.merge({}, oldUser, {data: {settings}});
@@ -125,8 +115,7 @@ export function updateUserSettings(settings)
 /**
  * Update User Shortcuts
  */
-export function updateUserShortcuts(shortcuts)
-{
+export function updateUserShortcuts(shortcuts) {
     return (dispatch, getState) => {
         const user = getState().auth.user;
         const newUser = {
@@ -146,8 +135,7 @@ export function updateUserShortcuts(shortcuts)
 /**
  * Remove User Data
  */
-export function removeUserData()
-{
+export function removeUserData() {
     return {
         type: REMOVE_USER_DATA
     }
@@ -156,14 +144,13 @@ export function removeUserData()
 /**
  * Logout
  */
-export function logoutUser()
-{
+export function logoutUser() {
 
     return (dispatch, getState) => {
 
         const user = getState().auth.user;
 
-        if ( !user.role || user.role.length === 0 )// is guest
+        if (!user.role || user.role.length === 0)// is guest
         {
             return null;
         }
@@ -172,24 +159,9 @@ export function logoutUser()
             pathname: '/frontpage'
         });
 
-        switch ( user.from )
-        {
-            case 'firebase':
-            {
-                firebaseService.signOut();
-                break;
-            }
-            case 'auth0':
-            {
 
-                auth0Service.logout();
-                break;
-            }
-            default:
-            {
-                jwtService.logout();
-            }
-        }
+        jwtService.logout();
+
 
         dispatch(setInitialSettings());
 
@@ -202,50 +174,17 @@ export function logoutUser()
 /**
  * Update User Data
  */
-function updateUserData(user)
-{
-    if ( !user.role || user.role.length === 0 )// is guest
+function updateUserData(user) {
+    if (!user.role || user.role.length === 0)// is guest
     {
         return;
     }
 
-    switch ( user.from )
-    {
-        case 'firebase':
-        {
-            firebaseService.updateUserData(user)
-                .then(() => {
-                    store.dispatch(Actions.showMessage({message: "User data saved to firebase"}));
-                })
-                .catch(error => {
-                    store.dispatch(Actions.showMessage({message: error.message}));
-                });
-            break;
-        }
-        case 'auth0':
-        {
-            auth0Service.updateUserData({
-                settings : user.data.settings,
-                shortcuts: user.data.shortcuts
-            })
-                .then(() => {
-                    store.dispatch(Actions.showMessage({message: "User data saved to auth0"}));
-                })
-                .catch(error => {
-                    store.dispatch(Actions.showMessage({message: error.message}));
-                });
-            break;
-        }
-        default:
-        {
-            jwtService.updateUserData(user)
-                .then(() => {
-                    store.dispatch(Actions.showMessage({message: "User data saved with api"}));
-                })
-                .catch(error => {
-                    store.dispatch(Actions.showMessage({message: error.message}));
-                });
-            break;
-        }
-    }
+    jwtService.updateUserData(user)
+        .then(() => {
+            store.dispatch(Actions.showMessage({message: "User data saved with api"}));
+        })
+        .catch(error => {
+            store.dispatch(Actions.showMessage({message: error.message}));
+        });
 }

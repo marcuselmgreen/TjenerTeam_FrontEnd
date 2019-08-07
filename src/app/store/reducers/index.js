@@ -9,9 +9,7 @@ const createReducer = (asyncReducers) =>
     combineReducers({
             auth,
             bookings,
-            corporation_user,
             fuse,
-            quickPanel,
             ...asyncReducers
     });
 

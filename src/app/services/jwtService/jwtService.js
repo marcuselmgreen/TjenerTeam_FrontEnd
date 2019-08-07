@@ -75,10 +75,13 @@ class jwtService extends FuseUtils.EventEmitter {
                 {
                     resolve(response.data)
                 }
-                })
-                .catch(error => {
-                    console.log("Could not sign in. " + error)
-                });
+                },
+                function(error) {
+                    debugger;
+                    reject(error)
+                }
+                )
+
         });
     };
 

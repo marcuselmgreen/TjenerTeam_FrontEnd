@@ -9,7 +9,6 @@ export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 
 export function submitLogin(email, password, rememberUser) {
     return function(dispatch) {
-        debugger;
         jwtService.signInWithEmailAndPassword(email, password)
             .then((data) => {
                 dispatch(setUserData(data.user));
@@ -18,17 +17,16 @@ export function submitLogin(email, password, rememberUser) {
                 return dispatch({type: LOGIN_SUCCESS, jwtToken: data.access_token},);
             })
             .catch(error => {
-                return {
+                dispatch({
                     type: LOGIN_ERROR,
                     payload: error
-                }
+                })
             })
     }
 }
 
 export function logout() {
     return function(dispatch) {
-        debugger;
         return dispatch({type: LOG_OUT_SUCCESS})
     };
 }

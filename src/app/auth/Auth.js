@@ -4,15 +4,13 @@ import {connect} from 'react-redux';
 import * as userActions from 'app/auth/store/actions';
 import {bindActionCreators} from 'redux';
 import * as Actions from 'app/store/actions';
-import firebaseService from 'app/services/firebaseService';
-import auth0Service from 'app/services/auth0Service';
 import jwtService from 'app/services/jwtService';
 
 class Auth extends Component {
 
     state = {
         waitAuthCheck: true
-    }
+    };
 
     componentDidMount()
     {
@@ -74,80 +72,6 @@ class Auth extends Component {
         return Promise.resolve();
     })
 
-    auth0Check = () => new Promise(resolve => {
-        auth0Service.init(
-            success => {
-                if ( !success )
-                {
-                    resolve();
-                }
-            }
-        );
-
-        if ( auth0Service.isAuthenticated() )
-        {
-            this.props.showMessage({message: 'Logging in with Auth0'});
-
-            /**
-             * Retrieve corporation data from Auth0
-             */
-            auth0Service.getUserData().then(tokenData => {
-
-                this.props.setUserDataAuth0(tokenData);
-
-                resolve();
-
-                this.props.showMessage({message: 'Logged in with Auth0'});
-            })
-        }
-        else
-        {
-            resolve();
-        }
-
-        return Promise.resolve();
-    })
-
-    firebaseCheck = () => new Promise(resolve => {
-
-        firebaseService.init(
-            success => {
-                if ( !success )
-                {
-                    resolve();
-                }
-            }
-        );
-
-        firebaseService.onAuthStateChanged(authUser => {
-            if ( authUser )
-            {
-
-                this.props.showMessage({message: 'Logging in with Firebase'});
-
-                /**
-                 * Retrieve corporation data from Firebase
-                 */
-                firebaseService.getUserData(authUser.uid).then(user => {
-
-                    this.props.setUserDataFirebase(user, authUser);
-
-                    resolve();
-
-                    this.props.showMessage({message: 'Logged in with Firebase'});
-                }, error => {
-
-                    resolve();
-                })
-            }
-            else
-            {
-                resolve();
-            }
-        });
-
-        return Promise.resolve();
-    })
 
     render()
     {
@@ -158,7 +82,6 @@ class Auth extends Component {
 function mapDispatchToProps(dispatch)
 {
     return bindActionCreators({
-            logout             : userActions.logoutUser,
             setUserData        : userActions.setUserData,
             setUserDataAuth0   : userActions.setUserDataAuth0,
             setUserDataFirebase: userActions.setUserDataFirebase,
