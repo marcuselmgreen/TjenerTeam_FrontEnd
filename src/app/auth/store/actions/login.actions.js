@@ -5,7 +5,7 @@ import axios from 'axios';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
-
+export const SHOW_SPINNER = 'SHOW_SPINNER';
 
 export function submitLogin(email, password, rememberUser) {
     return function(dispatch) {
@@ -28,7 +28,13 @@ export function submitLogin(email, password, rememberUser) {
 export function logout() {
     return function(dispatch) {
         return dispatch({type: LOG_OUT_SUCCESS})
-    };
+    }
+}
+
+export function setSpinner() {
+    return function(dispatch) {
+        return dispatch({type: SHOW_SPINNER})
+    }
 }
 
 

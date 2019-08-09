@@ -3,7 +3,8 @@ import * as Actions from '../actions';
 const initialState = {
     success: false,
     jwtToken: null,
-    error: null
+    error: null,
+    spinner: false
 };
 
 const login = function (state = initialState, action) {
@@ -15,13 +16,16 @@ const login = function (state = initialState, action) {
                 ...state,
                 success: true,
                 jwtToken: action.jwtToken,
+                spinner: false
             };
         }
+
         case Actions.LOGIN_ERROR:
         {
             return {
                 success: false,
-                error  : action.payload
+                error  : action.payload,
+                spinner: false
             };
         }
 
@@ -30,6 +34,12 @@ const login = function (state = initialState, action) {
                 ...state,
                 success: false,
                 jwtToken: null
+            };
+
+        case Actions.SHOW_SPINNER:
+            return {
+                ...state,
+                spinner: true
             };
 
         default:

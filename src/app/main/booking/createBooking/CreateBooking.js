@@ -154,6 +154,7 @@ class CreateBooking extends Component {
         this.setState({bookings: tempState})
     };
 
+
     dateHandler = (date) => {
         let tempState = [...this.state.bookings];
         tempState[this.state.selectedTab].date = date;

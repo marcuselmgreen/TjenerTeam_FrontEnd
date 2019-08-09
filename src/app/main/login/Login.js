@@ -15,6 +15,7 @@ import {bindActionCreators} from "redux";
 import Image from './tjenerteam2.jpg'
 import * as userActions from '../../auth/store/actions/login.actions'
 import * as bookingActions from '../booking/actions/Booking.actions'
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 class Login extends Component {
     constructor(props) {
@@ -48,6 +49,7 @@ class Login extends Component {
         this.submitted = true;
         if(validation.isValid) {
             const {email, password, remember} = this.state;
+            this.props.actions.showSpinner();
             this.props.actions.submitLogin(email, password, remember);
             // this.props.actions.showFullCreateBookingPage();
         }
@@ -113,6 +115,11 @@ class Login extends Component {
                                 required
                                 fullWidth
                             />
+                            {this.props.spinner ?
+
+                                <CircularProgress color="primary"/>
+
+                            :
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -123,6 +130,7 @@ class Login extends Component {
                             >
                                 LOGIN
                             </Button>
+                            }
                             <div className="flex flex-col items-center justify-center pt-32 pb-24">
                                 <span className="font-medium">Har du ikke en profil endnu?</span>
                                 <Link className="font-medium" to="/createCorporation">Opret ny profil </Link>
@@ -137,13 +145,15 @@ class Login extends Component {
 
 function mapStateToProps(state) {
     return {
-        success: state.auth.login.success
+        success: state.auth.login.success,
+        spinner: state.auth.login.spinner
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
+            showSpinner: bindActionCreators(userActions.setSpinner, dispatch),
             submitLogin: bindActionCreators(userActions.submitLogin, dispatch),
             showFullCreateBookingPage: bindActionCreators(bookingActions.showFullCreateBookingPage, dispatch)
         }

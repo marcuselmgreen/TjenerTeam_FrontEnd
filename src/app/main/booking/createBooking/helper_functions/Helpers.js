@@ -127,3 +127,4 @@ const staffTypePrice = (name, state, selectedTab, val) => {
     state[selectedTab]['label'] = val;
     return state;
 };
+
