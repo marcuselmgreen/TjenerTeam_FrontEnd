@@ -14,8 +14,7 @@ const Pay = (props) => {
     } = props;
 
     return (
-        <>
-            <div className="w-full">
+            <div className="w-full pl-2">
                 <div className="w-full">
                     <h2>Pris</h2>
                 </div>
@@ -47,7 +46,7 @@ const Pay = (props) => {
 
                             <div className="flex flex-row my-2">
                                 <div className="w-1/2">
-                                    <h5>Personalets timeløn</h5>
+                                    <h5 className="">Personale</h5>
                                 <TextField
                                     name="hourlyWage"
                                     id="hourlyWage"
@@ -67,13 +66,13 @@ const Pay = (props) => {
                                 </div>
 
                                 <div className="w-1/2">
-                                    <h5>Med tillæg</h5>
+                                    <h5 className="">Med tillæg</h5>
                                 <TextField
                                     name="wageTotal"
                                     id="wageTotal"
                                     variant="filled"
                                     label="Timeløn"
-                                    className="float-left max-w-136 "
+                                    className="float-left max-w-136"
                                     margin="normal"
                                     type="number"
                                     value={wageTotal}
@@ -110,7 +109,6 @@ const Pay = (props) => {
                         </div>
                     </div>
             </div>
-        </>
     );
 };
 

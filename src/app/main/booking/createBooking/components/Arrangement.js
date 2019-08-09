@@ -20,7 +20,7 @@ const Arrangement = (props) => {
 
     return (
         <>
-            <div className="w-full">
+            <div className="w-full pl-2">
                 <div className="w-full">
                     <h2>Arrangementet</h2>
                 </div>

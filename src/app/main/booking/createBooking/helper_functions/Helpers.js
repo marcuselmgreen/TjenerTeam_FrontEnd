@@ -1,5 +1,7 @@
 
-export let diffWagePay = (diff) => {
+const vacationExtra = 0.125;
+
+export const diffWagePay = (diff) => {
     let dateDiff = diff;
     if (dateDiff <= 24) {
         return 99;
@@ -11,7 +13,7 @@ export let diffWagePay = (diff) => {
 };
 
 
-export let diffDateCalculator = (date) => {
+export const diffDateCalculator = (date) => {
     let currentDate = new Date();
     let bookedDate = date['date'];
     let bookedTime = date['startTime'];
@@ -23,7 +25,7 @@ export let diffDateCalculator = (date) => {
 };
 
 
-export let workHours = (booking) => {
+export const workHours = (booking) => {
     let {startTime, endTime} = booking;
 
     startTime = startTime.replace(":", ".");
@@ -50,4 +52,78 @@ export let workHours = (booking) => {
         return 1;
     }
 
+};
+
+
+export const checkPriceValue = (name, state, selectedTab, val) => {
+    let param = [name, state, selectedTab, val];
+    switch (name) {
+        case 'staffType':
+            return staffTypePrice(...param);
+
+        case 'hourlyWage':
+            return hourlyWagePrice(...param);
+
+        case 'startTime':
+            return timePrice(...param);
+
+        case 'endTime':
+            return timePrice(...param);
+
+        case 'numberOfStaff':
+            return numberOfStaffPrice(...param);
+
+        default:
+            return state;
+    }
+};
+
+const setTotalPrice = (state, selectedTab) => {
+    // SETS TOTAL PRICE
+    return parseFloat(state[selectedTab]["wageTotal"]) * parseInt(state[selectedTab]["numberOfStaff"]).toFixed(2) * workHours(state[selectedTab]);
+};
+
+const timePrice = (name, state, selectedTab) => {
+    let tempVal = setTotalPrice(state, selectedTab);
+    state[selectedTab]['priceTotal'] = tempVal.toString();
+    return state
+};
+
+const numberOfStaffPrice = (name, state, selectedTab) => {
+    if(state[selectedTab]['numberOfStaff'] > 0) {
+        let tempVal = parseFloat(state[selectedTab]['wageTotal']) * parseInt(state[selectedTab['numberOfStaff']]).toFixed(2)
+        state[selectedTab]['priceTotal'] = tempVal.toString();
+    } else {
+        state[selectedTab]['hourlyWage'] = '0';
+        state[selectedTab]['wageTotal'] = '0';
+        state[selectedTab]['priceTotal'] = '0';
+        return state;
+    }
+};
+
+const hourlyWagePrice = (name, state, selectedTab, val) => {
+    let tempVal = parseFloat(val);
+
+    if(parseFloat(state[selectedTab][name]) < 1 || typeof tempVal !== 'number') {
+        state[selectedTab]['priceTotal'] = '0';
+        return state;
+    } else {
+        if (tempVal > 0) {
+            // SETS VALUES FOR WAGETOTAL
+            state[selectedTab]['wageTotal'] = tempVal + (tempVal * vacationExtra) + diffWagePay(diffDateCalculator(state[selectedTab]));
+            // SETS TOTAL PRICE
+            let val = setTotalPrice(state, selectedTab);
+            state[selectedTab]['priceTotal'] = val.toString();
+            return state;
+        } else {
+            state[selectedTab]['wageTotal'] = '0';
+            state[selectedTab]['priceTotal'] = '0';
+            return state
+        }
+    }
+};
+
+const staffTypePrice = (name, state, selectedTab, val) => {
+    state[selectedTab]['label'] = val;
+    return state;
 };

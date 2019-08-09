@@ -12,7 +12,7 @@ import {booking} from './others/BookingTemplate';
 import {idGenerator} from '../../common/IdGenerator'
 import {Card, CardContent} from "@material-ui/core";
 import Image from "../../login/tjenerteam2.jpg";
-import {diffWagePay, diffDateCalculator, workHours} from './helper_functions/Helpers'
+import {diffWagePay, diffDateCalculator, workHours, checkPriceValue} from './helper_functions/Helpers'
 import * as GlobalPaths from "../../../GlobalPaths";
 import {staff} from './helper_functions/Selections'
 
@@ -140,61 +140,29 @@ class CreateBooking extends Component {
 
     changeHandler = (e) => {
         let tempState = [...this.state.bookings];
-        tempState[this.state.selectedTab][e.target.name] = e.target.value;
+        let selectedTab = this.state.selectedTab;
+        let name = e.target.name;
+        let eValue = e.target.value;
 
+        tempState[selectedTab][name] = eValue;
 
-        // CHECKS THE LABEL ON THE TOP
-        if (
-            e.target.name === "staffType") {
-            tempState[this.state.selectedTab]["label"] = e.target.value;
+        let priceValues = ['staffType', 'hourlyWage', 'startTime', 'endTime', 'numberOfStaff'];
+
+        if(priceValues.includes(e.target.name)) {
+            tempState = checkPriceValue(name, tempState, selectedTab, eValue);
         }
-        // IF HOURLY WAGE IS 0 SET ALL VALUES TO ZERO
-        else if (parseFloat(tempState[this.state.selectedTab]["hourlyWage"]) < 1 || e.target.name === "hourlyWage" && isNaN(e.target.value)) {
-            tempState[this.state.selectedTab]["priceTotal"] = "0";
-        }
-        // IF HOURLY WAGE IS OVER 0 SET VALUES
-        else if ((e.target.name === "hourlyWage")) {
-
-            if (e.target.value > 0) {
-                // SETS VALUES FOR WAGETOTAL
-                tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(e.target.value) + (e.target.value * vacationExtra) + diffWagePay(diffDateCalculator(this.state.bookings[this.state.selectedTab])));
-                // SETS TOTAL PRICE
-                let val = this.setTotalPrice(tempState).toFixed(2);
-                tempState[this.state.selectedTab]["priceTotal"] = val.toString();
-            } else {
-                tempState[this.state.selectedTab]["wageTotal"] = "0";
-                tempState[this.state.selectedTab]["priceTotal"] = "0";
-            }
-        } else if (e.target.name === "startTime" || e.target.name === "endTime") {
-
-            // SETS TOTAL PRICE
-            let val = this.setTotalPrice(tempState);
-            tempState[this.state.selectedTab]["priceTotal"] = val.toString();
-        } else if (e.target.name === "numberOfStaff") {
-
-            if (tempState[this.state.selectedTab]["numberOfStaff"] > 0) {
-                let val = (parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"])).toFixed(2);
-                tempState[this.state.selectedTab]["priceTotal"] = val.toString();
-            } else {
-                tempState[this.state.selectedTab]["hourlyWage"] = "0";
-                tempState[this.state.selectedTab]["wageTotal"] = "0";
-                tempState[this.state.selectedTab]["priceTotal"] = "0";
-            }
-        }
-
         this.setState({bookings: tempState})
     };
-
 
     dateHandler = (date) => {
         let tempState = [...this.state.bookings];
         tempState[this.state.selectedTab].date = date;
+
         let nrVal = tempState[this.state.selectedTab]["hourlyWage"];
 
         if (!isNaN(parseFloat(nrVal))) {
             tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(nrVal) + (nrVal * vacationExtra) + diffWagePay(diffDateCalculator(this.state.bookings[this.state.selectedTab])));
             let val = this.setTotalPrice(tempState);
-            val = this.numberWithCommas(val);
             tempState[this.state.selectedTab]["priceTotal"] = val;
         }
         this.setState({bookings: tempState});

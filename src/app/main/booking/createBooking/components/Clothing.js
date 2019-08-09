@@ -18,7 +18,7 @@ const Clothing = (props) => {
         } = props;
 
     return (
-        <div className="w-full mt-20">
+        <div className="w-full mt-20 pl-2">
             <div className="w-full mb-20">
                 <h2>Påklædning</h2>
             </div>
