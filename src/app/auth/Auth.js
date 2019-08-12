@@ -31,7 +31,7 @@ class Auth extends Component {
             this.props.showMessage({message: 'Logging in with JWT'});
 
             /**
-             * Sign in and retrieve corporation data from Api
+             * Sign in and retrieve corporationPage data from Api
              */
             jwtService.signInWithToken()
                 .then(user => {
@@ -84,7 +84,6 @@ function mapDispatchToProps(dispatch)
     return bindActionCreators({
             setUserData        : userActions.setUserData,
             setUserDataAuth0   : userActions.setUserDataAuth0,
-            setUserDataFirebase: userActions.setUserDataFirebase,
             showMessage        : Actions.showMessage,
             hideMessage        : Actions.hideMessage
         },

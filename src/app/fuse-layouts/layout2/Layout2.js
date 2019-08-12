@@ -121,7 +121,7 @@ function Layout2(props)
                     {/*    <RightSideLayout2/>*/}
                     {/*)}*/}
 
-                    {/*<FuseMessage/>*/}
+                    <FuseMessage/>
                 </div>)}
         </AppContext.Consumer>
     );

@@ -4,7 +4,6 @@ import _ from '@lodash';
 import store from 'app/store';
 import * as Actions from 'app/store/actions';
 import * as loginActions from './login.actions'
-import firebase from 'firebase/app';
 import jwtService from 'app/services/jwtService';
 
 export const SET_USER_DATA = '[USER] SET DATA';
@@ -12,7 +11,7 @@ export const REMOVE_USER_DATA = '[USER] REMOVE DATA';
 export const USER_LOGGED_OUT = '[USER] LOGGED OUT';
 
 /**
- * Set corporation data from Auth0 token data
+ * Set corporationPage data from Auth0 token data
  */
 export function setUserDataAuth0(tokenData) {
     const user = {
@@ -28,54 +27,6 @@ export function setUserDataAuth0(tokenData) {
     };
 
     return setUserData(user);
-}
-
-/**
- * Set corporation data from Firebase data
- */
-export function setUserDataFirebase(user, authUser) {
-    if (user && user.data &&
-        user.data.settings &&
-        user.data.settings.theme &&
-        user.data.settings.layout &&
-        user.data.settings.layout.style) {
-        // Set corporation data but do not update
-        return setUserData(user);
-    } else {
-        // Create missing corporation settings
-        return createUserSettingsFirebase(authUser);
-    }
-}
-
-/**
- * Create User Settings with Firebase data
- */
-export function createUserSettingsFirebase(authUser) {
-    return (dispatch, getState) => {
-        const guestUser = getState().auth.user;
-        const fuseDefaultSettings = getState().fuse.settings.defaults;
-        const currentUser = firebase.auth().currentUser;
-
-        /**
-         * Merge with current Settings
-         */
-        const user = _.merge({}, guestUser,
-            {
-                uid: authUser.uid,
-                from: 'firebase',
-                role: ["admin"],
-                data: {
-                    displayName: authUser.displayName,
-                    email: authUser.email,
-                    settings: {...fuseDefaultSettings}
-                }
-            }
-        );
-        currentUser.updateProfile(user.data);
-
-        updateUserData(user);
-        return dispatch(setUserData(user));
-    }
 }
 
 /**
