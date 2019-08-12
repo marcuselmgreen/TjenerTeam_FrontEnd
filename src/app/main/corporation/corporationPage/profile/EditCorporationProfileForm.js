@@ -57,10 +57,7 @@ const EditCorporationProfileForm = (props) => {
 
             <div className="w-full mt-10">
                 <div className="flex-wrap flex my-2">
-                    <div className="w-full sm:w-1/2">
-
-                            <div className="flex justify-center p-4">
-                            </div>
+                    <div className="w-full">
                             <div className="flex justify-center p-4">
                                 <SubmitButton
                                     onClick={submitHandler}

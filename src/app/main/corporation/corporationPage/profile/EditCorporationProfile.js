@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {idGenerator} from "../../../common/IdGenerator";
-import authRoles from "../../../../auth/authRoles";
 import Photo from "../../../static/tjenerTeam2.png";
 import {Card, CardContent} from "@material-ui/core";
 import {connect} from "react-redux";
