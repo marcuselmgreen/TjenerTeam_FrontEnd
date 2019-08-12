@@ -3,6 +3,7 @@ import * as corporationApi from '../../../../services/api/CorporationUserApi';
 import * as bookingApi from '../../../../services/api/BookingsApi'
 import {showMessage} from "../../../../store/actions/fuse";
 import snackbarConfig from "../../../../config/snackbarConfig";
+import {setUserData} from "../../../../auth/store/actions";
 
 export function createCorporationUserSuccess(user) {
     return {
@@ -84,9 +85,18 @@ export function updateCorporationUser(user) {
     return function(dispatch){
         return corporationApi.updateCorporationUser(user)
             .then(user => {
-                dispatch(updateCorporationSuccess(user))
+                dispatch(setUserData(user));
+                dispatch(updateCorporationSuccess(user));
+                dispatch(showMessage({
+                    message: 'Virksomhedsprofil updateret',
+                    ...snackbarConfig.successMessage
+                }));
             })
             .catch(error => {
+                dispatch(showMessage({
+                    message: 'Noget gik galt ved updateringen af en profilen',
+                    ...snackbarConfig.errorMessage
+                }));
                 dispatch(updateCorporationFailed(error))
             })
     }

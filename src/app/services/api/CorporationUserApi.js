@@ -17,7 +17,7 @@ export function deleteCorporationUser(user){
 
 export function updateCorporationUser(user){
     let id = user._id;
-    return axios.put(setup.apiEndPoint + '/users' + id, user)
+    return axios.put(setup.apiEndPoint + '/users/' + id, user)
         .then(handleResponse)
         .catch(handleError)
 }

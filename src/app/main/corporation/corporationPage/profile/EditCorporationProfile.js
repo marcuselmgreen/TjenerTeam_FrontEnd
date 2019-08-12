@@ -9,17 +9,17 @@ import EditCorporationProfileForm from "./EditCorporationProfileForm";
 import * as GlobalPaths from "../../../../GlobalPaths";
 import * as corporationUser from "../actions/Corporation.actions";
 import FormValidator from "../../../validator/FormValidator";
-import {CorparationFormValidator} from "../../../validator/forms/CorporationFormValidator";
 import AppHeader from "../../toolbar/AppHeaderCorp";
+import {EditCorparationFormValidator} from "../../../validator/forms/EditCorporationFormValidator";
 
 class EditCorporationProfile extends Component {
     constructor(props) {
         super(props);
-        this.validator = new FormValidator(CorparationFormValidator);
+        this.validator = new FormValidator(EditCorparationFormValidator);
         this.submitted = false;
         this.state = {
             corporation: {
-                id: "",
+                _id: "",
                 name: "",
                 cvr: "",
                 address: "",
@@ -31,19 +31,12 @@ class EditCorporationProfile extends Component {
                 phoneNumber: "",
                 billingEmail: "",
                 ean: "",
-                password: "",
-                confirmPassword: "",
                 gdpr: "",
                 role: "",
                 validation: this.validator.valid()
             }
         }
     }
-
-    editSubmitHandler = () => {
-        this.props.actions.updateUser(this.state.corporation);
-        this.props.history.push(GlobalPaths.homeCorporation);
-    };
 
     changeHandler = (e) => {
         let tempState = {...this.state.corporation};
@@ -73,13 +66,14 @@ class EditCorporationProfile extends Component {
     };
 
     submitHandler = () => {
-        debugger;
-        const validation = this.validator.validate(this.state.corporation);
+        let corp = this.state.corporation;
+        const validation = this.validator.validate(corp);
         const tempCorporation = {...this.state.corporation};
         tempCorporation.validation = validation;
         this.submitted = true;
         if (validation.isValid) {
-            console.log('hello world')
+            this.props.actions.updateUser(this.state.corporation);
+            this.props.history.push(GlobalPaths.homeCorporation);
         }
         this.setState({state: this.state});
     };
