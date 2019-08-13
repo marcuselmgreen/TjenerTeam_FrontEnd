@@ -131,9 +131,18 @@ export function createCorporationAndBooking(Corporation, bookings){
                 bookingApi.createBooking(bookings)
                     .then(bookings => {
                         dispatch(createCorporationAndBookingSuccess(bookings))
+                        dispatch(showMessage({
+                            message: 'Ny booking og bruger opret',
+                            ...snackbarConfig.successMessage
+                        }));
+
                     })
                     .catch(error => {
-                        dispatch(createCorporationAndBookingFailed(error))
+                        dispatch(createCorporationAndBookingFailed(error));
+                        dispatch(showMessage({
+                            message: 'Noget gik galt ved oprettelsen',
+                            ...snackbarConfig.errorMessage
+                        }));
                     })
             })
             .catch(error => {
