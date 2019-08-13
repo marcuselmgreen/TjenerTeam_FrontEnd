@@ -27,7 +27,7 @@ export const diffDateCalculator = (date) => {
 
 export const workHours = (booking) => {
     let {startTime, endTime} = booking;
-
+    debugger;
     startTime = startTime.replace(":", ".");
     endTime = endTime.replace(":", ".");
 
@@ -84,7 +84,6 @@ export const checkPriceValue = (name, state, selectedTab, val) => {
 };
 
 const removeCommas = (total) => {
-    debugger;
     if(total.toString().includes(',')) {
 
         let parts = total.toString().split(',');
@@ -129,16 +128,15 @@ const numberOfStaffPrice = (name, state, selectedTab) => {
     let eTime = state[selectedTab].endTime;
 
     if(staff > 0 && hourlyWage > 0 && (sTime !== '' && eTime !== '')) {
-        let wageTotal = removeCommas(state[selectedTab].hourlyWage);
-
-        let tempVal = (wageTotal * parseFloat(state[selectedTab].numberOfStaff).toFixed(2) * diffDateCalculator(state[selectedTab]));
-        let total = removeCommas(tempVal);
+        let wageTotal = removeCommas(state[selectedTab].wageTotal);
+        let tempVal = (wageTotal * parseFloat(state[selectedTab].numberOfStaff).toFixed(2) * workHours(state[selectedTab]));
+        let total = tempVal;
         state[selectedTab].priceTotal = numberWithCommas(total);
         return state;
     } else {
-        state[selectedTab].hour = 0;
+        state[selectedTab].hourlyWage = 0;
         state[selectedTab].wageTotal = 0;
-        state[selectedTab].price = 0;
+        state[selectedTab].priceTotal = 0;
         return state;
     }
 };
@@ -185,18 +183,24 @@ const numberWithCommas = (number) => {
     }
 };
 
-// export const datePrice = (date, state, selectedTab) => {
-//
-//     state.date = date;
-//
-//
-//     let nrVal = tempState[this.state.selectedTab].hourlyWage;
-//
-//     if (!isNaN(parseFloat(nrVal))) {
-//         tempState[this.state.selectedTab].wageTotal = (parseFloat(nrVal) + (nrVal * vacationExtra) + diffWagePay(diffDateCalculator(this.state.bookings[this.state.selectedTab])));
-//         let val = this.setTotalPrice(tempState);
-//         tempState[this.state.selectedTab].priceTotal = numberWithCommas(val);
-//     }
-//     this.setState({bookings: tempState});
+export const datePrice = (date, state, selectedTab) => {
+    const vacationExtra = 0.125;
+    state.date = date;
+
+    let nrVal = state[selectedTab].hourlyWage;
+
+    if (!isNaN(parseFloat(nrVal))) {
+        state[selectedTab].wageTotal = (parseFloat(nrVal) + (nrVal * vacationExtra) + diffWagePay(diffDateCalculator(state[selectedTab])));
+        let val = setTotalPrice(state, selectedTab);
+        state[state].priceTotal = numberWithCommas(val);
+        return state;
+    }
+
+    return state;
+};
+
+// const setTotalPrice = (state, selectedTab) => {
+//     // SETS TOTAL PRICE
+//     return parseFloat(state[selectedTab]["wageTotal"]) * parseInt(state[selectedTab]["numberOfStaff"]).toFixed(2) * workHours(state[selectedTab]);
 // };
 

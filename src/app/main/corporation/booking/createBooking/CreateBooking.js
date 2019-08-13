@@ -132,10 +132,10 @@ class CreateBooking extends Component {
         }
     };
 
-    setTotalPrice = (tempState) => {
-        // SETS TOTAL PRICE
-        return parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]).toFixed(2) * workHours(this.state.bookings[this.state.selectedTab]);
-    };
+    // setTotalPrice = (tempState) => {
+    //     // SETS TOTAL PRICE
+    //     return parseFloat(tempState[this.state.selectedTab]["wageTotal"]) * parseInt(tempState[this.state.selectedTab]["numberOfStaff"]).toFixed(2) * workHours(this.state.bookings[this.state.selectedTab]);
+    // };
 
 
     changeHandler = (e) => {
@@ -150,7 +150,6 @@ class CreateBooking extends Component {
 
         if (priceValues.includes(e.target.name)) {
             tempState = checkPriceValue(name, tempState, selectedTab, eValue);
-            debugger;
             this.setState({bookings: tempState})
         } else {
             this.setState({bookings: tempState})
@@ -163,17 +162,20 @@ class CreateBooking extends Component {
     };
 
     dateHandler = (date) => {
-
         let tempState = [...this.state.bookings];
-        tempState[this.state.selectedTab].date = date;
+        let selectedTab = this.state.selectedTab;
 
-        let nrVal = tempState[this.state.selectedTab]["hourlyWage"];
+        tempState = datePrice(date, tempState, selectedTab);
 
-        if (!isNaN(parseFloat(nrVal))) {
-            tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(nrVal) + (nrVal * vacationExtra) + diffWagePay(diffDateCalculator(this.state.bookings[this.state.selectedTab])));
-            let val = this.setTotalPrice(tempState);
-            tempState[this.state.selectedTab]["priceTotal"] = val;
-        }
+        // tempState[this.state.selectedTab].date = date;
+        //
+        // let nrVal = tempState[this.state.selectedTab]["hourlyWage"];
+        //
+        // if (!isNaN(parseFloat(nrVal))) {
+        //     tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(nrVal) + (nrVal * vacationExtra) + diffWagePay(diffDateCalculator(this.state.bookings[this.state.selectedTab])));
+        //     let val = this.setTotalPrice(tempState);
+        //     tempState[this.state.selectedTab]["priceTotal"] = val;
+        // }
         this.setState({bookings: tempState});
     };
 
