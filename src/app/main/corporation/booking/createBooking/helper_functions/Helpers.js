@@ -27,7 +27,6 @@ export const diffDateCalculator = (date) => {
 
 export const workHours = (booking) => {
     let {startTime, endTime} = booking;
-    debugger;
     startTime = startTime.replace(":", ".");
     endTime = endTime.replace(":", ".");
 
@@ -185,22 +184,18 @@ const numberWithCommas = (number) => {
 
 export const datePrice = (date, state, selectedTab) => {
     const vacationExtra = 0.125;
-    state.date = date;
+    state[selectedTab].date = date;
 
     let nrVal = state[selectedTab].hourlyWage;
 
     if (!isNaN(parseFloat(nrVal))) {
         state[selectedTab].wageTotal = (parseFloat(nrVal) + (nrVal * vacationExtra) + diffWagePay(diffDateCalculator(state[selectedTab])));
         let val = setTotalPrice(state, selectedTab);
-        state[state].priceTotal = numberWithCommas(val);
+        state[selectedTab].priceTotal = numberWithCommas(val);
         return state;
     }
 
     return state;
 };
 
-// const setTotalPrice = (state, selectedTab) => {
-//     // SETS TOTAL PRICE
-//     return parseFloat(state[selectedTab]["wageTotal"]) * parseInt(state[selectedTab]["numberOfStaff"]).toFixed(2) * workHours(state[selectedTab]);
-// };
 

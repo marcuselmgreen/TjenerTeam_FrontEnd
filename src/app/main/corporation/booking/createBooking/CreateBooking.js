@@ -164,18 +164,7 @@ class CreateBooking extends Component {
     dateHandler = (date) => {
         let tempState = [...this.state.bookings];
         let selectedTab = this.state.selectedTab;
-
         tempState = datePrice(date, tempState, selectedTab);
-
-        // tempState[this.state.selectedTab].date = date;
-        //
-        // let nrVal = tempState[this.state.selectedTab]["hourlyWage"];
-        //
-        // if (!isNaN(parseFloat(nrVal))) {
-        //     tempState[this.state.selectedTab]["wageTotal"] = (parseFloat(nrVal) + (nrVal * vacationExtra) + diffWagePay(diffDateCalculator(this.state.bookings[this.state.selectedTab])));
-        //     let val = this.setTotalPrice(tempState);
-        //     tempState[this.state.selectedTab]["priceTotal"] = val;
-        // }
         this.setState({bookings: tempState});
     };
 
