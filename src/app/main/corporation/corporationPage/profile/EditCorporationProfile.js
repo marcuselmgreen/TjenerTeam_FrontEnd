@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Photo from "../../../static/tjenerTeam2.png";
-import {Card, CardContent} from "@material-ui/core";
+import {Card, CardContent, Icon} from "@material-ui/core";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import EditCorporationProfileForm from "./EditCorporationProfileForm";
@@ -9,6 +9,10 @@ import * as corporationUser from "../actions/Corporation.actions";
 import FormValidator from "../../../validator/FormValidator";
 import AppHeader from "../../toolbar/AppHeaderCorp";
 import {EditCorparationFormValidator} from "../../../validator/forms/EditCorporationFormValidator";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Paper from "@material-ui/core/Paper";
 
 class EditCorporationProfile extends Component {
     constructor(props) {
@@ -88,6 +92,14 @@ class EditCorporationProfile extends Component {
                 <AppHeader
                     changePage={this.changePage}
                 />
+                <Paper style={{backgroundColor: '#ffffff'}} square>
+                    <Tabs style={{overflowY: "auto"}} value={0} indicatorColor="primary">
+                        <Tab label={<span><Icon className="float-left" fontSize="small">info</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Firmaoplysninger</span></span>}/>
+                        <Tab label={<span><Icon className="float-left" fontSize="small">payment</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Betalingsoplysninger</span></span>}/>
+                        <Tab label={<span><Icon className="float-left" fontSize="small">lock</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Skift kodeord</span></span>}/>
+                        <Tab label={<span><Icon className="float-left" fontSize="small">delete</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Slet profil</span></span>}/>
+                    </Tabs>
+                </Paper>
                 <div style={{
                     width: '100%',
                     backgroundImage: "url(" + Photo + ")",
@@ -97,7 +109,7 @@ class EditCorporationProfile extends Component {
                 }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
                     <Card className="w-full max-w-2xl mx-auto m-16 md:m-0" square>
                         <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
-                            <h1 className="font-sans text-4xl text-gray-800">Rediger Profil</h1>
+                            <h1 className="font-sans text-4xl text-gray-800">Firmaoplysninger</h1>
                             <EditCorporationProfileForm
                                 corporationUser={corporation}
                                 submitHandler={this.submitHandler}

@@ -22,7 +22,6 @@ const Bottom = (props) => {
                             label="Totalt"
                             className="max-w-192 "
                             margin="normal"
-                            type="number"
                             value={priceTotal}
                             onChange={changeHandler}
                             InputProps={{

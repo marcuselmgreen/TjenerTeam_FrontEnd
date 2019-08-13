@@ -55,7 +55,6 @@ const Pay = (props) => {
                                     helperText={<span style={{color: 'red'}}>{validation.hourlyWage.message}</span>}
                                     className="float-left max-w-136 mr-3"
                                     margin="normal"
-                                    type="number"
                                     value={hourlyWage}
                                     onChange={changeHandler}
                                     InputProps={{
@@ -74,7 +73,6 @@ const Pay = (props) => {
                                     label="Timeløn"
                                     className="float-left max-w-136"
                                     margin="normal"
-                                    type="number"
                                     value={wageTotal}
                                     onChange={changeHandler}
                                     InputProps={{

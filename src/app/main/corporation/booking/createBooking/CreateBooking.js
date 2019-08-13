@@ -150,6 +150,7 @@ class CreateBooking extends Component {
 
         if (priceValues.includes(e.target.name)) {
             tempState = checkPriceValue(name, tempState, selectedTab, eValue);
+            debugger;
             this.setState({bookings: tempState})
         } else {
             this.setState({bookings: tempState})
@@ -194,7 +195,7 @@ class CreateBooking extends Component {
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
                 }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
-                    <Card className="w-full max-w-2xl mx-auto m-16 md:m-0" square>
+                    <Card className="w-full max-w-lg mx-auto m-16 md:m-0" square>
                         <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
                             <h1 className="font-sans text-4xl text-gray-800">Opret booking</h1>
                             <p className="py-10 text-gray-800 font-sans text-lg">Udfyld formularen og den sendes ud til
