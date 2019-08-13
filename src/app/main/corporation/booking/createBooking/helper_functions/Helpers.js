@@ -107,67 +107,67 @@ const removeCommas = (total) => {
 
 const setTotalPrice = (state, selectedTab) => {
     // SETS TOTAL PRICE
-    let total = state[selectedTab]["wageTotal"];
+    let total = state[selectedTab].wageTotal;
 
     total = removeCommas(total);
 
-    return parseFloat(total) * parseInt(state[selectedTab]["numberOfStaff"]).toFixed(2) * workHours(state[selectedTab]);
+    return parseFloat(total) * parseInt(state[selectedTab].numberOfStaff).toFixed(2) * workHours(state[selectedTab]);
 };
 
 const timePrice = (name, state, selectedTab) => {
-    state[selectedTab]['priceTotal'] = numberWithCommas(setTotalPrice(state, selectedTab));
-    state[selectedTab]['hourlyWage'] = 0;
-    state[selectedTab]['wageTotal'] = 0;
-    state[selectedTab]['priceTotal'] = 0;
+    state[selectedTab].priceTotal = numberWithCommas(setTotalPrice(state, selectedTab));
+    state[selectedTab].hourlyWage = 0;
+    state[selectedTab].wageTotal = 0;
+    state[selectedTab].priceTotal = 0;
     return state
 };
 
 const numberOfStaffPrice = (name, state, selectedTab) => {
-    let staff = parseInt(state[selectedTab]['numberOfStaff']);
-    let hourlyWage = state[selectedTab]['hourlyWage'];
-    let sTime = state[selectedTab]['startTime'];
-    let eTime = state[selectedTab]['endTime'];
+    let staff = parseInt(state[selectedTab].numberOfStaff);
+    let hourlyWage = state[selectedTab].hourlyWage;
+    let sTime = state[selectedTab].startTime;
+    let eTime = state[selectedTab].endTime;
 
     if(staff > 0 && hourlyWage > 0 && (sTime !== '' && eTime !== '')) {
-        let wageTotal = removeCommas(state[selectedTab]['hourlyWage']);
+        let wageTotal = removeCommas(state[selectedTab].hourlyWage);
 
-        let tempVal = (wageTotal * parseFloat(state[selectedTab]['numberOfStaff']).toFixed(2) * diffDateCalculator(state[selectedTab]));
+        let tempVal = (wageTotal * parseFloat(state[selectedTab].numberOfStaff).toFixed(2) * diffDateCalculator(state[selectedTab]));
         let total = removeCommas(tempVal);
-        state[selectedTab]['priceTotal'] = numberWithCommas(total);
+        state[selectedTab].priceTotal = numberWithCommas(total);
         return state;
     } else {
-        state[selectedTab]['hourlyWage'] = 0;
-        state[selectedTab]['wageTotal'] = 0;
-        state[selectedTab]['priceTotal'] = 0;
+        state[selectedTab].hour = 0;
+        state[selectedTab].wageTotal = 0;
+        state[selectedTab].price = 0;
         return state;
     }
 };
 
 const hourlyWagePrice = (name, state, selectedTab, val) => {
     let tempVal = parseFloat(val);
-    let sTime = state[selectedTab]['startTime'];
-    let eTime = state[selectedTab]['endTime'];
+    let sTime = state[selectedTab].startTime;
+    let eTime = state[selectedTab].endTime;
 
     if(tempVal < 1 || typeof tempVal !== 'number') {
-        state[selectedTab]['priceTotal'] = 0;
+        state[selectedTab].priceTotal = 0;
         return state;
     } else {
         if (tempVal > 0 && (sTime !== '' && eTime !== '')) {
             // SETS VALUES FOR WAGETOTAL
-            state[selectedTab]['wageTotal'] = numberWithCommas(tempVal + (tempVal * vacationExtra) + diffWagePay(diffDateCalculator(state[selectedTab])));
+            state[selectedTab].wageTotal= numberWithCommas(tempVal + (tempVal * vacationExtra) + diffWagePay(diffDateCalculator(state[selectedTab])));
             // SETS TOTAL PRICE;
-            state[selectedTab]['priceTotal'] = numberWithCommas( setTotalPrice(state, selectedTab));
+            state[selectedTab].priceTotal = numberWithCommas( setTotalPrice(state, selectedTab));
             return state;
         } else {
-            state[selectedTab]['wageTotal'] = 0;
-            state[selectedTab]['priceTotal'] = 0;
+            state[selectedTab].wageTotal = 0;
+            state[selectedTab].priceTotal = 0;
             return state
         }
     }
 };
 
 const staffTypePrice = (name, state, selectedTab, val) => {
-    state[selectedTab]['label'] = val;
+    state[selectedTab].label = val;
     return state;
 };
 
@@ -184,3 +184,19 @@ const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 };
+
+// export const datePrice = (date, state, selectedTab) => {
+//
+//     state.date = date;
+//
+//
+//     let nrVal = tempState[this.state.selectedTab].hourlyWage;
+//
+//     if (!isNaN(parseFloat(nrVal))) {
+//         tempState[this.state.selectedTab].wageTotal = (parseFloat(nrVal) + (nrVal * vacationExtra) + diffWagePay(diffDateCalculator(this.state.bookings[this.state.selectedTab])));
+//         let val = this.setTotalPrice(tempState);
+//         tempState[this.state.selectedTab].priceTotal = numberWithCommas(val);
+//     }
+//     this.setState({bookings: tempState});
+// };
+

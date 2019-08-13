@@ -12,7 +12,7 @@ import {booking} from './others/BookingTemplate';
 import {idGenerator} from '../../../common/IdGenerator'
 import {Card, CardContent} from "@material-ui/core";
 import Image from "../../../login/tjenerteam2.jpg";
-import {diffWagePay, diffDateCalculator, workHours, checkPriceValue} from './helper_functions/Helpers'
+import {diffWagePay, diffDateCalculator, workHours, checkPriceValue, datePrice} from './helper_functions/Helpers'
 import * as GlobalPaths from "../../../../GlobalPaths";
 import {staff} from './helper_functions/Selections'
 import AppHeader from "../../toolbar/AppHeaderCorp";
@@ -163,6 +163,7 @@ class CreateBooking extends Component {
     };
 
     dateHandler = (date) => {
+
         let tempState = [...this.state.bookings];
         tempState[this.state.selectedTab].date = date;
 
