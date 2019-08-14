@@ -18,6 +18,7 @@ export function getAllBookings() {
 // BECAUSE THE API CAN'T HANDLE THE DATA CORRECT.
 // THIS WILL CHANGE WHEN BACKEND IS DEVELOPED!!
 export function createBooking(bookings) {
+    debugger;
     return axios.post(setup.apiEndPoint + '/bookings', bookings)
         .then(handleResponse)
         .catch(handleError)

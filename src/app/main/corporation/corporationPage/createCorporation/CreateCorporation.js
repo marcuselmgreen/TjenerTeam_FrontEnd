@@ -111,10 +111,10 @@ class CreateCorporation extends Component {
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
                 }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
-                <Card className="w-full max-w-2xl mx-auto m-16 md:m-0" square>
-                    <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
-                        <h1 className="font-sans text-4xl text-gray-800">Opret virksomhed</h1>
-                        <p className="py-10 text-gray-800 font-sans text-lg">Opret dig Gratis som bruger af TjenerTeamet - du betaler kun, hvis du booker personale.</p>
+                <Card className="w-full max-w-lg mx-auto m-16 md:m-0" square>
+                    <CardContent className="flex flex-col ">
+                        <h1 className="font-sans text-4xl text-gray-800 pl-24 pr-24">Opret virksomhed</h1>
+                        <p className="py-10 text-gray-800 font-sans text-lg pl-24 pr-24">Opret dig Gratis som bruger af TjenerTeamet - du betaler kun, hvis du booker personale.</p>
                         <CorporationForm
                             name={name}
                             cvr={cvr}
@@ -130,7 +130,6 @@ class CreateCorporation extends Component {
                             password={password}
                             confirmPassword={confirmPassword}
                             gdpr={gdpr}
-                            submitHandler={this.submitHandler}
                             changeHandler={this.changeHandler}
                             plusChangeView={this.plusChangeView}
                             minusChangeView={this.minusChangeView}

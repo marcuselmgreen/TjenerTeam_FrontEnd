@@ -48,7 +48,7 @@ class HomeCorporation extends Component {
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
                 }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
-                    <Card className="w-full max-w-2xl mx-auto m-16 p-0 md:pl-84 md:m-0" square>
+                    <Card className="w-full max-w-lg mx-auto m-16 md:m-0" square>
                         <CardContent className="flex flex-col ">
                             <Card className="p-24 max-w-lg"
                                   style={{backgroundColor: 'rgba(0, 0, 0, 0)', boxShadow: 'none'}}>

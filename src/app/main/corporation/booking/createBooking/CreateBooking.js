@@ -12,12 +12,10 @@ import {booking} from './others/BookingTemplate';
 import {idGenerator} from '../../../common/IdGenerator'
 import {Card, CardContent} from "@material-ui/core";
 import Image from "../../../login/tjenerteam2.jpg";
-import {diffWagePay, diffDateCalculator, workHours, checkPriceValue, datePrice} from './helper_functions/Helpers'
+import {checkPriceValue, datePrice} from './helper_functions/Helpers'
 import * as GlobalPaths from "../../../../GlobalPaths";
 import {staff} from './helper_functions/Selections'
 import AppHeader from "../../toolbar/AppHeaderCorp";
-
-const vacationExtra = 0.125;
 
 class CreateBooking extends Component {
     constructor(props) {
@@ -92,9 +90,13 @@ class CreateBooking extends Component {
 
     addBooking = () => {
         let tempState = {...this.state};
+        let user = {...this.props.user};
+        debugger;
         tempState.bookings[this.state.selectedTab].label = tempState.bookings[this.state.selectedTab].staffType;
         let newBooking = {...booking};
+        debugger;
         newBooking._id = idGenerator();
+        newBooking.createdByCorporation_user = user._id;
         tempState.bookings.push(newBooking);
         this.setState({tempState});
         this.setState({displayModal: false});
@@ -188,24 +190,26 @@ class CreateBooking extends Component {
                     backgroundRepeat: 'no-repeat'
                 }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
                     <Card className="w-full max-w-lg mx-auto m-16 md:m-0" square>
-                        <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
-                            <h1 className="font-sans text-4xl text-gray-800">Opret booking</h1>
-                            <p className="py-10 text-gray-800 font-sans text-lg">Udfyld formularen og den sendes ud til
+                        <CardContent className="flex flex-col">
+                            <h1 className="font-sans text-4xl text-gray-800 pl-24 pr-24">Opret booking</h1>
+                            <p className="py-10 text-gray-800 font-sans text-lg pl-24 pr-24">Udfyld formularen og den sendes ud til
                                 vores personale kl. 12:00<br/>
                                 Er arrangement tættere end 48 timer, sendes jobbet ud til vores personale med det samme!
                             </p>
                             <div>
-                                <AppBar position="static" color="default">
-                                    <Tabs value={selectedTab} indicatorColor="primary" className="w-full"
-                                          style={{overflowY: "auto"}}
-                                          onChange={this.handleChangeTab}>
-                                        {bookings.map((bookings, index) => (
-                                            <Tab
-                                                key={index}
-                                                label={bookings.label}/>
-                                        ))}
-                                    </Tabs>
-                                </AppBar>
+                                {bookings.length > 1 ?
+                                    <AppBar position="static" color="default">
+                                        <Tabs value={selectedTab} indicatorColor="primary" className="w-full"
+                                              style={{overflowY: "auto"}}
+                                              onChange={this.handleChangeTab}>
+                                            {bookings.map((bookings, index) => (
+                                                <Tab
+                                                    key={index}
+                                                    label={bookings.label}/>
+                                            ))}
+                                        </Tabs>
+                                    </AppBar> : null
+                                }
                                 {
                                     bookings.map((bookings, index) => (
                                         (selectedTab === index &&

@@ -14,9 +14,9 @@ const ContactInformation = (props) => {
 
     return (
         <div className=" p-4 w-full">
-            <div className="w-full">
-                <h2>Kontakt information & adresse</h2>
-            </div>
+            {/*<div className="w-full">*/}
+            {/*    <h2>Kontakt information & adresse</h2>*/}
+            {/*</div>*/}
             <TextField
                 name="contactPerson"
                 className="mr-16 max-w-256"

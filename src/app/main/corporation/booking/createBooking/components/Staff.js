@@ -25,9 +25,9 @@ const Staff = (props) => {
 
     return (
         <div className=" p-4 w-full ">
-            <div className="w-full">
-                <h2>Personale</h2>
-            </div>
+            {/*<div className="w-full">*/}
+            {/*    <h2>Personale</h2>*/}
+            {/*</div>*/}
             <TextField
                 name="staffType"
                 select

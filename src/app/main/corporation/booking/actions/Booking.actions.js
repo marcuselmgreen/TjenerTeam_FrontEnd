@@ -62,10 +62,10 @@ export function loadCorporationBookings(corporation) {
     }
 }
 
-export function createBookingSuccess(booking) {
+export function createBookingSuccess(bookings) {
     return {
         type: actionsTypes.CREATE_BOOKING_SUCCESS,
-        booking
+        bookings
     }
 }
 
@@ -80,14 +80,15 @@ export function createBooking(bookings) {
     return function(dispatch) {
         return bookingApi
             .createBooking(bookings)
-            .then(booking => {
+            .then(bookings => {
                 dispatch(showMessage({
                     message: 'Ny booking opret',
                     ...snackbarConfig.successMessage
                 }));
-                dispatch(createBookingSuccess(booking))
+                dispatch(createBookingSuccess(bookings))
             })
             .catch(error => {
+                debugger;
                 dispatch(showMessage({
                     message: 'Noget gik galt ved oprettelsen af ny booking',
                     ...snackbarConfig.errorMessage

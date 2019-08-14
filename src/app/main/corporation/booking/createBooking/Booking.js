@@ -81,9 +81,9 @@ const Booking = (props) => {
                         time={time}
                         validation={validation}/>
 
-                    <div className="w-full mt-12">
-                        <hr style={{borderTop: '1px solid #cccccc'}}/>
-                    </div>
+                    {/*<div className="w-full mt-12">*/}
+                    {/*    <hr style={{borderTop: '1px solid #cccccc'}}/>*/}
+                    {/*</div>*/}
 
                     <ContactInformation
                         contactPerson={booking.contactPerson}

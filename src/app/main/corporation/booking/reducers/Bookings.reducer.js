@@ -14,11 +14,12 @@ export default function bookings(state = initialState, action) {
     switch (action.type) {
 
         case actionsTypes.CREATE_BOOKING_SUCCESS:
-            tempState.allBookings.push(action.allBookings);
+            action.bookings.forEach(b => {
+                tempState.allBookings.push(b);
+            });
             return tempState;
 
         case actionsTypes.CREATE_BOOKING_FAILED:
-            console.log(action.error);
             tempState.error = action.error;
             return tempState;
 
@@ -29,7 +30,6 @@ export default function bookings(state = initialState, action) {
             return tempState;
 
         case actionsTypes.DELETE_BOOKING_FAILED:
-            console.log(action.error);
             tempState.error = action.error;
             return tempState;
 
@@ -40,19 +40,16 @@ export default function bookings(state = initialState, action) {
             return tempState;
 
         case actionsTypes.LOAD_ALL_BOOKINGS_FAILED:
-            console.log(action.error);
             tempState.error = action.error;
             return tempState;
 
 
         case actionsTypes.LOAD_CORPORATION_BOOKINGS_SUCCESS:
-            console.log(action.corporation._id)
             let myBookings = action.bookings.filter(b => b.createdByCorporation_user === action.corporation._id);
             tempState.allBookings = myBookings;
             return tempState;
 
         case actionsTypes.LOAD_CORPORATION_BOOKINGS_FAILED:
-            console.log(action.error);
             tempState.error = action.error;
             return tempState;
 
@@ -61,7 +58,6 @@ export default function bookings(state = initialState, action) {
             return state;
 
         case actionsTypes.UPDATE_BOOKING_FAILED:
-            console.log(action.error);
             tempState.error = action.error;
             return tempState;
 

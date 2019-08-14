@@ -1,9 +1,9 @@
-
 export const booking =
     {
         id: "",
         label: "Ny",
         staffType: "",
+        createdByCorporation_user: null,
         numberOfStaff: 0,
         date: new Date(),
         startTime: "",

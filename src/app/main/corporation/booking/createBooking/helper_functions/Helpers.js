@@ -1,4 +1,3 @@
-
 const vacationExtra = 0.125;
 
 export const diffWagePay = (diff) => {
@@ -21,7 +20,7 @@ export const diffDateCalculator = (date) => {
     let bookedDate_min = parseInt(bookedTime.slice(3, 5));
     let newBookedDate = new Date(bookedDate.getFullYear(), bookedDate.getMonth(), bookedDate.getDate(), bookedDate_hour, bookedDate_min);
     let val = Math.abs(newBookedDate - currentDate);
-    return Math.ceil(val / (1000 * 60 * 60 ));
+    return Math.ceil(val / (1000 * 60 * 60));
 };
 
 
@@ -30,10 +29,10 @@ export const workHours = (booking) => {
     startTime = startTime.replace(":", ".");
     endTime = endTime.replace(":", ".");
 
-    if(startTime.charAt(3) === "3") {
+    if (startTime.charAt(3) === "3") {
         startTime = startTime.substring(0, 3) + '5';
     }
-    if(endTime.charAt(3) === "3") {
+    if (endTime.charAt(3) === "3") {
         endTime = endTime.substring(0, 3) + '5';
     }
 
@@ -41,7 +40,7 @@ export const workHours = (booking) => {
     endTime = parseFloat(endTime);
 
     // If endTime is less than startTime + 24 hours, and plus the rest with Math.abs
-    if(endTime < startTime) {
+    if (endTime < startTime) {
 
         let end = endTime;
         let start = Math.abs(24.00 - startTime);
@@ -49,10 +48,9 @@ export const workHours = (booking) => {
         return start + end;
     }
     // If endTime is bigger than starTime, then just do Math.abs
-    else if(endTime > startTime) {
+    else if (endTime > startTime) {
         return Math.abs(startTime - endTime);
-    }
-    else {
+    } else {
         return 1;
     }
 
@@ -83,11 +81,11 @@ export const checkPriceValue = (name, state, selectedTab, val) => {
 };
 
 const removeCommas = (total) => {
-    if(total.toString().includes(',')) {
+    if (total.toString().includes(',')) {
 
         let parts = total.toString().split(',');
 
-        if(parts[0].includes('.')) {
+        if (parts[0].includes('.')) {
             let tempParts = parts[0].split('.');
             let tempPartsRes = tempParts[0] + tempParts[1];
             return tempPartsRes + '.' + parts[1];
@@ -126,11 +124,10 @@ const numberOfStaffPrice = (name, state, selectedTab) => {
     let sTime = state[selectedTab].startTime;
     let eTime = state[selectedTab].endTime;
 
-    if(staff > 0 && hourlyWage > 0 && (sTime !== '' && eTime !== '')) {
+    if (staff > 0 && hourlyWage > 0 && (sTime !== '' && eTime !== '')) {
         let wageTotal = removeCommas(state[selectedTab].wageTotal);
         let tempVal = (wageTotal * parseFloat(state[selectedTab].numberOfStaff).toFixed(2) * workHours(state[selectedTab]));
-        let total = tempVal;
-        state[selectedTab].priceTotal = numberWithCommas(total);
+        state[selectedTab].priceTotal = numberWithCommas(tempVal);
         return state;
     } else {
         state[selectedTab].hourlyWage = 0;
@@ -145,15 +142,15 @@ const hourlyWagePrice = (name, state, selectedTab, val) => {
     let sTime = state[selectedTab].startTime;
     let eTime = state[selectedTab].endTime;
 
-    if(tempVal < 1 || typeof tempVal !== 'number') {
+    if (tempVal < 1 || typeof tempVal !== 'number') {
         state[selectedTab].priceTotal = 0;
         return state;
     } else {
         if (tempVal > 0 && (sTime !== '' && eTime !== '')) {
             // SETS VALUES FOR WAGETOTAL
-            state[selectedTab].wageTotal= numberWithCommas(tempVal + (tempVal * vacationExtra) + diffWagePay(diffDateCalculator(state[selectedTab])));
+            state[selectedTab].wageTotal = numberWithCommas(tempVal + (tempVal * vacationExtra) + diffWagePay(diffDateCalculator(state[selectedTab])));
             // SETS TOTAL PRICE;
-            state[selectedTab].priceTotal = numberWithCommas( setTotalPrice(state, selectedTab));
+            state[selectedTab].priceTotal = numberWithCommas(setTotalPrice(state, selectedTab));
             return state;
         } else {
             state[selectedTab].wageTotal = 0;
@@ -170,20 +167,18 @@ const staffTypePrice = (name, state, selectedTab, val) => {
 
 
 const numberWithCommas = (number) => {
-    if(number.toString().includes('.')) {
+    if (number.toString().includes('.')) {
         let parts = number.toString().split(".");
 
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         return parts[0] + ',' + parts[1].substring(0, 2);
 
-    }
-    else {
+    } else {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 };
 
 export const datePrice = (date, state, selectedTab) => {
-    const vacationExtra = 0.125;
     state[selectedTab].date = date;
 
     let nrVal = state[selectedTab].hourlyWage;
@@ -194,7 +189,6 @@ export const datePrice = (date, state, selectedTab) => {
         state[selectedTab].priceTotal = numberWithCommas(val);
         return state;
     }
-
     return state;
 };
 
