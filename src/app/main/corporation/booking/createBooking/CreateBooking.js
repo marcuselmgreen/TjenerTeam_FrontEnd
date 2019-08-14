@@ -91,10 +91,8 @@ class CreateBooking extends Component {
     addBooking = () => {
         let tempState = {...this.state};
         let user = {...this.props.user};
-        debugger;
         tempState.bookings[this.state.selectedTab].label = tempState.bookings[this.state.selectedTab].staffType;
         let newBooking = {...booking};
-        debugger;
         newBooking._id = idGenerator();
         newBooking.createdByCorporation_user = user._id;
         tempState.bookings.push(newBooking);
@@ -148,7 +146,7 @@ class CreateBooking extends Component {
 
         tempState[selectedTab][name] = eValue;
 
-        let priceValues = ['staffType', 'hourlyWage', 'startTime', 'endTime', 'numberOfStaff'];
+        let priceValues = ['staffType', 'hourlyWage', 'startTime', 'endTime', 'numberOfStaff', 'transportWage'];
 
         if (priceValues.includes(e.target.name)) {
             tempState = checkPriceValue(name, tempState, selectedTab, eValue);
@@ -178,10 +176,9 @@ class CreateBooking extends Component {
 
         return (
             <>
-                {this.props.loggedIn ?
                 <AppHeader
                     changePage={this.changePage}
-                /> : null}
+                />
                 <div style={{
                     width: '100%',
                     backgroundImage: "url(" + Image + ")",

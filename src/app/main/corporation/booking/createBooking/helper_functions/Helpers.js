@@ -25,6 +25,7 @@ export const diffDateCalculator = (date) => {
 
 
 export const workHours = (booking) => {
+    debugger;
     let {startTime, endTime} = booking;
     startTime = startTime.replace(":", ".");
     endTime = endTime.replace(":", ".");
@@ -75,6 +76,8 @@ export const checkPriceValue = (name, state, selectedTab, val) => {
         case 'numberOfStaff':
             return numberOfStaffPrice(...param);
 
+        case 'transportWage':
+            return transportWagePrice(...param);
         default:
             return state;
     }
@@ -101,13 +104,39 @@ const removeCommas = (total) => {
     }
 };
 
+
+const transportWageCal = (state, selectedTab, val) => {
+    let wageTotal = parseFloat(removeCommas(state[selectedTab].wageTotal));
+    let staffNum = state[selectedTab].numberOfStaff;
+    return (val * wageTotal) * staffNum;
+};
+
+const transportWagePrice = (name, state, selectedTab, val) => {
+
+    let wageTotal = parseFloat(removeCommas(state[selectedTab].wageTotal));
+    if(wageTotal > 0 ) {
+
+
+        let numberOfStaff = state[selectedTab].numberOfStaff;
+
+        let work = workHours(state[selectedTab]);
+
+        let price = ((wageTotal * work) * numberOfStaff) + (val * wageTotal);
+
+        state[selectedTab].priceTotal = numberWithCommas(price);
+        return state;
+    } else {
+        return state;
+    }
+};
+
 const setTotalPrice = (state, selectedTab) => {
     // SETS TOTAL PRICE
     let total = state[selectedTab].wageTotal;
-
+    let tWage = transportWageCal(state, selectedTab, state[selectedTab].transportWage);
     total = removeCommas(total);
-
-    return parseFloat(total) * parseInt(state[selectedTab].numberOfStaff).toFixed(2) * workHours(state[selectedTab]);
+    debugger;
+    return parseFloat(total) * parseInt(state[selectedTab].numberOfStaff).toFixed(2) * workHours(state[selectedTab]) + tWage;
 };
 
 const timePrice = (name, state, selectedTab) => {
@@ -126,7 +155,7 @@ const numberOfStaffPrice = (name, state, selectedTab) => {
 
     if (staff > 0 && hourlyWage > 0 && (sTime !== '' && eTime !== '')) {
         let wageTotal = removeCommas(state[selectedTab].wageTotal);
-        let tempVal = (wageTotal * parseFloat(state[selectedTab].numberOfStaff).toFixed(2) * workHours(state[selectedTab]));
+        let tempVal = (wageTotal * parseFloat( state[selectedTab].numberOfStaff).toFixed(2) * workHours(state[selectedTab]));
         state[selectedTab].priceTotal = numberWithCommas(tempVal);
         return state;
     } else {

@@ -62,11 +62,11 @@ const Staff = (props) => {
 
             <TextField
                 name="numberOfStaff"
-                type="number"
                 className="max-w-76 mr-16 "
                 id="staffNumber"
                 helperText={<span style={{color: 'red'}}>{validation.numberOfStaff.message}</span>}
                 label="Antal"
+                type="number"
                 margin="normal"
                 value={numberOfStaff}
                 variant="outlined"

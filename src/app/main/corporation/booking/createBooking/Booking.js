@@ -108,7 +108,7 @@ const Booking = (props) => {
                     }
 
                     {showFullPage &&
-                    <FuseAnimate duration={700} animation={{translateX: [0, '100%']}}>
+                    <FuseAnimate duration={700} animation="transition.fadeIn">
                         <div className="w-full">
                             <div className="w-full mt-12">
                                 <h2 className="font-serif text-gray-800 text-md ">OM JOBBET</h2>

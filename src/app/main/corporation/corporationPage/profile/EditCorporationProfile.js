@@ -9,7 +9,6 @@ import * as corporationUser from "../actions/Corporation.actions";
 import FormValidator from "../../../validator/FormValidator";
 import AppHeader from "../../toolbar/AppHeaderCorp";
 import {EditCorparationFormValidator} from "../../../validator/forms/EditCorporationFormValidator";
-import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Paper from "@material-ui/core/Paper";
@@ -107,9 +106,9 @@ class EditCorporationProfile extends Component {
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
                 }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
-                    <Card className="w-full max-w-2xl mx-auto m-16 md:m-0" square>
-                        <CardContent className="flex flex-col items-center p-32 md:p-128 md:pt-128 ">
-                            <h1 className="font-sans text-4xl text-gray-800">Firmaoplysninger</h1>
+                    <Card className="w-full max-w-lg mx-auto m-16 md:m-0" square>
+                        <CardContent className="flex flex-col items-center ">
+                            <h1 className="font-sans text-4xl text-gray-800 mt-20">Firmaoplysninger</h1>
                             <EditCorporationProfileForm
                                 corporationUser={corporation}
                                 submitHandler={this.submitHandler}

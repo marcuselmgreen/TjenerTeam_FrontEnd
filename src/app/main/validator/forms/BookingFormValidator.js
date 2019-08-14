@@ -138,6 +138,13 @@ export const BookingFormValidator =
             method: 'isEmpty',
             validWhen: false,
             message: 'Angiv timeløn'
+        },
+        {
+            field: 'hourlyWage',
+            method: 'isNumeric',
+            args: [{no_symbols: true}],
+            validWhen: true,
+            message: 'Kommatal er ikke muligt'
         }
 
     ];

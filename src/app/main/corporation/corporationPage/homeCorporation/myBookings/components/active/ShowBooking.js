@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {red, grey} from "@material-ui/core/colors";
 import Dialog from "@material-ui/core/Dialog";
+import {workHours} from "../../../../../booking/createBooking/helper_functions/Helpers";
 
 const ShowBooking = (props) => {
 
@@ -236,7 +237,7 @@ const ShowBooking = (props) => {
                             </div>
                             <div className="w-full sm:w-1/5">
                                 <h5 className="mt-3">Tid</h5>
-                                <p>{booking.startTime + '-' + booking.endTime}</p>
+                                <p>{workHours(booking)}</p>
                             </div>
                             <div className="w-full sm:w-1/5">
                                 <h5 className="mt-3">Enhedspris</h5>
