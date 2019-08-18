@@ -3,7 +3,7 @@ export default {
     // Production
 
     apiAuthEndpoint: 'https://tjenerteam-api.herokuapp.com/',
-    apiEndPoint: 'https://tjenerteam-api.herokuapp.com//api',
+    apiEndPoint: 'https://tjenerteam-api.herokuapp.com/api',
 
     // Development
 
