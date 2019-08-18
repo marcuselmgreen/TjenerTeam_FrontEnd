@@ -1,12 +1,12 @@
 export default {
 
-    // Launching
+    // Production
 
-    // apiAuthEndpoint: 'https://tjener-team-api.herokuapp.com',
-    // apiEndPoint: 'https://tjener-team-api.herokuapp.com/api',
+    apiAuthEndpoint: 'https://tjenerteam-api.herokuapp.com/',
+    apiEndPoint: 'https://tjenerteam-api.herokuapp.com//api',
 
     // Development
 
-    apiAuthEndpoint: 'http://localhost:3000',
-    apiEndPoint: 'http://localhost:3000/api'
+    // apiAuthEndpoint: 'http://localhost:3000',
+    // apiEndPoint: 'http://localhost:3000/api'
 }
