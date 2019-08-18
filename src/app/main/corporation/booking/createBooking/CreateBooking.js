@@ -35,10 +35,12 @@ class CreateBooking extends Component {
                     date: new Date(),
                     startTime: "",
                     endTime: "",
+                    bookingPerson: "",
                     contactPerson: "",
                     phoneNumber: "",
                     address: "",
                     zipCode: "",
+                    city: "",
                     arrangementType: "",
                     arrangementTypeOther: "",
                     extraWorkHours: "",
@@ -69,6 +71,7 @@ class CreateBooking extends Component {
 
 
     displayBookingModalHandler = () => {
+        debugger;
         const validation = this.validator.validate(this.state.bookings[this.state.selectedTab]);
         const tempBookings = [...this.state.bookings];
         tempBookings[this.state.selectedTab].validation = validation;

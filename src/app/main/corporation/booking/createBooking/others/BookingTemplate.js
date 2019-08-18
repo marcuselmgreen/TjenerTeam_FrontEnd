@@ -12,6 +12,7 @@ export const booking =
         phoneNumber: "",
         address: "",
         zipCode: "",
+        city: "",
         arrangementType: "",
         arrangementTypeOther: "",
         extraWorkHours: "",

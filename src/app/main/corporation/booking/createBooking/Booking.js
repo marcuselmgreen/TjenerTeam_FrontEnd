@@ -81,14 +81,11 @@ const Booking = (props) => {
                         time={time}
                         validation={validation}/>
 
-                    {/*<div className="w-full mt-12">*/}
-                    {/*    <hr style={{borderTop: '1px solid #cccccc'}}/>*/}
-                    {/*</div>*/}
-
                     <ContactInformation
-                        contactPerson={booking.contactPerson}
+                        bookingPerson={booking.bookingPerson}
                         changeHandler={changeHandler}
                         phoneNumber={booking.phoneNumber}
+                        city={booking.city}
                         address={booking.address}
                         zipCode={booking.zipCode}
                         validation={validation}/>
@@ -112,10 +109,11 @@ const Booking = (props) => {
                         <div className="w-full">
                             <div className="w-full mt-12">
                                 <h2 className="font-serif text-gray-800 text-md ">OM JOBBET</h2>
-                                <hr style={{borderTop: '1px solid #cccccc'}}/>
+                                <hr style={{borderTop: '1px solid #cccccc',}}/>
                             </div>
 
                             <Arrangement
+                                contactPerson={booking.contactPerson}
                                 extraHours={extraHours}
                                 arrangementType={booking.arrangementType}
                                 changeHandler={changeHandler}
@@ -127,7 +125,7 @@ const Booking = (props) => {
                                 jobDescription={booking.jobDescription}
                                 validation={validation}/>
 
-                            <div className="w-full mt-12 mb-20">
+                            <div className="w-full mt-12 mb-80">
                                 <hr style={{borderTop: '1px solid #cccccc'}}/>
                             </div>
 
@@ -146,23 +144,23 @@ const Booking = (props) => {
                                 validation={validation}
                             />
 
-                            <div className="w-full mt-12 mb-20">
-                                <hr style={{borderTop: '1px solid gray'}}/>
-                            </div>
+                            {/*<div className="w-full mt-12 mb-20">*/}
+                            {/*    <hr style={{borderTop: '1px solid gray'}}/>*/}
+                            {/*</div>*/}
 
-                            <Questions
-                                changeHandler={changeHandler}
-                                languageSkill={booking.languageSkill}
-                                staffGender={booking.staffGender}
-                                jobExperience={booking.jobExperience}
-                                yesAndNo={yesAndNo}
-                                languageSkillData={languageSkillData}
-                                gender={gender}
-                                validation={validation}
-                            />
+                            {/*<Questions*/}
+                            {/*    changeHandler={changeHandler}*/}
+                            {/*    languageSkill={booking.languageSkill}*/}
+                            {/*    staffGender={booking.staffGender}*/}
+                            {/*    jobExperience={booking.jobExperience}*/}
+                            {/*    yesAndNo={yesAndNo}*/}
+                            {/*    languageSkillData={languageSkillData}*/}
+                            {/*    gender={gender}*/}
+                            {/*    validation={validation}*/}
+                            {/*/>*/}
 
 
-                            <div className="w-full mt-12 mb-20">
+                            <div className="w-full mt-32 mb-52">
                                 <hr style={{borderTop: '1px solid #cccccc'}}/>
                             </div>
 
@@ -170,7 +168,6 @@ const Booking = (props) => {
                                 transportWage={booking.transportWage}
                                 changeHandler={changeHandler}
                                 transportCostWages={transportCostWages}
-                                wageTotal={booking.wageTotal}
                                 hourlyWage={booking.hourlyWage}
                                 validation={validation}
                             />
@@ -181,6 +178,7 @@ const Booking = (props) => {
 
                             <Bottom
                                 changeHandler={changeHandler}
+                                wageTotal={booking.wageTotal}
                                 priceTotal={booking.priceTotal}
 
                             />

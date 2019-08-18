@@ -25,7 +25,6 @@ export const diffDateCalculator = (date) => {
 
 
 export const workHours = (booking) => {
-    debugger;
     let {startTime, endTime} = booking;
     startTime = startTime.replace(":", ".");
     endTime = endTime.replace(":", ".");
@@ -135,7 +134,6 @@ const setTotalPrice = (state, selectedTab) => {
     let total = state[selectedTab].wageTotal;
     let tWage = transportWageCal(state, selectedTab, state[selectedTab].transportWage);
     total = removeCommas(total);
-    debugger;
     return parseFloat(total) * parseInt(state[selectedTab].numberOfStaff).toFixed(2) * workHours(state[selectedTab]) + tWage;
 };
 

@@ -68,6 +68,12 @@ export const BookingFormValidator =
             message: 'Angiv kontakt person'
         },
         {
+            field: 'bookingPerson',
+            method: 'isEmpty',
+            validWhen: false,
+            message: 'Angiv kontakt person'
+        },
+        {
             field: 'phoneNumber',
             method: 'isEmpty',
             validWhen: false,
@@ -78,6 +84,12 @@ export const BookingFormValidator =
             method: 'isEmpty',
             validWhen: false,
             message: 'Angiv adresse'
+        },
+        {
+            field: 'city',
+            method: 'isEmpty',
+            validWhen: false,
+            message: 'Angiv by'
         },
         {
             field: 'zipCode',
@@ -109,24 +121,24 @@ export const BookingFormValidator =
             validWhen: false,
             message: 'Mangler beskrivelse'
         },
-        {
-            field: 'languageSkill',
-            method: 'isEmpty',
-            validWhen: false,
-            message: 'Angiv sprogkendskaber'
-        },
-        {
-            field: 'staffGender',
-            method: 'isEmpty',
-            validWhen: false,
-            message: 'Angiv køn'
-        },
-        {
-            field: 'jobExperience',
-            method: 'isEmpty',
-            validWhen: false,
-            message: 'Angiv erfaring'
-        },
+        // {
+        //     field: 'languageSkill',
+        //     method: 'isEmpty',
+        //     validWhen: false,
+        //     message: 'Angiv sprogkendskaber'
+        // },
+        // {
+        //     field: 'staffGender',
+        //     method: 'isEmpty',
+        //     validWhen: false,
+        //     message: 'Angiv køn'
+        // },
+        // {
+        //     field: 'jobExperience',
+        //     method: 'isEmpty',
+        //     validWhen: false,
+        //     message: 'Angiv erfaring'
+        // },
         {
             field: 'transportWage',
             method: 'isEmpty',
