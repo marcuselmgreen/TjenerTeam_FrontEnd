@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import FormValidator from "../validator/FormValidator";
-import {LoginFormValidator} from '../validator/forms/LoginFormValidator';
+import FormValidator from "../../validator/FormValidator";
+import {LoginFormValidator} from '../../validator/forms/LoginFormValidator';
 import {
     Button,
     Card,
@@ -13,10 +13,10 @@ import {Link, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import Image from './tjenerteam2.jpg'
-import * as userActions from '../../auth/store/actions/login.actions'
-import * as bookingActions from '../corporation/booking/actions/Booking.actions'
+import * as userActions from '../../../auth/store/actions/login.actions'
+import * as bookingActions from '../booking/actions/Booking.actions'
 import CircularProgress from "@material-ui/core/CircularProgress";
-import AppHeader from "../corporation/toolbar/AppHeaderCorp";
+import AppHeader from "../toolbar/AppHeaderCorp";
 
 class Login extends Component {
     constructor(props) {

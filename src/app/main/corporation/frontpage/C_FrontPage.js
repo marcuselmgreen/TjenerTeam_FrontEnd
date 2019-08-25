@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import {lightBlue} from "@material-ui/core/colors";
-import * as globalPaths from '../../GlobalPaths';
+import * as globalPaths from '../../../GlobalPaths';
 
 const styles = () => ({
     layoutRoot: {}
 });
 
-class FrontPage extends Component {
+class C_FrontPage extends Component {
 
     routeCreateAccount = () => {
         this.props.history.push(globalPaths.createBooking);
@@ -68,4 +68,4 @@ const SubmitButton = withStyles(theme => ({
 
 
 
-export default withStyles(styles, {withTheme: true})(FrontPage);
+export default withStyles(styles, {withTheme: true})(C_FrontPage);

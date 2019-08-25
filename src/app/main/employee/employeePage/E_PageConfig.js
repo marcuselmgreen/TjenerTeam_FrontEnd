@@ -1,6 +1,7 @@
-import Home from './FrontPage';
+import E_Page from "./E_Page";
 
-export const FrontPageConfig = {
+
+export const E_PageConfig = {
     settings: {
         layout: {
             config: {
@@ -24,8 +25,8 @@ export const FrontPageConfig = {
     },
     routes  : [
         {
-            path     : '/frontpage',
-            component: Home
+            path     : '/e_page',
+            component: E_Page
         }
     ]
 };

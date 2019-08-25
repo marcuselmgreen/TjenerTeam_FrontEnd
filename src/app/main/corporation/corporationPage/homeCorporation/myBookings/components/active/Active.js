@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import moment from 'moment';
 import 'moment/locale/da';
+import './Active.css';
 
 const Active = (props) => {
 
@@ -24,23 +25,22 @@ const Active = (props) => {
 
             :
             <>
-                <h1>Aktive Bookings</h1>
                 {activeBookings.map((b, i) => (
-                    <Card onClick={() => selectedBookingHandler(b)} key={i} className="min-h-160 m-5 ">
+                    <Card onClick={() => selectedBookingHandler(b)} key={i} className="min-h-160 m-5 booking">
                         <CardContent>
                             {/* DATE */}
-                            <div className="w-full mt-20">
+                            <div className="w-full mt-20 ">
                                 <div className="flex flex-wrap my-2">
 
                                     <div className="w-full sm:w-1/12">
                                         <div className="ml-76 sm:ml-0">
                                             <div>
-                                                <span style={{fontSize: '29px'}}
+                                                <span style={{fontSize: '29px', color: 'red'}}
                                                       className="">{moment(b.date).format('dddd').slice(0, 3).toUpperCase()}</span>
                                             </div>
                                             <div>
                                                 <Typography color="textSecondary" gutterBottom>
-                                                        <span style={{fontSize: '35px'}}
+                                                        <span style={{fontSize: '35px', color: 'black'}}
                                                               className="pl-1">{moment(b.date).format('ll').slice(1, 2).toUpperCase() === '.' ?
                                                             moment(b.date).format('ll').slice(0, 1).toUpperCase(): moment(b.date).format('ll').slice(0, 2).toUpperCase() }</span>
                                                 </Typography>

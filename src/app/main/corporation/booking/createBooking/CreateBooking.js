@@ -11,7 +11,7 @@ import {BookingFormValidator} from "../../../validator/forms/BookingFormValidato
 import {booking} from './others/BookingTemplate';
 import {idGenerator} from '../../../common/IdGenerator'
 import {Card, CardContent} from "@material-ui/core";
-import Image from "../../../login/tjenerteam2.jpg";
+import Image from "../../login/tjenerteam2.jpg";
 import {checkPriceValue, datePrice} from './helper_functions/Helpers'
 import * as GlobalPaths from "../../../../GlobalPaths";
 import {staff} from './helper_functions/Selections'
@@ -193,7 +193,7 @@ class CreateBooking extends Component {
                         <CardContent className="flex flex-col">
                             <h1 className="font-sans text-4xl text-gray-800 pl-24 pr-24">Opret booking</h1>
                             <p className="py-10 text-gray-800 font-sans text-lg pl-24 pr-24">Udfyld formularen og den sendes ud til
-                                vores personale kl. 12:00<br/>
+                                vores personale kl. $12:00<br/>
                                 Er arrangement tættere end 48 timer, sendes jobbet ud til vores personale med det samme!
                             </p>
                             <div>

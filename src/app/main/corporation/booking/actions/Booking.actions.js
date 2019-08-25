@@ -23,7 +23,6 @@ export function loadAllBookings() {
         return bookingApi
             .getAllBookings()
             .then(bookings => {
-
                 dispatch(loadAllBookingsSuccess(bookings))
             })
             .catch(error => {

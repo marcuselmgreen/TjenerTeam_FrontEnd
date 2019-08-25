@@ -45,12 +45,12 @@ export function setSpinner() {
 }
 
 
-function setBearerTokenOnAxis(accessToken) {
+export function setBearerTokenOnAxis(accessToken) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
 }
 
 
-function storeTokenLocally(rememberUser, tokenResponse) {
+export function storeTokenLocally(rememberUser, tokenResponse) {
     if (rememberUser === true) {
         localStorage.setItem('jwt_access_token', tokenResponse)
     }
