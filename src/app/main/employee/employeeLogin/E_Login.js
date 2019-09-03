@@ -25,7 +25,7 @@ class ELogin extends Component {
             if(prevProps.employeeExist === true) {
                 this.props.history.push(GlobalPaths.employeePage);
             } else {
-                // this.props.history.push()
+                this.props.history.push(GlobalPaths.createEmployeePage)
             }
         }
     }

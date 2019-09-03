@@ -12,6 +12,7 @@ import {EditCorporationProfileConfig} from "../main/corporation/corporationPage/
 import {E_FrontPageConfig} from "../main/employee/frontPage/E_FrontPageConfig";
 import {E_LoginConfig} from "../main/employee/employeeLogin/E_LoginConfig";
 import {E_PageConfig} from "../main/employee/employeePage/E_PageConfig";
+import {createEmployeePageConfig} from "../main/employee/createEmployeePage/CreateEmployeePageConfig";
 
 
 const routeConfigs = [
@@ -25,7 +26,8 @@ const routeConfigs = [
     EditCorporationProfileConfig,
     E_FrontPageConfig,
     E_LoginConfig,
-    E_PageConfig
+    E_PageConfig,
+    createEmployeePageConfig
 ];
 
 const routes = [

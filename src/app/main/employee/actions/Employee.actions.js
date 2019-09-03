@@ -28,7 +28,7 @@ export function employeeLogin(facebookAccessToken) {
                 setBearerTokenOnAxis(user.jwt);
                 storeTokenLocally(user, user.jwt);
                 dispatch(setUserData(user.user)) ;
-                dispatch(employeeLoginSuccess(user.exist))
+                dispatch(employeeLoginSuccess(user.user.userExists))
 
             })
             .catch(error => {

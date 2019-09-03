@@ -1,0 +1,10 @@
+.cardForm {
+    background-color: #f5f7fa;
+}
+
+.card {
+    overflow-y: auto;
+    height: 100%;
+    float: left;
+}
+

@@ -1,5 +1,6 @@
 export const employeeLogin = 'e_login';
 export const employeePage = 'e_page';
+export const createEmployeePage = 'createEmployeePage';
 export const frontPage = "/c_frontpage";
 export const createBooking = "/createBooking";
 export const createCorporation = "/createCorporation";
