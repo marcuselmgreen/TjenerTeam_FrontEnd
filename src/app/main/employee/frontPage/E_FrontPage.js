@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Image from "../../corporation/login/tjenerteam2.jpg";
+import Image from "../../static/tjenerteam2.jpg";
 import {Card, CardContent} from "@material-ui/core";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";

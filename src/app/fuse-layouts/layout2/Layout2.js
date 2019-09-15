@@ -9,6 +9,7 @@ import LeftSideLayout2 from './components/LeftSideLayout2';
 import ToolbarLayout2 from './components/ToolbarLayout2';
 import FooterLayout2 from './components/FooterLayout2';
 import RightSideLayout2 from './components/RightSideLayout2';
+import NavbarWrapperLayout2 from "./components/NavbarWrapperLayout2";
 
 const useStyles = makeStyles(theme => ({
     root          : {
@@ -78,11 +79,11 @@ function Layout2(props)
                     <div className="flex flex-1 flex-col overflow-hidden relative">
 
                         {/*{config.toolbar.display && config.toolbar.position === 'above' && (*/}
-                            {/*<ToolbarLayout2/>*/}
+                        {/*    <ToolbarLayout2/>*/}
                         {/*)}*/}
 
                         {/*{config.navbar.display && (*/}
-                            {/*<NavbarWrapperLayout2/>*/}
+                        {/*    <NavbarWrapperLayout2/>*/}
                         {/*)}*/}
 
                         {/*{config.AppHeader.display && config.AppHeader.position === 'below' && (*/}

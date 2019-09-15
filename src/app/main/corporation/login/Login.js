@@ -12,7 +12,7 @@ import {FuseAnimate} from '@fuse';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import Image from './tjenerteam2.jpg'
+import Image from '../../static/tjenerteam2.jpg'
 import * as userActions from '../../../auth/store/actions/login.actions'
 import * as bookingActions from '../booking/actions/Booking.actions'
 import CircularProgress from "@material-ui/core/CircularProgress";

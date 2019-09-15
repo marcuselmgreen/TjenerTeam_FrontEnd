@@ -23,12 +23,12 @@ export function employeeLogin(facebookAccessToken) {
     return function (dispatch) {
         return employeeApi
             .loginEmployee(facebookAccessToken)
-            .then(user => {
+            .then(response => {
 
-                setBearerTokenOnAxis(user.jwt);
-                storeTokenLocally(user, user.jwt);
-                dispatch(setUserData(user.user)) ;
-                dispatch(employeeLoginSuccess(user.user.userExists))
+                setBearerTokenOnAxis(response.jwt);
+                storeTokenLocally(response, response.jwt);
+                dispatch(setUserData(response.user));
+                dispatch(employeeLoginSuccess(response.user.userExists))
 
             })
             .catch(error => {
@@ -37,6 +37,39 @@ export function employeeLogin(facebookAccessToken) {
                     ...snackbarConfig.errorMessage
                 }));
                 dispatch(employeeLoginFailed(error))
+            })
+    }
+}
+
+
+export function updateEmployeeSuccess(employee) {
+    return {
+        type: actionsTypes.UPDATE_EMPLOYEE_SUCCESS,
+        employee
+    }
+}
+
+export function updateEmployeeFailed(error) {
+    return {
+        type: actionsTypes.UPDATE_EMPLOYEE_FAILED,
+        error
+    }
+}
+
+export function updateEmployee(employee) {
+    return function (dispatch) {
+        return employeeApi
+            .updateEmployeeUser(employee)
+            .then(response => {
+                dispatch(setUserData(response.user));
+                dispatch(updateEmployeeSuccess(response.user.userExist))
+            })
+            .catch(error => {
+                dispatch(showMessage({
+                    message: 'Noget gik galt ved updateringen',
+                    ...snackbarConfig.errorMessage
+                }));
+                dispatch(updateEmployeeFailed(error))
             })
     }
 }

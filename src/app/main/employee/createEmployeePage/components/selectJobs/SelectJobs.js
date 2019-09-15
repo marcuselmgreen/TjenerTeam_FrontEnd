@@ -9,13 +9,22 @@ const SelectJobs = (props) => {
         jobHandler,
         doesContainsJob,
         moveForward,
-        selectJobs
+        selectJobs,
+        user
 
     } = props;
 
     return (
+
+        <>
+            <h1 className="font-sans text-gray-800 mt-20 welcomeTitle defFont ">Velkommen, {user.name}! </h1>
+            <p className="font-sans text-gray-600 subTitle defFont"><br/>Udfyld spørgsmålene for at
+                komme i gang med at søge arbejde!</p>
+
+            <span className="underline"></span>
+
             <Card  className="p-20 pb-52">
-                <h1 className="font-sans mt-20 jobTitle defFont ">Vælg de jobs du er interesseret i</h1>
+                <p className="font-sans mt-10 text-lg ">Vælg de jobs du er interesseret i</p>
 
                 <div className="flex mt-20">
 
@@ -40,6 +49,7 @@ const SelectJobs = (props) => {
                     <Button onClick={moveForward} disabled={selectJobs.length < 1} className="submitButton">Videre</Button>
                 </div>
             </Card>
+            </>
     );
 };
 

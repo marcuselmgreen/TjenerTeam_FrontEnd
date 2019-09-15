@@ -18,10 +18,7 @@ const WorkPlaces = (props) => {
 
     return (
         <Card className="p-20 pb-52">
-            <h1 className="font-sans mt-20 jobTitle defFont ">Hvor kan du arbejde henne?</h1>
-
-
-            <h1 className="font-sans mt-20 title "></h1>
+            <p className="font-sans mt-10 text-lg">Hvor kan du arbejde henne?</p>
 
             <div className="flex mt-20">
 

@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
-import Image from "../../corporation/login/tjenerteam2.jpg";
-import {Card, CardContent, Icon} from "@material-ui/core";
+import Image from "../../static/tjenerteam2.jpg";
+import {Card, CardContent} from "@material-ui/core";
 import './CreateEmployeePage.css';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as employeeActions from "../actions/Employee.actions";
-import Button from "@material-ui/core/Button";
 import SelectJobs from "./components/selectJobs/SelectJobs";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import WorkPlaces from "./components/workPlaces/WorkPlaces";
 import IntroductionVideo from "./components/introductionVideo/IntroductionVideo";
+import AddPhotos from "./components/addPhotos/AddPhotos";
+import AboutYou from "./components/aboutYou/AboutYou";
+import LanguageDanish from "./components/languageSkill/LanguageDanish";
+import LanguageEnglish from "./components/languageSkill/LanguageEnglish";
+import * as GlobalPaths from "../../../GlobalPaths";
 
 class CreateEmployeePage extends Component {
     constructor(props) {
@@ -19,15 +23,24 @@ class CreateEmployeePage extends Component {
         this.state = {
             user: {
                 selectedJobs: [],
-                selectCities: []
+                selectCities: [],
+                languageSkillDanish: null,
+                languageSkillEnglish: null,
+                driversLicence: null,
+                ownCar: null,
+                address: "",
+                zipCode: "",
+                phoneNumber: "",
+                description: "",
+
             },
-            progressTab: 0
+            progressTab: 0,
+            showSpinner: true
         };
 
     }
 
     jobHandler = (job) => {
-
         for (let i = 0; i < this.state.user.selectedJobs.length; i++) {
             if (this.state.user.selectedJobs[i] === job) {
                 let newArray = this.state.user.selectedJobs.filter(v => v !== job);
@@ -42,6 +55,30 @@ class CreateEmployeePage extends Component {
         tempUser.selectedJobs.push(job);
         return this.setState({user: tempUser});
     };
+
+    changeLanguageHandler = (language, val) => {
+        let tempState = {...this.state};
+        tempState.user[language] = val;
+        this.setState({tempState});
+    };
+
+    changeCarHandler = (language, val) => {
+        let tempState = {...this.state};
+        if (tempState.user[language] === null) {
+            tempState.user[language] = val;
+        } else {
+            tempState.user[language] = !tempState.user[language];
+        }
+        this.setState({tempState});
+    };
+
+
+    changeHandler = (e) => {
+        let tempState = {...this.state};
+        tempState.user[e.target.name] = e.target.value;
+        this.setState({tempState});
+    };
+
 
     cityHandler = (city) => {
         for (let i = 0; i < this.state.user.selectCities.length; i++) {
@@ -79,11 +116,11 @@ class CreateEmployeePage extends Component {
     };
 
     moveForward = () => {
-        this.setState({progressTab: this.state.progressTab + 1})
+        this.setState({progressTab: this.state.progressTab + 1, showSpinner: true})
     };
 
     moveBackward = () => {
-        this.setState({progressTab: this.state.progressTab - 1})
+        this.setState({progressTab: this.state.progressTab - 1, showSpinner: true})
         window.scrollTo(0, 0);
     };
 
@@ -104,10 +141,18 @@ class CreateEmployeePage extends Component {
         }
     };
 
+    hideSpinner = () => {
+        this.setState({showSpinner: false});
+    };
+
+    createEmployeeHandler = () => {
+        this.props.actions.updateEmployee(this.state.user);
+        this.props.history.push(GlobalPaths.employeePage)
+    };
 
     render() {
-        const {user} = this.props;
-        const {progressTab} = this.state;
+        const {userAuth} = this.props;
+        const {progressTab, user, showSpinner} = this.state;
         const steps = this.getSteps();
 
         return (
@@ -118,7 +163,7 @@ class CreateEmployeePage extends Component {
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
-                }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
+                }} className="flex flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
                     <Card className="w-full max-w-lg m-16 p-10 md:m-0 ">
 
                         <Stepper ref={this.myRef} activeStep={this.tabSelector()} alternativeLabel>
@@ -130,25 +175,10 @@ class CreateEmployeePage extends Component {
                         </Stepper>
 
                         <CardContent className="flex flex-col cardForm">
-                            <h1 className="font-sans text-gray-800 mt-20 welcomeTitle defFont ">Velkommen, {user.name}! </h1>
-                            <p className="font-sans text-gray-600 subTitle defFont"><br/>Udfyld spørgsmålene for at
-                                komme i gang med at søge arbejde!</p>
-                            {/*<p className="descriptionText defFont">Søger freelance arbejde på 2 klik</p>*/}
-                            {/*<p className="descriptionText defFont">Vi har arbejde hos bl.a. holms, d'Angleterre ect.</p>*/}
-                            {/*<div>*/}
-                            {/*    <div style={{float: 'left'}}>*/}
-                            {/*        <Icon className="editProfileIcon">edit</Icon>*/}
-                            {/*    </div>*/}
-                            {/*    <div style={{float: 'left', paddingTop: '5px'}}>*/}
-                            {/*        <a className="defFont " href="">Rediger profil</a>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
-
-                            <span className="underline"></span>
 
                             {progressTab === 0 &&
                             <SelectJobs
-
+                                user={userAuth}
                                 selectJobs={this.state.user.selectedJobs}
                                 jobHandler={this.jobHandler}
                                 doesContainsJob={this.doesContainsJob}
@@ -165,14 +195,45 @@ class CreateEmployeePage extends Component {
                             />
                             }
                             {progressTab === 2 &&
-                                <IntroductionVideo
-                                    moveForward={this.moveForward}
-                                    moveBackward={this.moveBackward}
-                                />
+                            <IntroductionVideo
+                                moveForward={this.moveForward}
+                                moveBackward={this.moveBackward}
+                                showSpinner={showSpinner}
+                                hideSpinner={this.hideSpinner}
+                            />
                             }
-
+                            {progressTab === 3 &&
+                            <AddPhotos
+                                moveForward={this.moveForward}
+                                moveBackward={this.moveBackward}
+                            />
+                            }
+                            {progressTab === 4 &&
+                            <AboutYou
+                                moveForward={this.moveForward}
+                                moveBackward={this.moveBackward}
+                                changeCarHandler={this.changeCarHandler}
+                                user={user}
+                                changeHandler={this.changeHandler}
+                            />
+                            }
+                            {progressTab === 5 &&
+                            <LanguageDanish
+                                moveForward={this.moveForward}
+                                moveBackward={this.moveBackward}
+                                user={user}
+                                changeLanguageHandler={this.changeLanguageHandler}
+                            />
+                            }
+                            {progressTab === 6 &&
+                            <LanguageEnglish
+                                createEmployeeHandler={this.createEmployeeHandler}
+                                moveBackward={this.moveBackward}
+                                user={user}
+                                changeLanguageHandler={this.changeLanguageHandler}
+                            />
+                            }
                         </CardContent>
-
 
                     </Card>
                 </div>
@@ -184,14 +245,14 @@ class CreateEmployeePage extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.user
+        userAuth: state.auth.user
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            employeeLogin: bindActionCreators(employeeActions.employeeLogin, dispatch),
+            updateEmployee: bindActionCreators(employeeActions.updateEmployee, dispatch),
         }
     }
 }
