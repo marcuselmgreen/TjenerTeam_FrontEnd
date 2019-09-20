@@ -1,0 +1,64 @@
+.bBtn {
+    background-color: #eb4034;
+    color: white;
+}
+
+.bBtn:hover {
+    background-color: #c43329;
+}
+.sBtn {
+    background-color: #2d91fc;
+    color: white;
+}
+.sBtn:hover {
+    background-color: #2078d6;
+}
+.sBtn:disabled {
+    background-color: lightgray;
+}
+.checkBox {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 200px;
+}
+.MuiTypography-body1 {
+    font-size: 14px;
+}
+.row1 {
+    display: flex;
+    flex-direction: row;
+}
+
+.proceedBtn {
+    text-transform: uppercase;
+    font-size: 1.5vw;
+}
+
+.scaled {
+    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7) */
+  }
+  @media screen and (min-width: 1600px){
+    .text-lg {
+        font-size: 30px;
+    }
+    .MuiTypography-body1 {
+        font-size: 20px;
+    }
+    .proceedBtn {
+        font-size: 25px;
+    }
+  }
+
+  @media screen and (max-width: 550px){
+    .MuiTypography-body1 {
+        font-size: 11px;
+    }
+    .proceedBtn {
+        font-size: 10px;
+    }
+    .text-lg {
+        font-size: 17px;
+    }
+    .MuiCardContent-root { 
+        padding: 0px; }
+  }

@@ -1,0 +1,23 @@
+.custom-bg {
+    width: 100%;
+    background-image: url("../../static/tjenerteam2.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cardForm {
+    background-color: #f5f7fa;
+}
+
+.card {
+    overflow-y: auto;
+    height: 100%;
+    float: left;
+}
+
+@media only screen and (max-width: 768px) {
+    .custom-bg {
+      background:none;
+     }
+}

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+.defFont{
+    font-family: Montserrat;
+}
+
+.cardForm {
+    background-color: #f5f7fa;
+}
+
+.welcomeTitle {
+    color: black;
+    /*font-size: 3.2vw;*/
+    font-size: 2.8vw;
+    font-weight: 900;
+    text-align: center;
+}
+
+.subTitle {
+    color: black;
+    /*font-size: 2.5vw;*/
+    font-size: 2.2vw;
+    font-weight: 900;
+    text-align: center;
+}
+
+.jobTitle {
+    font-size: 2vw;
+    font-weight: 900;
+}
+
+.optionBtn {
+    text-transform: lowercase;
+    font-size: 2vw;
+}
+
+.proceedBtn {
+    text-transform: uppercase;
+    font-size: 1.5vw;
+}
+
+.btnSelected {
+    background-color: #09ed74;
+    border: 1px solid black;
+}
+
+.btnSelected:hover {
+    background-color: #00c75d;
+}
+
+.optionBtn:first-letter {
+    text-transform: uppercase;
+}
+
+.submitButton {
+    float: right;
+    font-size: 1.7vw;
+    background-color: #2d91fc;
+    color: white;
+}
+
+.submitButton:hover {
+    background-color: #2078d6;
+
+}
+
+.btn {
+    background-color: #2d91fc;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #2078d6;
+}
+
+.btn:disabled {
+    background-color: lightgray;
+}
+
+.optText {
+    font-size: 2vw;
+}
+
+.scaled {
+    transform: scale(1);
+  }
+
+.underline {
+    border: 0.2px solid lightgray;
+    margin: 20px auto;
+    width: 95%;
+}
+
+@media screen and (max-width: 550px) {
+    .welcomeTitle {
+        font-size: 15px;
+    }
+    .subTitle {
+        font-size: 12px;
+    }
+    .optText {
+        font-size: 10px;
+    }
+    .optionBtn {
+        font-size: 10px;
+    }
+    .proceedBtn {
+        font-size: 10px;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .welcomeTitle {
+        font-size: 35px;
+    }
+    .subTitle {
+        font-size: 30px;
+    }
+    .optText {
+        font-size: 25px;
+    }
+    .optionBtn {
+        font-size: 25px;
+    }
+    .proceedBtn {
+        font-size: 25px;
+    }
+}
+
