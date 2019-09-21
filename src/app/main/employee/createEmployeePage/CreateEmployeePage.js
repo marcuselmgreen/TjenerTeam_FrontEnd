@@ -157,14 +157,8 @@ class CreateEmployeePage extends Component {
 
         return (
             <>
-                <div style={{
-                    width: '100%',
-                    backgroundImage: "url(" + Image + ")",
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat'
-                }} className="flex flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
-                    <Card className="w-full max-w-lg m-16 p-10 md:m-0 ">
+                <div className="flex custom-bg flex-auto flex-shrink-0 sm:p-16 md:flex-row md:p-0">
+                    <Card className="w-full max-w-lg md:m-16 p-8 md:m-0">
 
                         <Stepper ref={this.myRef} activeStep={this.tabSelector()} alternativeLabel>
                             {steps.map(label => (
@@ -174,7 +168,7 @@ class CreateEmployeePage extends Component {
                             ))}
                         </Stepper>
 
-                        <CardContent className="flex flex-col cardForm">
+                        <CardContent className="flex px-8 flex-col cardForm">
 
                             {progressTab === 0 &&
                             <SelectJobs

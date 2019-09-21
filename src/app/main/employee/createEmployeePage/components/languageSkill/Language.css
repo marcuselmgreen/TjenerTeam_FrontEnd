@@ -43,9 +43,6 @@ p, h2 {
     background-color: #e6e6e6;
 }
 
-
-
-
 .language-box-1-text {
     font-size: 15px;
 }
@@ -63,4 +60,71 @@ p, h2 {
     border: 1px solid black;
 }
 
+.scaled {
+    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7) */
+}
 
+.btn {
+    background-color: #2d91fc;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #2078d6;
+}
+
+.btn:disabled {
+    background-color: lightgray;
+}
+
+@media screen and (max-width: 700px){
+    .language-box-1-text {
+        font-size: 10px;
+    }
+    .denmark-icon-big {
+        height: 28px;
+    }
+    .country-icon {
+        height: 15px;
+    }
+    .circle-filled {
+        height: 15px;
+        width: 15px;
+    }
+    .circle-empty {
+        height: 15px;
+        width: 15px;
+    }
+    .language-box-1 {
+        height:  58px;
+    }
+    .language-box-1-clicked {
+        height:  58px;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    .language-box-1-text {
+        font-size: 20px;
+    }
+    .denmark-icon-big {
+        height: 42px;
+    }
+    .country-icon {
+        height: 27px;
+    }
+    .circle-filled {
+        height: 25px;
+        width: 25px;
+    }
+    .circle-empty {
+        height: 25px;
+        width: 25px;
+    }
+    .language-box-1 {
+        height:  87px;
+    }
+    .language-box-1-clicked {
+        height:  87px;
+    }
+}

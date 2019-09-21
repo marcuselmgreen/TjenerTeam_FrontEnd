@@ -4,14 +4,13 @@ p, h2{
     font-family: 'Montserrat', 'sans-serif';
 }
 
-
 .waiter-profile {
-    width: 200px;
+    max-width: 100%;
     height: auto;
 }
 
 .waiter-body {
-    width: 200px;
+    max-width: 100%;
     height: auto;
 }
 
@@ -40,4 +39,61 @@ p, h2{
 
 .backButton:hover {
     background-color: #c43329;
+}
+
+.upload-btn {
+    font-size: 1.5vw;
+}
+
+.price-text {
+    font-size: 1.5rem;
+}
+
+.scaled {
+    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7) */
+}
+
+@media screen and (max-width: 550px){
+    .list-text {
+        font-size: 9px;
+    }
+    .price-text {
+        font-size: 9px;
+    }
+    .text-lg {
+        font-size: 11px;
+    }
+    .upload-btn {
+        font-size: 10px;
+    }
+    .waiter-body {
+        height: 125px;
+    }
+    .waiter-profile {
+        height: 125px;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .waiter-body {
+        height: 200px;
+    }
+    .waiter-profile {
+        height: 200px;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .upload-btn {
+        font-size: 20px;
+    }
+    .text-lg {
+        font-size: 25px;
+    }
+    .price-text {
+        font-size: 22px;
+    }
+    .list-text {
+        font-size: 22px;
+    }
 }

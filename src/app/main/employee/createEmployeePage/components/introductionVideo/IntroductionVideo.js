@@ -1,8 +1,7 @@
 import React from 'react';
+import './IntroductionVideo.css';
 import {Card} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import YouTube from "react-youtube";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 const IntroductionVideo = (props) => {
 
@@ -12,46 +11,52 @@ const IntroductionVideo = (props) => {
             hideSpinner,
             showSpinner
         } = props;
-
-        const opts = {
-            height: '390',
-            width: '640',
-            playerVars: { // https://developers.google.com/youtube/player_parameters
-                autoplay: 1
-            }
-        };
-
-
-        return (
-            <Card className="pl-20 pr-20 pb-52 pt-10">
-                <p className="font-sans mt-10 text-lg text-center">Vi har lavet en kort introduktionsvideo som fortæller om
+              
+    return (
+        <Card className="px-20 pb-52 pt-10">
+            <div>
+                <p className="font-sans mt-5 introduction-title-text text-center">Vi har lavet en kort introduktionsvideo som fortæller om
                     os, hvordan vi arbejder og hvad vi kan tilbyde</p>
-                <p className="font-bold mt-20 text-base text-center">Det er rigtig vigtigt, at du tager dig tid til at se og
+                <p className="font-bold mt-20 introduction-subtitle-text text-center">Det er rigtig vigtigt, at du tager dig tid til at se og
                     høre denne video</p>
+            </div>
 
-                <div className="text-center mt-20">
+            <div
+                className="video mt-5"
+                style={{
+                    position: "relative",
+                    paddingBottom: "56.25%" /* 16:9 */,
+                    paddingTop: 25,
+                    height: 0
+                }}
+            >
+                <iframe
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%"
+                    }}
+                    src={'https://www.youtube.com/embed/hEnr6Ewpu_U?autoplay=1&mute=1'}
+                    allow='autoplay; encrypted-media'
+                    allowFullScreen
+                    title='video'
+                    frameBorder="0"
+                />
+            </div>
 
-                    {showSpinner === true ?
-                    <CircularProgress color="secondary"/>
-                    : null}
-
-                    <YouTube
-                        className="p-8"
-                        videoId="hEnr6Ewpu_U"
-                        opts={opts}
-                        onReady={(e) => hideSpinner(e)}
-                    />
+            <div className="flex mt-10 scaled">
+                <div className="flex-1 mr-2 ">
+                    <Button onClick={moveBackward} className="flex bBtn w-3/4 sm:min-h-60 m-auto "><span className="proceedBtn">Tilbage</span></Button>
                 </div>
-
-                <div className="w-full">
-                    <Button onClick={moveBackward} className="backButton">Tilbage</Button>
-                    <Button onClick={moveForward} className="submitButton">Videre</Button>
+                <div className="flex-1 ml-2">
+                    <Button onClick={moveForward} className="flex sBtn w-3/4 sm:min-h-60 m-auto"><span className="proceedBtn">Videre</span></Button>
                 </div>
-            </Card>
-        );
-
-
-    }
-;
+            </div>
+        </Card>
+    );
+}
+    ;
 
 export default IntroductionVideo;

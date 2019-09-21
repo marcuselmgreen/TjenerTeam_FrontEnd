@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 .defFont{
-    font-family: Montserrat
+    font-family: Montserrat;
 }
 
 .cardForm {
@@ -10,27 +10,33 @@
 
 .welcomeTitle {
     color: black;
-    font-size: 30px;
+    /*font-size: 3.2vw;*/
+    font-size: 2.8vw;
     font-weight: 900;
     text-align: center;
 }
 
 .subTitle {
     color: black;
-    font-size: 20px;
+    /*font-size: 2.5vw;*/
+    font-size: 2.2vw;
     font-weight: 900;
     text-align: center;
 }
 
 .jobTitle {
-    font-size: 20px;
+    font-size: 2vw;
     font-weight: 900;
 }
 
 .optionBtn {
     text-transform: lowercase;
-    font-size: 20px;
+    font-size: 2vw;
+}
 
+.proceedBtn {
+    text-transform: uppercase;
+    font-size: 1.5vw;
 }
 
 .btnSelected {
@@ -48,9 +54,7 @@
 
 .submitButton {
     float: right;
-    padding: 15px 80px;
-    margin-top: 35px;
-    margin-right: 9% ;
+    font-size: 1.7vw;
     background-color: #2d91fc;
     color: white;
 }
@@ -60,23 +64,26 @@
 
 }
 
+.btn {
+    background-color: #2d91fc;
+    color: white;
+}
 
-/*.editProfileIcon {*/
-/*    font-size: 25px;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
+.btn:hover {
+    background-color: #2078d6;
+}
 
-/*}*/
+.btn:disabled {
+    background-color: lightgray;
+}
 
-/*.editProfileText {*/
-/*    font-size: 25px;*/
-/*}*/
+.optText {
+    font-size: 2vw;
+}
 
-/*.descriptionText {*/
-/*    margin: 5px;*/
-/*    font-size: 12px;*/
-/*    font-weight: 800;*/
-/*}*/
+.scaled {
+    transform: scale(1);
+  }
 
 .underline {
     border: 0.2px solid lightgray;
@@ -84,10 +91,38 @@
     width: 95%;
 }
 
-
 @media screen and (max-width: 550px) {
     .welcomeTitle {
         font-size: 15px;
     }
-
+    .subTitle {
+        font-size: 12px;
+    }
+    .optText {
+        font-size: 10px;
+    }
+    .optionBtn {
+        font-size: 10px;
+    }
+    .proceedBtn {
+        font-size: 10px;
+    }
 }
+@media screen and (min-width: 1000px) {
+    .welcomeTitle {
+        font-size: 35px;
+    }
+    .subTitle {
+        font-size: 30px;
+    }
+    .optText {
+        font-size: 25px;
+    }
+    .optionBtn {
+        font-size: 25px;
+    }
+    .proceedBtn {
+        font-size: 25px;
+    }
+}
+
