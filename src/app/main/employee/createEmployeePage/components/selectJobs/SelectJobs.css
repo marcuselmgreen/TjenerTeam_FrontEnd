@@ -11,7 +11,7 @@
 .welcomeTitle {
     color: black;
     /*font-size: 3.2vw;*/
-    font-size: 2.8vw;
+    /*font-size: 2.8vw;*/
     font-weight: 900;
     text-align: center;
 }
@@ -19,24 +19,24 @@
 .subTitle {
     color: black;
     /*font-size: 2.5vw;*/
-    font-size: 2.2vw;
+    /*font-size: 2.2vw;*/
     font-weight: 900;
     text-align: center;
 }
 
 .jobTitle {
-    font-size: 2vw;
+    /*font-size: 2vw;*/
     font-weight: 900;
 }
 
 .optionBtn {
     text-transform: lowercase;
-    font-size: 2vw;
+    /*font-size: 2vw;*/
 }
 
 .proceedBtn {
     text-transform: uppercase;
-    font-size: 1.5vw;
+    /*font-size: 1.5vw;*/
 }
 
 .btnSelected {
@@ -54,7 +54,7 @@
 
 .submitButton {
     float: right;
-    font-size: 1.7vw;
+    /*font-size: 1.7vw;*/
     background-color: #2d91fc;
     color: white;
 }
@@ -77,13 +77,19 @@
     background-color: lightgray;
 }
 
-.optText {
-    font-size: 2vw;
+.checkBox {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 200px;
 }
 
-.scaled {
+.optText {
+    /*font-size: 2vw;*/
+}
+
+/*.scaled {
     transform: scale(1);
-  }
+  }*/
 
 .underline {
     border: 0.2px solid lightgray;
@@ -91,7 +97,7 @@
     width: 95%;
 }
 
-@media screen and (max-width: 550px) {
+/*@media screen and (max-width: 550px) {
     .welcomeTitle {
         font-size: 15px;
     }
@@ -125,4 +131,4 @@
         font-size: 25px;
     }
 }
-
+*/

@@ -44,7 +44,7 @@ p, h2 {
 }
 
 .language-box-1-text {
-    font-size: 15px;
+    /*font-size: 15px;*/
 }
 
 .circle-filled {
@@ -60,9 +60,9 @@ p, h2 {
     border: 1px solid black;
 }
 
-.scaled {
-    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7) */
-}
+/*.scaled {
+    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7)
+}*/
 
 .btn {
     background-color: #2d91fc;
@@ -77,7 +77,7 @@ p, h2 {
     background-color: lightgray;
 }
 
-@media screen and (max-width: 700px){
+/*@media screen and (max-width: 700px){
     .language-box-1-text {
         font-size: 10px;
     }
@@ -127,4 +127,4 @@ p, h2 {
     .language-box-1-clicked {
         height:  87px;
     }
-}
+}*/

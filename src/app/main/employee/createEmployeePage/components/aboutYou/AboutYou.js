@@ -30,7 +30,7 @@ const AboutYou = (props) => {
 
             <div className="flex mb-5 sm:mb-10">
                 <div className="w-full">
-                    <p className="text-lg ">Fortæl os lidt om dig selv</p>
+                    <p className="text-lg">Fortæl os lidt om dig selv</p>
                 </div>
             </div>
 

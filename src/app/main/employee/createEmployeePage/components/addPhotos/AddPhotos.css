@@ -42,25 +42,25 @@ p, h2{
 }
 
 .upload-btn {
-    font-size: 1.5vw;
+    /*font-size: 1.5vw;*/
 }
 
 .price-text {
-    font-size: 1.5rem;
+    /*font-size: 1.5rem;*/
 }
 
-.scaled {
-    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7) */
-}
+/*.scaled {
+    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7) 
+}*/
 
-@media screen and (max-width: 550px){
+/*@media screen and (max-width: 550px){
     .list-text {
         font-size: 9px;
     }
     .price-text {
         font-size: 9px;
     }
-    .text-lg {
+    /*.text-lg {
         font-size: 11px;
     }
     .upload-btn {
@@ -72,9 +72,9 @@ p, h2{
     .waiter-profile {
         height: 125px;
     }
-}
+}/*
 
-@media screen and (min-width: 600px){
+/*@media screen and (min-width: 600px){
     .waiter-body {
         height: 200px;
     }
@@ -87,7 +87,7 @@ p, h2{
     .upload-btn {
         font-size: 20px;
     }
-    .text-lg {
+    /*.text-lg {
         font-size: 25px;
     }
     .price-text {
@@ -96,4 +96,4 @@ p, h2{
     .list-text {
         font-size: 22px;
     }
-}
+}*/

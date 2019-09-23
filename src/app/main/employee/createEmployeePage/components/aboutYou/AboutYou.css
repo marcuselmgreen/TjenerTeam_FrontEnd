@@ -56,15 +56,15 @@ p, h2 {
     height: auto;
 }
 
-.scaled {
-    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7) */
-}
+/*.scaled {
+    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7) 
+}*/
 
-@media screen and (max-width: 768px){
+/*@media screen and (max-width: 768px){
     .car-icon {
         width: 25px;
     }
     .license-text {
         font-size: 2.5vw;
     }
-}
+}*/
