@@ -18,11 +18,11 @@ const WorkPlaces = (props) => {
 
     return (
         <Card className="pb-52 sm:px-8 mt-10 sm:mt-0 flex flex-col">
-            <p className="font-sans mt-10 text-lg mx-5 mb-5">Hvor kan du arbejde henne?</p>
+            <p className="font-sans mt-10 text-md text-center mx-5 mb-5">Hvor kan du arbejde henne?</p>
 
-            <div className="flex flex-row scaled ">
+            <div className="flex flex-row">
 
-                <div className="flex-1 m-8 p-4 checkBox scaled">
+                <div className="flex-1 m-8 p-4 checkBox">
                     <FormGroup>
                         <FormControlLabel
                             className="p-0 m-0 relative"
@@ -60,7 +60,7 @@ const WorkPlaces = (props) => {
                 </div>
             </div>
 
-            <div className="flex flex-row scaled ">
+            <div className="flex flex-row mt-5">
 
                 <div className="flex-1 m-8 p-4 checkBox">
                     <FormGroup>
@@ -102,7 +102,7 @@ const WorkPlaces = (props) => {
             </div>
 
 
-            <div className="flex flex-row scaled">
+            <div className="flex flex-row mt-5">
 
                 <div className="flex-1 m-8 p-4 checkBox">
                     <FormGroup>
@@ -142,7 +142,7 @@ const WorkPlaces = (props) => {
                 </div>
             </div>
 
-            <div className="flex flex-row scaled">
+            <div className="flex flex-row mt-5">
 
                 <div className="flex-1 m-8 p-4 checkBox">
                     <FormGroup>
@@ -181,7 +181,7 @@ const WorkPlaces = (props) => {
                     </FormGroup>
                 </div>
             </div>
-            <div className="flex flex-row scaled">
+            <div className="flex flex-row mt-5">
                 <div className="flex-1 m-8 p-4 checkBox">
                     <FormGroup>
                         <FormControlLabel
@@ -204,12 +204,12 @@ const WorkPlaces = (props) => {
 
                 </div>
             </div>
-            <div className="flex mt-10 scaled">
+            <div className="flex mt-40 sm:mt-30">
                 <div className="flex-1 mr-2 ">
-                    <Button onClick={moveBackward} className="flex bBtn w-3/4 sm:min-h-60 m-auto "><span className="proceedBtn">Tilbage</span></Button>
+                    <Button onClick={moveBackward} className="flex m-auto py-8 px-32 sm:px-56 bBtn "><span className="proceedBtn">Tilbage</span></Button>
                 </div>
                 <div className="flex-1 ml-2">
-                    <Button onClick={moveForward} className="flex sBtn w-3/4 sm:min-h-60 m-auto"><span className="proceedBtn">Videre</span></Button>
+                    <Button onClick={moveForward} className="flex m-auto py-8 px-32 sm:px-56 sBtn"><span className="proceedBtn">Videre</span></Button>
                 </div>
             </div>
         </Card>
