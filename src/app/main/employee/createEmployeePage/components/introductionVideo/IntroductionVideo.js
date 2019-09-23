@@ -15,14 +15,14 @@ const IntroductionVideo = (props) => {
     return (
         <Card className="px-20 pb-52 pt-10">
             <div>
-                <p className="font-sans mt-5 introduction-title-text text-center">Vi har lavet en kort introduktionsvideo som fortæller om
+                <p className="font-sans mt-5 text-lg text-center">Vi har lavet en kort introduktionsvideo som fortæller om
                     os, hvordan vi arbejder og hvad vi kan tilbyde</p>
-                <p className="font-bold mt-20 introduction-subtitle-text text-center">Det er rigtig vigtigt, at du tager dig tid til at se og
+                <p className="font-bold mt-24 text-md text-center">Det er rigtig vigtigt, at du tager dig tid til at se og
                     høre denne video</p>
             </div>
 
             <div
-                className="video mt-5"
+                className="video mt-10"
                 style={{
                     position: "relative",
                     paddingBottom: "56.25%" /* 16:9 */,
@@ -46,12 +46,12 @@ const IntroductionVideo = (props) => {
                 />
             </div>
 
-            <div className="flex mt-10 scaled">
+            <div className="flex mt-40 sm:mt-30">
                 <div className="flex-1 mr-2 ">
-                    <Button onClick={moveBackward} className="flex bBtn w-3/4 sm:min-h-60 m-auto "><span className="proceedBtn">Tilbage</span></Button>
+                    <Button onClick={moveBackward} className="flex m-auto py-8 px-32 sm:px-56 bBtn "><span className="proceedBtn">Tilbage</span></Button>
                 </div>
                 <div className="flex-1 ml-2">
-                    <Button onClick={moveForward} className="flex sBtn w-3/4 sm:min-h-60 m-auto"><span className="proceedBtn">Videre</span></Button>
+                    <Button onClick={moveForward} className="flex m-auto py-8 px-32 sm:px-56 sBtn"><span className="proceedBtn">Videre</span></Button>
                 </div>
             </div>
         </Card>

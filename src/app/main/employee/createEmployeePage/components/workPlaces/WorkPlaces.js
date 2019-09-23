@@ -209,7 +209,7 @@ const WorkPlaces = (props) => {
                     <Button onClick={moveBackward} className="flex m-auto py-8 px-32 sm:px-56 bBtn "><span className="proceedBtn">Tilbage</span></Button>
                 </div>
                 <div className="flex-1 ml-2">
-                    <Button onClick={moveForward} className="flex m-auto py-8 px-32 sm:px-56 sBtn"><span className="proceedBtn">Videre</span></Button>
+                    <Button onClick={moveForward} disabled={selectCities.length < 1} className="flex m-auto py-8 px-32 sm:px-56 sBtn"><span className="proceedBtn">Videre</span></Button>
                 </div>
             </div>
         </Card>

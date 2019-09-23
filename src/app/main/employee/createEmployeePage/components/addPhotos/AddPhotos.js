@@ -18,7 +18,7 @@ const AddPhotos = (props) => {
 
             <div className="flex mb-4">
                 <div className="w-1/2">
-                    <div className="flex justify-center mb-4">
+                    <div className="flex flex-col sm:flex-row justify-center mb-4">
                         <img className="waiter-profile" src={WaiterProfile} alt=""/>
                     </div>
                     <p className="text-center text-lg">Profil</p>
@@ -27,7 +27,7 @@ const AddPhotos = (props) => {
                     </div>
                 </div>
                 <div className="w-1/2">
-                    <div className="flex justify-center mb-4">
+                    <div className="flex flex-col sm:flex-row justify-center mb-4">
                         <img className="waiter-body" src={WaiterBody} alt=""/>
                     </div>
                     <p className="text-center text-lg">Uniform</p>
@@ -39,34 +39,34 @@ const AddPhotos = (props) => {
 
             <div className="flex sm:mb-4">
                 <div className="w-full">
-                    <p className="text-center text-lg p-20">For at kunden har bedst mulighed for at finde den
+                    <p className="text-center text-md p-20">For at kunden har bedst mulighed for at finde den
                         profil, som de søger, er det derfor vigtigt at du fremviser professionale billeder
                     </p>
                 </div>
             </div>
             <div className="flex sm:mb-4">
                 <div className="w-400 w-4/6 m-auto">
-                    <p className="font-bold list-text mb-4">1. Upload profil billede som smilende</p>
-                    <p className="font-bold list-text mb-4">2. Vis skjorte (arbejdstøj)</p>
-                    <p className="font-bold list-text sm:mb-4">3. Det bliver godkendt efterfølgende</p>
+                    <p className="font-bold text-md mb-4">1. Upload profil billede som smilende</p>
+                    <p className="font-bold text-md mb-4">2. Vis skjorte (arbejdstøj)</p>
+                    <p className="font-bold text-md sm:mb-4">3. Det bliver godkendt efterfølgende</p>
                 </div>
             </div>
 
             <div className="flex mb-4">
                 <div className="w-full">
                     <div className="flex justify-center">
-                        <p className="font-sans mt-20 price-text text-center">Hver anden torsdag kan du fået taget billeder
+                        <p className="font-sans mt-20 text-md text-center">Hver anden torsdag kan du fået taget billeder
                             professionelt. Det koster 168,75 kr
                         </p>
                     </div>
                 </div>
             </div>
-            <div className="flex mt-10 scaled">
+            <div className="flex mt-40 sm:mt-30">
                 <div className="flex-1 mr-2 ">
-                    <Button onClick={moveBackward} className="flex bBtn w-3/4 sm:min-h-60 m-auto "><span className="proceedBtn">Tilbage</span></Button>
+                    <Button onClick={moveBackward} className="flex m-auto py-8 px-32 sm:px-56 bBtn "><span className="proceedBtn">Tilbage</span></Button>
                 </div>
                 <div className="flex-1 ml-2">
-                    <Button onClick={moveForward} className="flex sBtn w-3/4 sm:min-h-60 m-auto"><span className="proceedBtn">Videre</span></Button>
+                    <Button onClick={moveForward} className="flex m-auto py-8 px-32 sm:px-56 sBtn"><span className="proceedBtn">Videre</span></Button>
                 </div>
             </div>
         </Card>
