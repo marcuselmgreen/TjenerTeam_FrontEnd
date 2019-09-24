@@ -1,10 +1,10 @@
 .bBtn {
-    background-color: #eb4034;
+    background-color: darkgray;
     color: white;
 }
 
 .bBtn:hover {
-    background-color: #c43329;
+    background-color: lightgray;
 }
 .sBtn {
     background-color: #2d91fc;
@@ -14,7 +14,7 @@
     background-color: #2078d6;
 }
 .sBtn:disabled {
-    background-color: lightgray;
+    background-color: #6fb5ff;
 }
 .checkBox {
     border: 1px solid black;

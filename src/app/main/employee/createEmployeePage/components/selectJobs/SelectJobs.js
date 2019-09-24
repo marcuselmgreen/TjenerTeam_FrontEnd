@@ -25,7 +25,7 @@ const SelectJobs = (props) => {
                 <p className="font-sans sm:mt-10 text-md text-center">Vælg de jobs du er interesseret i</p>
 
                 <div className="flex mt-20">
-                    <div className="flex-1 mr-2 checkBox">
+                    <div className={doesContainsJob('Bartender')  ? 'btnSelected flex-1 mr-2 checkBox' : 'flex-1 mr-2 checkBox'}>
                         <FormGroup>
                             <FormControlLabel
                                 className="relative w-full min-h-56 justify-center"
@@ -43,7 +43,7 @@ const SelectJobs = (props) => {
                         </FormGroup>
                     </div>
 
-                    <div className="flex-1 ml-2 checkBox">
+                    <div className={doesContainsJob('Waiter')  ? 'btnSelected flex-1 ml-2 checkBox' : 'flex-1 ml-2 checkBox'}>
                         <FormGroup>
                             <FormControlLabel
                                 className="relative w-full min-h-56 justify-center"
@@ -63,7 +63,7 @@ const SelectJobs = (props) => {
                 </div>
                 <div className="flex mt-40 sm:mt-30 justify-center sm:justify-end">
                     <div className="flex sm:justify-center sm:w-1/2">
-                        <Button onClick={moveForward} disabled={selectJobs.length < 1} className="btn py-8 px-56"><span className="proceedBtn">Videre</span></Button>
+                        <Button onClick={moveForward} disabled={selectJobs.length < 1} className="sBtn py-8 px-56"><span className="proceedBtn">Videre</span></Button>
                     </div>             
                 </div>
                 </Card>

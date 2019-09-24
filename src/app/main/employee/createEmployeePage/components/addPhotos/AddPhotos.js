@@ -18,8 +18,8 @@ const AddPhotos = (props) => {
 
             <div className="flex mb-4">
                 <div className="w-1/2">
-                    <div className="flex flex-col sm:flex-row justify-center mb-4">
-                        <img className="waiter-profile" src={WaiterProfile} alt=""/>
+                    <div className="flex flex-col items-center mb-4">
+                        <img className="waiter-profile w-full" src={WaiterProfile} alt=""/>
                     </div>
                     <p className="text-center text-lg">Profil</p>
                     <div className="flex justify-center">
@@ -27,8 +27,8 @@ const AddPhotos = (props) => {
                     </div>
                 </div>
                 <div className="w-1/2">
-                    <div className="flex flex-col sm:flex-row justify-center mb-4">
-                        <img className="waiter-body" src={WaiterBody} alt=""/>
+                    <div className="flex flex-col items-center mb-4">
+                        <img className="waiter-body w-full" src={WaiterBody} alt=""/>
                     </div>
                     <p className="text-center text-lg">Uniform</p>
                     <div className="flex justify-center">
@@ -39,16 +39,16 @@ const AddPhotos = (props) => {
 
             <div className="flex sm:mb-4">
                 <div className="w-full">
-                    <p className="text-center text-md p-20">For at kunden har bedst mulighed for at finde den
+                    <p className="text-center text-md p-20 mb-12 sm:mb-4">For at kunden har bedst mulighed for at finde den
                         profil, som de søger, er det derfor vigtigt at du fremviser professionale billeder
                     </p>
                 </div>
             </div>
-            <div className="flex sm:mb-4">
-                <div className="w-400 w-4/6 m-auto">
-                    <p className="font-bold text-md mb-4">1. Upload profil billede som smilende</p>
-                    <p className="font-bold text-md mb-4">2. Vis skjorte (arbejdstøj)</p>
-                    <p className="font-bold text-md sm:mb-4">3. Det bliver godkendt efterfølgende</p>
+            <div className="flex">
+                <div className="container mx-auto">
+                    <p className="font-bold text-xs sm:text-base mb-12">1. Upload profil billede som smilende</p>
+                    <p className="font-bold text-xs sm:text-base mb-12">2. Vis skjorte (arbejdstøj)</p>
+                    <p className="font-bold text-xs sm:text-base mb-12">3. Det bliver godkendt efterfølgende</p>
                 </div>
             </div>
 

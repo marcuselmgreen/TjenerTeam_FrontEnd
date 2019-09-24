@@ -25,25 +25,7 @@ const WorkPlaces = (props) => {
                 <div className="flex-1 m-8 p-4 checkBox">
                     <FormGroup>
                         <FormControlLabel
-                            className="p-0 m-0 relative"
-                            style={{ float: 'right' }}
-                            control={
-                                <Checkbox
-                                    name="copenhagen"
-                                    checked={doesContainCity('copenhagen')}
-                                    onClick={() => cityHandler('copenhagen')}
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="København"
-                        />
-                    </FormGroup>
-                </div>
-                <div className="flex-1 m-8 p-4 checkBox">
-                    <FormGroup>
-                        <FormControlLabel
-                            className="p-0 m-0 relative"
+                            className="p-0 m-0 relative justify-center h-64"
                             style={{ float: 'right' }}
                             control={
                                 <Checkbox
@@ -61,41 +43,61 @@ const WorkPlaces = (props) => {
             </div>
 
             <div className="flex flex-row mt-5">
-
                 <div className="flex-1 m-8 p-4 checkBox">
                     <FormGroup>
                         <FormControlLabel
-                            className="p-0 m-0 relative"
+                            className="p-0 m-0 relative h-64 justify-center "
                             style={{ float: 'right' }}
                             control={
                                 <Checkbox
-                                    name="bornholm"
-                                    checked={doesContainCity('bornholm')}
-                                    onClick={() => cityHandler('bornholm')}
+                                    name="WestZealand"
+                                    checked={doesContainCity('WestZealand')}
+                                    onClick={() => cityHandler('WestZealand')}
                                     value="checkedB"
                                     color="primary"
                                 />
                             }
-                            label="Bornholm"
+                            label="Vestsjælland"
                         />
                     </FormGroup>
                 </div>
-                <div className="flex-1 m-8 p-4 checkBox">
 
+                <div className="flex-1 m-8 p-4 checkBox">
                     <FormGroup>
                         <FormControlLabel
-                            className="p-0 m-0 relative"
+                            className="p-0 m-0 relative h-64 justify-center font-bold"
                             style={{ float: 'right' }}
                             control={
                                 <Checkbox
-                                    name='North Jutland'
-                                    checked={doesContainCity('North Jutland')}
-                                    onChange={() => cityHandler('North Jutland')}
+                                    name=""
+                                    checked={doesContainCity('copenhagen')}
+                                    onClick={() => cityHandler('copenhagen')}
                                     value="checkedB"
                                     color="primary"
                                 />
                             }
-                            label="Nordjylland"
+                            label="København"
+                        />
+                    </FormGroup>
+                </div>
+            </div>
+            <div className="flex flex-row">
+
+                <div className="flex-1 m-8 p-4 checkBox mb-12 mt-5">
+                    <FormGroup>
+                        <FormControlLabel
+                            className="p-0 m-0 relative justify-center h-64"
+                            style={{ float: 'right' }}
+                            control={
+                                <Checkbox
+                                    name="southZealand"
+                                    checked={doesContainCity('southZealand')}
+                                    onClick={() => cityHandler('southZealand')}
+                                    value="checkedB"
+                                    color="primary"
+                                />
+                            }
+                            label="Sydsjælland"
                         />
                     </FormGroup>
                 </div>
@@ -111,14 +113,56 @@ const WorkPlaces = (props) => {
                             style={{ float: 'right' }}
                             control={
                                 <Checkbox
-                                    name="fyn"
-                                    checked={doesContainCity('fyn')}
-                                    onClick={() => cityHandler('fyn')}
+                                    name="North Jutland"
+                                    checked={doesContainCity('bNorth Jutland')}
+                                    onClick={() => cityHandler('North Jutland')}
                                     value="checkedB"
                                     color="primary"
                                 />
                             }
-                            label="Fyn og øerne"
+                            label="Nordjylland"
+                        />
+                    </FormGroup>
+                </div>
+                <div className="flex-1 m-8 p-4 checkBox">
+
+                    <FormGroup>
+                        <FormControlLabel
+                            className="p-0 m-0 relative"
+                            style={{ float: 'right' }}
+                            control={
+                                <Checkbox
+                                    name='East Jutland'
+                                    checked={doesContainCity('East Jutland')}
+                                    onChange={() => cityHandler('East Jutland')}
+                                    value="checkedB"
+                                    color="primary"
+                                />
+                            }
+                            label="Østjylland"
+                        />
+                    </FormGroup>
+                </div>
+            </div>
+
+
+            <div className="flex flex-row mt-5">
+
+                <div className="flex-1 m-8 p-4 checkBox">
+                    <FormGroup>
+                        <FormControlLabel
+                            className="p-0 m-0 relative"
+                            style={{ float: 'right' }}
+                            control={
+                                <Checkbox
+                                    name="West Jutland"
+                                    checked={doesContainCity('West Jutland')}
+                                    onClick={() => cityHandler('West Jutland')}
+                                    value="checkedB"
+                                    color="primary"
+                                />
+                            }
+                            label="Vestjylland"
                         />
                     </FormGroup>
                 </div>
@@ -151,14 +195,14 @@ const WorkPlaces = (props) => {
                             style={{ float: 'right' }}
                             control={
                                 <Checkbox
-                                    name='North Vest Jutland'
-                                    checked={doesContainCity('North Vest Jutland')}
-                                    onClick={() => cityHandler('North Vest Jutland')}
+                                    name='Fyn'
+                                    checked={doesContainCity('Fyn')}
+                                    onClick={() => cityHandler('Fyn')}
                                     value="checkedB"
                                     color="primary"
                                 />
                             }
-                            label="Nordvest Jylland"
+                            label="Fyn og øerne"
                         />
                     </FormGroup>
                 </div>
@@ -169,44 +213,21 @@ const WorkPlaces = (props) => {
                             style={{ float: 'right' }}
                             control={
                                 <Checkbox
-                                    name='East Jutland'
-                                    checked={doesContainCity('East Jutland')}
-                                    onChange={() => cityHandler('East Jutland')}
+                                    name='Bornholm'
+                                    checked={doesContainCity('Bornholm')}
+                                    onChange={() => cityHandler('Bornholm')}
                                     value="checkedB"
                                     color="primary"
                                 />
                             }
-                            label="Østjylland"
+                            label="Bornholm"
                         />
                     </FormGroup>
-                </div>
-            </div>
-            <div className="flex flex-row mt-5">
-                <div className="flex-1 m-8 p-4 checkBox">
-                    <FormGroup>
-                        <FormControlLabel
-                            className="p-0 m-0 relative"
-                            style={{ float: 'right' }}
-                            control={
-                                <Checkbox
-                                    name="otherZealand"
-                                    checked={doesContainCity('otherZealand')}
-                                    onClick={() => cityHandler('otherZealand')}
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                            label="Øst- Midt- Vest- Syd- Sjælland"
-                        />
-                    </FormGroup>
-                </div>
-                <div className="sm:flex-1 sm:m-8 sm:p-4">
-
                 </div>
             </div>
             <div className="flex mt-40 sm:mt-30">
                 <div className="flex-1 mr-2 ">
-                    <Button onClick={moveBackward} className="flex m-auto py-8 px-32 sm:px-56 bBtn "><span className="proceedBtn">Tilbage</span></Button>
+                    <Button onClick={moveBackward} className="flex m-auto py-8 px-32 sm:px-56 bBtn"><span className="proceedBtn">Tilbage</span></Button>
                 </div>
                 <div className="flex-1 ml-2">
                     <Button onClick={moveForward} disabled={selectCities.length < 1} className="flex m-auto py-8 px-32 sm:px-56 sBtn"><span className="proceedBtn">Videre</span></Button>

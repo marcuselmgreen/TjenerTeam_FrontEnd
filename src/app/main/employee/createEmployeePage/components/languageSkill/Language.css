@@ -16,35 +16,28 @@ p, h2 {
 }
 
 .line-breaker {
-    border: 0.3px solid lightgray;
+    border: 0.5px solid lightgray;
     width: 90%;
 }
 
 
 .language-box-1 {
-    height:  70px;
     width: 98%;
     border: 0.5px solid lightgray;
 }
 
 .language-box-1-clicked {
-    height:  70px;
     width: 98%;
     border: 0.5px solid lightgray;
-    background-color: #00c75d;
+    background-color: #EEE8AA;
 }
 
 .language-box-1-clicked:hover {
-  background-color: #00bf59;
+    background-color: rgb(230, 222, 141);
 }
-
 
 .language-box-1:hover {
     background-color: #e6e6e6;
-}
-
-.language-box-1-text {
-    /*font-size: 15px;*/
 }
 
 .circle-filled {
@@ -60,71 +53,21 @@ p, h2 {
     border: 1px solid black;
 }
 
-/*.scaled {
-    transform: scale(1); /* Equal to scaleX(0.7) scaleY(0.7)
-}*/
-
-.btn {
-    background-color: #2d91fc;
+.bBtn {
+    background-color: darkgray;
     color: white;
 }
 
-.btn:hover {
-    background-color: #2078d6;
-}
-
-.btn:disabled {
+.bBtn:hover {
     background-color: lightgray;
 }
-
-/*@media screen and (max-width: 700px){
-    .language-box-1-text {
-        font-size: 10px;
-    }
-    .denmark-icon-big {
-        height: 28px;
-    }
-    .country-icon {
-        height: 15px;
-    }
-    .circle-filled {
-        height: 15px;
-        width: 15px;
-    }
-    .circle-empty {
-        height: 15px;
-        width: 15px;
-    }
-    .language-box-1 {
-        height:  58px;
-    }
-    .language-box-1-clicked {
-        height:  58px;
-    }
+.sBtn {
+    background-color: #2d91fc;
+    color: white;
 }
-
-@media screen and (min-width: 1000px){
-    .language-box-1-text {
-        font-size: 20px;
-    }
-    .denmark-icon-big {
-        height: 42px;
-    }
-    .country-icon {
-        height: 27px;
-    }
-    .circle-filled {
-        height: 25px;
-        width: 25px;
-    }
-    .circle-empty {
-        height: 25px;
-        width: 25px;
-    }
-    .language-box-1 {
-        height:  87px;
-    }
-    .language-box-1-clicked {
-        height:  87px;
-    }
-}*/
+.sBtn:hover {
+    background-color: #2078d6;
+}
+.sBtn:disabled {
+    background-color: #6fb5ff;
+}

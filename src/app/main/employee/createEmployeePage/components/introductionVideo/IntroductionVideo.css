@@ -1,0 +1,14 @@
+.bBtn {
+    background-color: darkgray;
+    color: white;
+}
+.bBtn:hover {
+    background-color: lightgray;
+}
+.sBtn {
+    background-color: #2d91fc;
+    color: white;
+}
+.sBtn:hover {
+    background-color: #2078d6;
+}

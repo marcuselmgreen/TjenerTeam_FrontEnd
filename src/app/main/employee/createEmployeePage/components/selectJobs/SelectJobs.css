@@ -33,41 +33,25 @@
 }
 
 .btnSelected {
-    background-color: #09ed74;
-    border: 1px solid black;
+    background-color: #EEE8AA;
 }
 
 .btnSelected:hover {
-    background-color: #00c75d;
+    background-color: rgb(230, 222, 141);
 }
 
 .optionBtn:first-letter {
     text-transform: uppercase;
 }
-
-.submitButton {
-    float: right;
-    /*font-size: 1.7vw;*/
+.sBtn {
     background-color: #2d91fc;
     color: white;
 }
-
-.submitButton:hover {
-    background-color: #2078d6;
-
-}
-
-.btn {
-    background-color: #2d91fc;
-    color: white;
-}
-
-.btn:hover {
+.sBtn:hover {
     background-color: #2078d6;
 }
-
-.btn:disabled {
-    background-color: lightgray;
+.sBtn:disabled {
+    background-color: #6fb5ff;
 }
 
 .checkBox {

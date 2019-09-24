@@ -4,34 +4,6 @@ p, h2 {
     font-family: 'Montserrat', 'sans-serif';
 }
 
-.submitButton {
-    float: right;
-    padding: 15px 80px;
-    margin-top: 35px;
-    margin-right: 9% ;
-    background-color: #2d91fc;
-    color: white;
-}
-
-.submitButton:hover {
-    background-color: #2078d6;
-
-}
-
-.backButton {
-    float: left;
-    padding: 15px 80px;
-    margin-top: 35px;
-    margin-left: 9% ;
-    background-color: #eb4034;
-    color: white;
-}
-
-.backButton:hover {
-    background-color: #c43329;
-}
-
-
 .drivers-license {
     background-color: #b5b5b5;
     color: black;
@@ -54,4 +26,31 @@ p, h2 {
 .car-icon {
     width: 30px;
     height: auto;
+}
+.bBtn {
+    background-color: darkgray;
+    color: white;
+}
+
+.bBtn:hover {
+    background-color: lightgray;
+}
+.sBtn {
+    background-color: #2d91fc;
+    color: white;
+}
+.sBtn:hover {
+    background-color: #2078d6;
+}
+.checkBox {
+    border: 1px solid #C4C4C4;
+    border-radius: 3px;
+    width: 200px;
+}
+.btnSelected {
+    background-color: #EEE8AA;
+    border-color: black;
+}
+.btnSelected:hover {
+    background-color: rgb(230, 222, 141);
 }

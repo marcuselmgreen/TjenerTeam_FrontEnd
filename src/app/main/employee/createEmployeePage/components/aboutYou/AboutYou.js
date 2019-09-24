@@ -1,7 +1,6 @@
 import React from 'react';
-import {Card, TextField} from "@material-ui/core";
+import {Card, TextField, FormGroup, FormControlLabel, Button, Checkbox} from "@material-ui/core";
 import './AboutYou.css';
-import Button from "@material-ui/core/Button";
 import Car from '../../../../static/car.png';
 import DriverLicense from '../../../../static/driver-license.png';
 
@@ -117,21 +116,53 @@ const AboutYou = (props) => {
                     </p>
                 </div>
             </div>
+            <div className="flex mt-20">
+                    <div className={user.driversLicence ? "btnSelected min-h-64 flex-1 mr-5 checkBox p-4" : "min-h-64 flex-1 mr-5 checkBox p-4"}>
+                        <FormGroup>
+                            <FormControlLabel
+                                className="p-0 m-0 min-h-56 justify-center"
+                                control={
+                                    <Checkbox
+                                        name='Drivers License'
+                                        onClick={() => changeCarHandler(driversLicence, true)}
+                                        color="primary"
+                                    />
+                                }
+                                label={
+                                    <React.Fragment>
+                                        <div class="flex flex-col flex-wrap sm:flex-row sm:flex-no-wrap">
+                                            <p className="text-md my-auto uppercase">Jeg har kørekort</p>
+                                            <img src={DriverLicense} className="ml-5 car-icon w-full" alt=""/>
+                                        </div>
+                                    </React.Fragment>
+                                }
+                            />
+                        </FormGroup>
+                    </div>
 
-            <div className="flex">
-                <div className="flex-1 mr-5">
-                    <Button variant="contained" onClick={() => changeCarHandler(driversLicence, true)}
-                            className={user.driversLicence ? "drivers-license-clicked text-md w-full min-h-80" : "drivers-license text-md w-full min-h-80"}>Jeg
-                        har kørekort <img src={DriverLicense} className="ml-5 car-icon" alt=""/></Button>
-
+                    <div className={user.ownCar ? "btnSelected min-h-64 flex-1 ml-5 checkBox p-4" : "min-h-64 flex-1 ml-5 checkBox p-4"}>
+                        <FormGroup>
+                            <FormControlLabel
+                                className="p-0 m-0 min-h-56 justify-center"
+                                control={
+                                    <Checkbox
+                                        name='Car'
+                                        onClick={() => changeCarHandler(ownCar, true)}
+                                        color="primary"
+                                    />
+                                }
+                                label={
+                                    <React.Fragment>
+                                        <div class="flex flex-col flex-wrap sm:flex-row sm:flex-no-wrap">
+                                            <p className="text-md my-auto uppercase">Jeg har egen bil</p>
+                                            <img src={Car} className="ml-5 car-icon w-full" alt=""/>
+                                        </div>
+                                    </React.Fragment>
+                                }
+                            />
+                        </FormGroup>
+                    </div>
                 </div>
-
-                <div className="flex-1 ml-5">
-                    <Button variant="contained" onClick={() => changeCarHandler(ownCar, true)}
-                            className={user.ownCar ? "drivers-license-clicked text-md w-full min-h-80" : "drivers-license text-md w-full min-h-80"}>Jeg
-                        har egen bil <img src={Car} className="ml-5 car-icon" alt=""/></Button>
-                </div>
-            </div>
 
             <div className="flex mt-40 sm:mt-30">
                 <div className="flex-1 mr-2 ">
