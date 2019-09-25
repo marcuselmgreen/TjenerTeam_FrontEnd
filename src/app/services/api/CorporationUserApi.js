@@ -9,8 +9,8 @@ export function createCorporationUser(user){
 }
 
 export function deleteCorporationUser(user){
-    let id = user.id;
-    return axios.delete(setup.apiEndPoint + '/corporation_users' + id)
+    let id = user._id;
+    return axios.delete(setup.apiEndPoint + '/corporation_users/' + id, user)
         .then(handleResponse)
         .catch(handleError)
 }

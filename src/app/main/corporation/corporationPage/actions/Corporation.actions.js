@@ -3,7 +3,7 @@ import * as corporationApi from '../../../../services/api/CorporationUserApi';
 import * as bookingApi from '../../../../services/api/BookingsApi'
 import {showMessage} from "../../../../store/actions/fuse";
 import snackbarConfig from "../../../../config/snackbarConfig";
-import {setUserData} from "../../../../auth/store/actions";
+import {setUserData, logoutUser} from "../../../../auth/store/actions";
 
 export function createCorporationUserSuccess(user) {
     return {
@@ -58,10 +58,19 @@ export function deleteCorporationUser(user) {
     return function(dispatch){
         return corporationApi.deleteCorporationUser(user)
             .then(user => {
-                dispatch(deleteCorporationSuccess(user))
+                dispatch(deleteCorporationSuccess(user));
+                dispatch(logoutUser(user));
+                dispatch(showMessage({
+                    message: 'Virksomhedsprofil slettet',
+                    ...snackbarConfig.successMessage
+                }));
             })
             .catch(error => {
-                dispatch(deleteCorporationFailed(error))
+                dispatch(showMessage({
+                    message: 'Virksomhedsprofilen kunne ikke slettes',
+                    ...snackbarConfig.errorMessage
+                }));
+                dispatch(deleteCorporationFailed(error));
             })
     }
 }
