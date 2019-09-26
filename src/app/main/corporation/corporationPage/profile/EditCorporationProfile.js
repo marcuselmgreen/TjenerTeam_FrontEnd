@@ -12,6 +12,12 @@ import {EditCorparationFormValidator} from "../../../validator/forms/EditCorpora
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Paper from "@material-ui/core/Paper";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 
 class EditCorporationProfile extends Component {
     constructor(props) {
@@ -91,8 +97,16 @@ class EditCorporationProfile extends Component {
         this.setState({state: this.state});
     };
 
-    render() {
+    userPrompt = () => {
+        const password = prompt("Er du sikker på at du vil slette din virksomhedsprofil? Skriv slet for at bekræfte", "");
+        if (password == "slet"){
+            this.deleteHandler();
+        }else {
+            alert("Din profil blev ikke slettet");
+        }
+    }
 
+    render() {
         const {corporation} = this.state;
         let validation = this.submitted ? this.validator.validate(this.state.corporation) : this.state.corporation.validation;
 
@@ -106,7 +120,7 @@ class EditCorporationProfile extends Component {
                         <Tab label={<span><Icon className="float-left" fontSize="small">info</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Firmaoplysninger</span></span>}/>
                         <Tab label={<span><Icon className="float-left" fontSize="small">payment</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Betalingsoplysninger</span></span>}/>
                         <Tab label={<span><Icon className="float-left" fontSize="small">lock</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Skift kodeord</span></span>}/>
-                        <Tab onClick={this.deleteHandler} label={<span><Icon className="float-left" fontSize="small">delete</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Slet profil</span></span>}/>
+                        <Tab onClick={this.userPrompt} label={<span><Icon className="float-left" fontSize="small">delete</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Slet profil</span></span>}/>
                     </Tabs>
                 </Paper>
                 <div style={{
