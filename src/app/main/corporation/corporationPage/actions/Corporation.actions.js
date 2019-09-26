@@ -3,7 +3,7 @@ import * as corporationApi from '../../../../services/api/CorporationUserApi';
 import * as bookingApi from '../../../../services/api/BookingsApi'
 import {showMessage} from "../../../../store/actions/fuse";
 import snackbarConfig from "../../../../config/snackbarConfig";
-import {setUserData, logoutUser} from "../../../../auth/store/actions";
+import {setUserData, logoutUser, logout} from "../../../../auth/store/actions";
 
 export function createCorporationUserSuccess(user) {
     return {
@@ -60,6 +60,7 @@ export function deleteCorporationUser(user) {
             .then(user => {
                 dispatch(deleteCorporationSuccess(user));
                 dispatch(logoutUser(user));
+                dispatch(logout(user));
                 dispatch(showMessage({
                     message: 'Virksomhedsprofil slettet',
                     ...snackbarConfig.successMessage

@@ -6,7 +6,6 @@ import {bindActionCreators} from "redux";
 import EditCorporationProfileForm from "./EditCorporationProfileForm";
 import * as GlobalPaths from "../../../../GlobalPaths";
 import * as corporationUser from "../actions/Corporation.actions";
-import * as userActions from "src/app/main/corporation/login/actions/user.actions"
 import FormValidator from "../../../validator/FormValidator";
 import AppHeader from "../../toolbar/AppHeaderCorp";
 import {EditCorparationFormValidator} from "../../../validator/forms/EditCorporationFormValidator";
@@ -92,10 +91,6 @@ class EditCorporationProfile extends Component {
         this.setState({state: this.state});
     };
 
-    logoutHandler = () => {
-        this.props.actions.logo
-    }
-
     render() {
 
         const {corporation} = this.state;
@@ -111,7 +106,7 @@ class EditCorporationProfile extends Component {
                         <Tab label={<span><Icon className="float-left" fontSize="small">info</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Firmaoplysninger</span></span>}/>
                         <Tab label={<span><Icon className="float-left" fontSize="small">payment</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Betalingsoplysninger</span></span>}/>
                         <Tab label={<span><Icon className="float-left" fontSize="small">lock</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Skift kodeord</span></span>}/>
-                        <Tab label={<span><Icon className="float-left" fontSize="small">delete</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}><a onClick={this.deleteHandler}>Slet profil</a></span></span>}/>
+                        <Tab onClick={this.deleteHandler} label={<span><Icon className="float-left" fontSize="small">delete</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Slet profil</span></span>}/>
                     </Tabs>
                 </Paper>
                 <div style={{
@@ -149,7 +144,6 @@ function mapDispatchToProps(dispatch) {
         actions: {
             updateUser: bindActionCreators(corporationUser.updateCorporationUser, dispatch),
             deleteUser: bindActionCreators(corporationUser.deleteCorporationUser, dispatch),
-            logUserOut: bindActionCreators(userActions.logout),
         }
     }
 }
