@@ -17,8 +17,9 @@ const EditCorporationProfileForm = (props) => {
     } = props;
 
     return (
-        <Card className="p-24 max-w-lg" style={{backgroundColor: 'rgba(0, 0, 0, 0)', boxShadow: 'none'}}>
 
+        <Card className="p-24 max-w-lg" style={{backgroundColor: 'rgba(0, 0, 0, 0)', boxShadow: 'none'}}>
+        <h1 className="font-sans text-4xl text-gray-800 mt-20 text-center mb-40">Firmaoplysninger</h1>
                 <>
                     <div className="w-full">
 
