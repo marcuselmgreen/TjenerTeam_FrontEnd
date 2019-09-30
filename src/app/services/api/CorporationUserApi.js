@@ -21,3 +21,10 @@ export function updateCorporationUser(user){
         .then(handleResponse)
         .catch(handleError)
 }
+
+export function updateCorporationUserPassword(user){
+    let id = user._id;
+    return axios.put(setup.apiEndPoint + '/corporation_users/changePassword/' + id, user)
+        .then(handleResponse)
+        .catch(handleError)
+}

@@ -16,11 +16,13 @@ import Paper from "@material-ui/core/Paper";
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import {TextField} from "@material-ui/core";
+import { LoginFormValidator } from 'app/main/validator/forms/LoginFormValidator';
 
 class EditCorporationProfile extends Component {
     constructor(props) {
         super(props);
         this.validator = new FormValidator(EditCorparationFormValidator);
+        this.passwordValidator = new FormValidator(LoginFormValidator);
         this.submitted = false;
         this.state = {
             displayModal: false,
@@ -42,7 +44,9 @@ class EditCorporationProfile extends Component {
                 ean: "",
                 gdpr: "",
                 role: "",
-                validation: this.validator.valid()
+                password: "",
+                validation: this.validator.valid(),
+                passwordValidation: this.passwordValidator.valid()
             }
         }
     }
@@ -89,6 +93,18 @@ class EditCorporationProfile extends Component {
         this.setState({state: this.state});
     };
 
+    changePasswordHandler = () => {
+        let corp = this.state.corporation;
+        const validation = this.passwordValidator.validate(corp);
+        const tempCorporation = {...this.state.corporation};
+        tempCorporation.validation = validation;
+        this.submitted = true;
+        if (validation.isValid){
+            this.props.actions.changeUserPassword(this.state.corporation);
+        }
+        this.setState({state: this.state});
+    }
+
     displayModalHandler = () => {
         this.setState({displayModal: !this.state.displayModal});
     }
@@ -110,7 +126,8 @@ class EditCorporationProfile extends Component {
     render() {
         const {corporation, displayModal, confirmation, confirmationFail, value } = this.state;
         let validation = this.submitted ? this.validator.validate(this.state.corporation) : this.state.corporation.validation;
-        
+        let passwordValidation = this.submitted ? this.passwordValidator.validate(this.state.corporation) : this.state.corporation.passwordValidation;
+
         return (
             <>
                 <AppHeader
@@ -183,6 +200,10 @@ class EditCorporationProfile extends Component {
                             />}
                             {value === 2 &&
                             <ChangePassword 
+                                corporationUser={corporation}
+                                changePasswordHandler={this.changePasswordHandler}
+                                validation={passwordValidation}
+                                changeHandler={this.changeHandler}
                                 />}
                         </CardContent>
                     </Card>
@@ -203,6 +224,7 @@ function mapDispatchToProps(dispatch) {
         actions: {
             updateUser: bindActionCreators(corporationUser.updateCorporationUser, dispatch),
             deleteUser: bindActionCreators(corporationUser.deleteCorporationUser, dispatch),
+            changeUserPassword: bindActionCreators(corporationUser.changePassword, dispatch),
         }
     }
 }
