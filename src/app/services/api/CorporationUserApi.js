@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {handleError, handleResponse} from './ApiUtils';
 import setup from "../../config/setup";
+import jwtService from 'app/services/jwtService';
 
 export function createCorporationUser(user){
     return axios.post(setup.apiEndPoint + '/corporation_users', user)
@@ -24,7 +25,7 @@ export function updateCorporationUser(user){
 
 export function updateCorporationUserPassword(user){
     let id = user._id;
-    return axios.put(setup.apiEndPoint + '/corporation_users/changePassword/' + id, user)
+    return axios.put(setup.apiEndPoint + '/corporation_users/' + id, user)
         .then(handleResponse)
         .catch(handleError)
 }

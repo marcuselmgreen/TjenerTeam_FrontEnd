@@ -4,7 +4,7 @@ import * as bookingApi from '../../../../services/api/BookingsApi'
 import {showMessage} from "../../../../store/actions/fuse";
 import snackbarConfig from "../../../../config/snackbarConfig";
 import {setUserData, logoutUser, logout} from "../../../../auth/store/actions";
-import Axios from 'axios';
+import jwtService from 'app/services/jwtService';
 
 export function createCorporationUserSuccess(user) {
     return {
@@ -162,25 +162,25 @@ export function createCorporationAndBooking(Corporation, bookings){
     }
 }
 
-export function changePassword(user){
-    return function(dispatch){ 
-    return corporationApi.updateCorporationUserPassword(user)
-    .then(user => {
-        dispatch(setUserData(user));
-        dispatch(updateCorporationSuccess(user));
-        dispatch(showMessage({
-            message: 'Adgangskode opdateret',
-            ...snackbarConfig.successMessage
-        }));
-    })
-    .catch(error => {
-        dispatch(showMessage({
-            message: 'Noget gik galt ved opdateringen af kodeordet',
-            ...snackbarConfig.errorMessage
-        }));
-        dispatch(updateCorporationFailed(error))
-    })
-}
+export function changePassword(user) {
+    return function (dispatch) {
+        return corporationApi.updateCorporationUserPassword(user)
+            .then(user => {
+                dispatch(setUserData(user));
+                dispatch(updateCorporationSuccess(user));
+                dispatch(showMessage({
+                    message: 'Adgangskode opdateret',
+                    ...snackbarConfig.successMessage
+                }));
+            })
+            .catch(error => {
+                dispatch(showMessage({
+                    message: 'Noget gik galt ved opdateringen af kodeordet',
+                    ...snackbarConfig.errorMessage
+                }));
+                dispatch(updateCorporationFailed(error))
+            })
+    }
 }
 
 

@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, Card, TextField } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { green } from "@material-ui/core/colors";
 
-export class ChangePassword extends Component {
-    render() {
-        const {
+const ChangePassword = (props) => {
+        let {
             corporationUser,
             changePasswordHandler,
             validation,
-            changeHandler,
-            password = corporationUser.password,
-        } = this.props;
+            changeHandler
+        } = props;
     
         return (
             <Card className="p-24 max-w-lg" style={{ backgroundColor: 'rgba(0, 0, 0, 0)', boxShadow: 'none' }}>
@@ -20,10 +18,12 @@ export class ChangePassword extends Component {
                     <div className="flex flex-wrap sm:my-2">
                         <div className="flex justify-center p-2 w-full">
                             <TextField
-                                name="oldPassword"
+                                name="password"
                                 label="Indtast dit gamle kodeord"
                                 helperText={<span style={{ color: 'red' }}>{validation.password.message}</span>}
                                 className="w-2/3"
+                                value={corporationUser.password}
+                                onChange={changeHandler}
                                 variant="outlined"
                             />
                         </div>
@@ -33,6 +33,8 @@ export class ChangePassword extends Component {
                                 label="Indtast dit nye kodeord"
                                 helperText={<span style={{ color: 'red' }}>{validation.password.message}</span>}
                                 className="w-2/3"
+                                value={corporationUser.newPassword}
+                                onChange={changeHandler}
                                 variant="outlined"
                             />
                         </div>
@@ -42,6 +44,8 @@ export class ChangePassword extends Component {
                                 label="Bekræft dit nye kodeord"
                                 helperText={<span style={{ color: 'red' }}>{validation.password.message}</span>}
                                 className="w-2/3"
+                                value={corporationUser.confirmNewPassword}
+                                onChange={changeHandler}
                                 variant="outlined"
                             />
                         </div>
@@ -60,7 +64,6 @@ export class ChangePassword extends Component {
             </Card>
         )
     }
-}
 
 const SubmitButton = withStyles(theme => ({
     root: {

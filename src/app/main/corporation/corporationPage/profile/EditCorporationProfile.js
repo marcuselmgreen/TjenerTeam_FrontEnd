@@ -26,8 +26,6 @@ class EditCorporationProfile extends Component {
         this.submitted = false;
         this.state = {
             displayModal: false,
-            confirmation: "",
-            confirmationFail : "",
             value: 0,
             corporation: {
                 _id: "",
@@ -45,19 +43,21 @@ class EditCorporationProfile extends Component {
                 gdpr: "",
                 role: "",
                 password: "",
+                newPassword: "",
+                confirmNewPassword: "",
+                confirmation: "",
+                confirmationFail : "",
                 validation: this.validator.valid(),
                 passwordValidation: this.passwordValidator.valid()
-            }
+            },
+            selectedTab: 0
         }
     }
 
-    changeHandler = (e, value) => {
-        
-        let tempState = {...this.state.corporation, ...this.state.confirmation};
+    changeHandler = (e) => {
+        let tempState = {...this.state.corporation};
         tempState[e.target.name] = e.target.value;
         this.setState({corporation: tempState})
-        this.setState({confirmation: e.target.value})
-        this.setState({value});
     };
 
     componentDidMount() {
@@ -96,11 +96,12 @@ class EditCorporationProfile extends Component {
     changePasswordHandler = () => {
         let corp = this.state.corporation;
         const validation = this.passwordValidator.validate(corp);
-        const tempCorporation = {...this.state.corporation};
+        const tempCorporation = {...corp};
         tempCorporation.validation = validation;
         this.submitted = true;
-        if (validation.isValid){
-            this.props.actions.changeUserPassword(this.state.corporation);
+        if (validation.isValid && corp.newPassword === corp.confirmNewPassword){
+            corp.password = corp.confirmNewPassword;
+            this.props.actions.changeUserPassword(corp);
         }
         this.setState({state: this.state});
     }
@@ -111,7 +112,7 @@ class EditCorporationProfile extends Component {
 
     deleteHandler = () => { 
         let corp = this.state.corporation;
-        const confirmation = this.state.confirmation;
+        const confirmation = this.state.corporation.confirmation;
         const validation = this.validator.validate(corp);
         const tempCorporation = {...this.state.corporation};
         tempCorporation.validation = validation;
@@ -123,10 +124,15 @@ class EditCorporationProfile extends Component {
         this.setState({state: this.state});
     };
 
+    changeTab = (e, tab) => {
+        this.setState({selectedTab: tab})
+    };
+
     render() {
-        const {corporation, displayModal, confirmation, confirmationFail, value } = this.state;
+        const { corporation, displayModal, selectedTab } = this.state;
         let validation = this.submitted ? this.validator.validate(this.state.corporation) : this.state.corporation.validation;
         let passwordValidation = this.submitted ? this.passwordValidator.validate(this.state.corporation) : this.state.corporation.passwordValidation;
+        let corporationUser = corporation;
 
         return (
             <>
@@ -134,7 +140,7 @@ class EditCorporationProfile extends Component {
                     changePage={this.changePage}
                 />
                 <Paper style={{backgroundColor: '#ffffff'}} square>
-                    <Tabs onChange={this.changeHandler} style={{overflowY: "auto"}} value={value} indicatorColor="primary">
+                    <Tabs style={{overflowY: "auto"}} value={selectedTab} indicatorColor="primary" onChange={this.changeTab}>
                         <Tab label={<span><Icon className="float-left" fontSize="small">info</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Firmaoplysninger</span></span>}/>
                         <Tab label={<span><Icon className="float-left" fontSize="small">payment</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Betalingsoplysninger</span></span>}/>
                         <Tab label={<span><Icon className="float-left" fontSize="small">lock</Icon><span className="ml-2 float-left" style={{fontSize: '12px'}}>Skift kodeord</span></span>}/>
@@ -149,9 +155,9 @@ class EditCorporationProfile extends Component {
                                     <div>
                                         <TextField
                                             name="confirmation"
-                                            value={confirmation}
+                                            value={corporation.confirmation}
                                             label="Bekræftelse"
-                                            helperText={<span style={{color: 'red'}}>{confirmationFail}</span>}
+                                            helperText={<span style={{color: 'red'}}>{corporation.confirmationFail}</span>}
                                             className="w-full"
                                             variant="outlined"
                                             onChange={this.changeHandler}
@@ -191,20 +197,20 @@ class EditCorporationProfile extends Component {
                 }} className="flex flex-col flex-auto flex-shrink-0 p-16 md:flex-row md:p-0">
                     <Card className="w-full max-w-lg mx-auto m-16 md:m-0" square>
                         <CardContent className="flex flex-col items-center ">
-                            {value === 0 &&
+                            {selectedTab === 0 &&
                             <EditCorporationProfileForm 
                                 corporationUser={corporation}
                                 submitHandler={this.submitHandler}
                                 changeHandler={this.changeHandler}
                                 validation={validation}
                             />}
-                            {value === 2 &&
+                            {selectedTab === 2 &&
                             <ChangePassword 
-                                corporationUser={corporation}
+                                corporationUser={corporationUser}
                                 changePasswordHandler={this.changePasswordHandler}
                                 validation={passwordValidation}
                                 changeHandler={this.changeHandler}
-                                />}
+                            />}
                         </CardContent>
                     </Card>
                 </div>

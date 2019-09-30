@@ -74,7 +74,6 @@ class jwtService extends FuseUtils.EventEmitter {
         });
     };
 
-
     signInWithToken = () => {
         return new Promise((resolve, reject) => {
             axios.get(setup.apiAuthEndpoint + '/auth/access-token', {
