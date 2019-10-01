@@ -5,10 +5,10 @@ import { green } from "@material-ui/core/colors";
 
 const ChangePassword = (props) => {
         let {
-            corporationUser,
             changePasswordHandler,
-            validation,
-            changeHandler
+            //validation,
+            changeHandler,
+            password
         } = props;
     
         return (
@@ -18,11 +18,11 @@ const ChangePassword = (props) => {
                     <div className="flex flex-wrap sm:my-2">
                         <div className="flex justify-center p-2 w-full">
                             <TextField
-                                name="password"
+                                name="oldPassword"
                                 label="Indtast dit gamle kodeord"
-                                helperText={<span style={{ color: 'red' }}>{validation.password.message}</span>}
+                                helperText={<span style={{ color: 'red' }}>{}</span>}
                                 className="w-2/3"
-                                value={corporationUser.password}
+                                value={password.oldPassword}
                                 onChange={changeHandler}
                                 variant="outlined"
                             />
@@ -31,9 +31,9 @@ const ChangePassword = (props) => {
                             <TextField
                                 name="newPassword"
                                 label="Indtast dit nye kodeord"
-                                helperText={<span style={{ color: 'red' }}>{validation.password.message}</span>}
+                                helperText={<span style={{ color: 'red' }}>{}</span>}
                                 className="w-2/3"
-                                value={corporationUser.newPassword}
+                                value={password.newPassword}
                                 onChange={changeHandler}
                                 variant="outlined"
                             />
@@ -42,9 +42,9 @@ const ChangePassword = (props) => {
                             <TextField
                                 name="confirmNewPassword"
                                 label="Bekræft dit nye kodeord"
-                                helperText={<span style={{ color: 'red' }}>{validation.password.message}</span>}
+                                helperText={<span style={{ color: 'red' }}>{}</span>}
                                 className="w-2/3"
-                                value={corporationUser.confirmNewPassword}
+                                value={password.confirmNewPassword}
                                 onChange={changeHandler}
                                 variant="outlined"
                             />

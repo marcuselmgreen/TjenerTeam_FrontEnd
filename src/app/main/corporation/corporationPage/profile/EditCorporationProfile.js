@@ -25,6 +25,12 @@ class EditCorporationProfile extends Component {
         this.passwordValidator = new FormValidator(LoginFormValidator);
         this.submitted = false;
         this.state = {
+            userConfirmation: "",
+            password: {
+                oldPassword: "",
+                newPassword: "",
+                confirmNewPassword: "",
+            },
             displayModal: false,
             value: 0,
             corporation: {
@@ -42,22 +48,20 @@ class EditCorporationProfile extends Component {
                 ean: "",
                 gdpr: "",
                 role: "",
-                password: "",
-                newPassword: "",
-                confirmNewPassword: "",
-                confirmation: "",
-                confirmationFail : "",
                 validation: this.validator.valid(),
-                passwordValidation: this.passwordValidator.valid()
             },
             selectedTab: 0
         }
     }
 
     changeHandler = (e) => {
-        let tempState = {...this.state.corporation};
+        let tempState = {...this.state.corporation, ...this.state.password};
         tempState[e.target.name] = e.target.value;
-        this.setState({corporation: tempState})
+        this.setState({
+            corporation: tempState,
+            password: tempState,
+            userConfirmation: e.target.value
+        })
     };
 
     componentDidMount() {
@@ -95,14 +99,14 @@ class EditCorporationProfile extends Component {
 
     changePasswordHandler = () => {
         let corp = this.state.corporation;
-        const validation = this.passwordValidator.validate(corp);
-        const tempCorporation = {...corp};
-        tempCorporation.validation = validation;
+        //const validation = this.passwordValidator.validate(corp);
+        //const tempCorporation = {...corp};
+        let password = this.state.password;
+        //tempCorporation.validation = validation;
         this.submitted = true;
-        if (validation.isValid && corp.newPassword === corp.confirmNewPassword){
-            corp.password = corp.confirmNewPassword;
-            this.props.actions.changeUserPassword(corp);
-        }
+        //if (validation.isValid){
+            this.props.actions.changeUserPassword(corp, password);
+        //}
         this.setState({state: this.state});
     }
 
@@ -112,15 +116,14 @@ class EditCorporationProfile extends Component {
 
     deleteHandler = () => { 
         let corp = this.state.corporation;
-        const confirmation = this.state.corporation.confirmation;
         const validation = this.validator.validate(corp);
         const tempCorporation = {...this.state.corporation};
+        const userConfirmation = this.state.userConfirmation;
         tempCorporation.validation = validation;
         this.submitted = true;
-        if (validation.isValid && confirmation === "slet") {
-            this.props.actions.deleteUser(this.state.corporation);
+        if (validation.isValid) {
+            this.props.actions.deleteUser(this.state.corporation, userConfirmation);
         }
-        this.setState({confirmationFail: "Prøv igen"});
         this.setState({state: this.state});
     };
 
@@ -129,10 +132,11 @@ class EditCorporationProfile extends Component {
     };
 
     render() {
-        const { corporation, displayModal, selectedTab } = this.state;
+        const { corporation, displayModal, selectedTab, userConfirmation, password } = this.state;
         let validation = this.submitted ? this.validator.validate(this.state.corporation) : this.state.corporation.validation;
-        let passwordValidation = this.submitted ? this.passwordValidator.validate(this.state.corporation) : this.state.corporation.passwordValidation;
+        //let passwordValidation = this.submitted ? this.passwordValidator.validate(this.state.corporation) : this.state.corporation.passwordValidation;
         let corporationUser = corporation;
+        let userPassword = password;
 
         return (
             <>
@@ -155,12 +159,12 @@ class EditCorporationProfile extends Component {
                                     <div>
                                         <TextField
                                             name="confirmation"
-                                            value={corporation.confirmation}
                                             label="Bekræftelse"
-                                            helperText={<span style={{color: 'red'}}>{corporation.confirmationFail}</span>}
+                                            helperText={<span style={{color: 'red'}}>{}</span>}
                                             className="w-full"
                                             variant="outlined"
                                             onChange={this.changeHandler}
+                                            value={userConfirmation}
                                         />
                                     </div>
                                     <div className="flex flex-row my-2 ">
@@ -206,10 +210,10 @@ class EditCorporationProfile extends Component {
                             />}
                             {selectedTab === 2 &&
                             <ChangePassword 
-                                corporationUser={corporationUser}
                                 changePasswordHandler={this.changePasswordHandler}
-                                validation={passwordValidation}
+                                /*validation={passwordValidation}*/
                                 changeHandler={this.changeHandler}
+                                password={userPassword}
                             />}
                         </CardContent>
                     </Card>

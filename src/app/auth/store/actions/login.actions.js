@@ -45,7 +45,7 @@ export function setSpinner() {
 }
 
 
-export function setBearerTokenOnAxis(accessToken) {
+export function     setBearerTokenOnAxis(accessToken) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
 }
 

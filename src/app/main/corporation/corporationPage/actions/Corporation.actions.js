@@ -55,26 +55,38 @@ export function deleteCorporationFailed(error) {
     }
 }
 
-export function deleteCorporationUser(user) {
-    return function(dispatch){
-        return corporationApi.deleteCorporationUser(user)
-            .then(user => {
-                dispatch(deleteCorporationSuccess(user));
-                dispatch(logoutUser(user));
-                dispatch(logout(user));
-                dispatch(showMessage({
-                    message: 'Virksomhedsprofil slettet',
-                    ...snackbarConfig.successMessage
-                }));
-            })
-            .catch(error => {
-                dispatch(showMessage({
-                    message: 'Virksomhedsprofilen kunne ikke slettes',
-                    ...snackbarConfig.errorMessage
-                }));
-                dispatch(deleteCorporationFailed(error));
-            })
+export function deleteCorporationUser(user, userInput) {
+    if (userInput === "slet") {
+        return function (dispatch) {
+            return corporationApi.deleteCorporationUser(user)
+
+                .then(user => {
+
+                    dispatch(deleteCorporationSuccess(user));
+                    dispatch(logoutUser(user));
+                    dispatch(logout(user));
+                    dispatch(showMessage({
+                        message: 'Virksomhedsprofil slettet',
+                        ...snackbarConfig.successMessage
+                    }));
+
+                })
+                .catch(error => {
+                    dispatch(showMessage({
+                        message: 'Virksomhedsprofilen kunne ikke slettes',
+                        ...snackbarConfig.errorMessage
+                    }));
+                    dispatch(deleteCorporationFailed(error));
+                })
+        }
     }
+    return function (dispatch) {
+        dispatch(showMessage({
+            message: 'Tast slet for at bekræfte',
+            ...snackbarConfig.errorMessage
+        }));
+    }
+    
 }
 
 
@@ -162,9 +174,9 @@ export function createCorporationAndBooking(Corporation, bookings){
     }
 }
 
-export function changePassword(user) {
+export function changePassword(user, password) {
     return function (dispatch) {
-        return corporationApi.updateCorporationUserPassword(user)
+        return corporationApi.updateCorporationUserPassword(user, password)
             .then(user => {
                 dispatch(setUserData(user));
                 dispatch(updateCorporationSuccess(user));
