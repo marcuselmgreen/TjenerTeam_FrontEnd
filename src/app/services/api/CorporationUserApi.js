@@ -23,12 +23,14 @@ export function updateCorporationUser(user){
 }
 
 export function updateCorporationUserPassword(user, password){
-    let id = user._id;
+    /*let id = user._id;
     let oldPassword = user._password;
     if (oldPassword === "123") {
-        user._password = "1234";
-        return axios.put(setup.apiEndPoint + '/corporation_users/' + id, user)
+        user._password = "1234";*/
+
+        //Giver fejl
+        return axios.put(setup.apiEndPoint + '/corporation_users/changePassword')
             .then(handleResponse)
             .catch(handleError)
-    }
+    //}
 }
