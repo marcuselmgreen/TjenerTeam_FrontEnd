@@ -23,14 +23,17 @@ export function updateCorporationUser(user){
 }
 
 export function updateCorporationUserPassword(user, password){
-    /*let id = user._id;
-    let oldPassword = user._password;
-    if (oldPassword === "123") {
-        user._password = "1234";*/
-
-        //Giver fejl
-        return axios.put(setup.apiEndPoint + '/corporation_users/changePassword')
-            .then(handleResponse)
-            .catch(handleError)
-    //}
+    let id = user._id;
+    let oldPassword = password.oldPassword;
+    let confirmNewPassword = password.confirmNewPassword;
+    /*
+    Meningen med denne metode var at jeg skulle sende det gamle password
+    og det nye fra input felterne til backend hvor jeg sammenligner det
+    gamle password med det fra databasen og opdaterer med det nye hvis det
+    stemmer overens. Jeg prøver at bruge /corporation_users/ fordi når jeg bruger
+    /corporation_users/changePassword så giver den en 404 fejl
+    */
+    return axios.put(setup.apiEndPoint + '/corporation_users/' + id, user, oldPassword, confirmNewPassword)
+        .then(handleResponse)
+        .catch(handleError)
 }
