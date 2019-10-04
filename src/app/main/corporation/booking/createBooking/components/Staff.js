@@ -89,8 +89,8 @@ const Staff = (props) => {
                 </div>
 
 
-                <div className="md:w-1/2 px-2 w-full float-right">
-                    <div className="w-1/4 float-left">
+                <div className="flex flex-row md:w-1/2 px-2 w-full">
+                    <div className="w-2/12">
 
                         <TextField
                             name="startTime"
@@ -113,8 +113,10 @@ const Staff = (props) => {
                         ))}
                         </TextField>
                     </div>
-
-                    <div className="w-1/4 float-left">
+                    <div className="w-1/12">
+                    <h1 className="">:</h1>
+                    </div>
+                    <div className="w-2/12">
                         <TextField
                             name="startTime"
                             className="w-full pr-2 pl-2 m-0"
@@ -135,7 +137,7 @@ const Staff = (props) => {
                     </div>
 
 
-                    <div className="w-1/4 float-left">
+                    <div className="w-2/12">
 
                         <TextField
                             name="endTime"
@@ -159,7 +161,7 @@ const Staff = (props) => {
                             ))}
                         </TextField>
                     </div>
-                    <div className="w-1/4 float-left">
+                    <div className="w-2/12">
                         <TextField
                             name="endTime"
                             className="w-full pr-2 pl-2 m-0"
