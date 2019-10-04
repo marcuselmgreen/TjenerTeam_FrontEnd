@@ -4,7 +4,7 @@ import {TextField} from "@material-ui/core";
 const Top = (props) => {
 
     const {
-        email,
+        name,
         cvr,
         address,
         zipCode,
@@ -16,15 +16,16 @@ const Top = (props) => {
     return (
         <div className="w-full">
             <div className="w-full">
-                <h1 className="mb-5">Email & Adresse</h1>
+                <h1 className="mb-5">Virksomhed</h1>
                 <div className="flex flex-wrap sm:my-2">
                     <div className="p-2 w-full sm:w-1/2">
                         <TextField
-                            name="email"
-                            label="Email"
-                            className="w-full"
-                            helperText={<span style={{color: 'red'}}>{validation.email.message}</span>}
-                            value={email}
+                            name="name"
+                            label="Virksomhedens navn"
+                            className="w-full "
+                            helperText={<span style={{color: 'red'}}>{validation.name.message}</span>}
+                            id="name"
+                            value={name}
                             variant="outlined"
                             onChange={changeHandler}
                         />
@@ -47,7 +48,7 @@ const Top = (props) => {
                     <div className="p-2 w-full sm:w-1/2">
                         <TextField
                             name="address"
-                            label="Addresse"
+                            label="Virksomhedens Adresse"
                             className="w-full"
                             id="address"
                             helperText={<span style={{color: 'red'}}>{validation.address.message}</span>}
@@ -59,7 +60,7 @@ const Top = (props) => {
                     <div className="p-2 w-full sm:w-1/2">
                         <div className="w-1/3 float-left">
                         <TextField
-                            type="bumber"
+                            type="number"
                             label="Post nr."
                             name="zipCode"
                             helperText={<span style={{color: 'red'}}>{validation.zipCode.message}</span>}

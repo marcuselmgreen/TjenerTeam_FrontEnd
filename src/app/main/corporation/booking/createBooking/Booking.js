@@ -1,6 +1,8 @@
 import React from 'react';
 import {Card, Button} from "@material-ui/core";
 import Time from './others/ClockTime';
+import StaffAmount from './others/AmountOfStaff';
+import Minutes from './others/ClockTimeMinutes';
 
 import {FuseAnimate} from '@fuse';
 import './Booking.css';
@@ -29,6 +31,8 @@ import {
 
 
 const time = Time;
+const staffAmount = StaffAmount;
+const minutes = Minutes;
 
 
 const Booking = (props) => {
@@ -79,6 +83,8 @@ const Booking = (props) => {
                         endTime={booking.endTime}
                         date={booking.date}
                         time={time}
+                        minutes={minutes}
+                        staffAmount={staffAmount}
                         validation={validation}/>
 
                     <ContactInformation

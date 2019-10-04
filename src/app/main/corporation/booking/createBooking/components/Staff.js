@@ -1,5 +1,5 @@
 import React from 'react';
-import {MenuItem, TextField} from "@material-ui/core";
+import { MenuItem, TextField } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import '../Booking.css';
 
@@ -21,23 +21,24 @@ const Staff = (props) => {
         endTime,
         date,
         validation,
-        time
+        time,
+        minutes,
+        staffAmount
     } = props;
 
     return (
 
         <div className="w-full">
-            <div className="flex flex-wrap sm:my-2">
-                <div className="p-2 w-full sm:w-1/2">
-                    <h4 className="mb-6 ml-2">Typer personale</h4>
+            <div className="flex flex-wrap mt-5">
+                <div className="px-2 w-full md:w-1/2">
                     <TextField
                         name="staffType"
                         select
-                        className="w-1/2 pr-2 pl-2 m-0"
+                        className="w-5/12 pr-2 pl-2 m-0"
                         id="staffSelection"
-                        style={{borderColor: 'red'}}
-                        label="Vælg"
-                        helperText={<span style={{color: 'red'}}>{validation.staffType.message}</span>}
+                        style={{ borderColor: 'red' }}
+                        label="Personale"
+                        helperText={<span style={{ color: 'red' }}>{validation.staffType.message}</span>}
                         margin="normal"
                         value={staffType}
                         variant="outlined"
@@ -51,78 +52,134 @@ const Staff = (props) => {
                     </TextField>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <DatePicker
-                            className="w-1/2 pr-2 pl-2"
+                            className="w-4/12 pr-2 pl-2"
                             autoOk
-                            label="Date"
-                            helperText={<span style={{color: 'red'}}>{validation.date.message}</span>}
+                            disableToolbar
+                            variant="inline"
+                            label="Dato"
+                            style={{ fontSize: "4px" }}
+                            helperText={<span style={{ color: 'red' }}>{validation.date.message}</span>}
                             inputVariant="outlined"
-                            format="dd/MM/yyyy"
+                            format="dd/MM/yy"
                             value={date}
-                            onChange={(date) => dateHandler(date)}/>
+                            onChange={(date) => dateHandler(date)} />
                     </MuiPickersUtilsProvider>
+                    <TextField
+                        name="numberOfStaff"
+                        className="w-3/12 pr-2 pl-2 m-0"
+                        id="staffNumber"
+                        select
+                        helperText={<span style={{ color: 'red' }}>{validation.numberOfStaff.message}</span>}
+                        label="Antal"
+                        type="number"
+                        margin="normal"
+                        value={numberOfStaff}
+                        variant="outlined"
+                        onChange={changeHandler}
+                    >
+                        {staffAmount.map((val, index) => (
+                            <MenuItem
+                            key={index}
+                            value={val.val}
+                            style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px'}}>
+                                {val.val}
+                            </MenuItem>
+                        ))}
+                    </TextField>
                 </div>
 
 
-                <div className="p-2 w-full sm:w-1/2">
-                        <div className="w-full sm:w-1/3 float-left">
-                            <h4 className="mb-6 ml-2">Personale</h4>
-                            <TextField
-                                name="numberOfStaff"
-                                className="w-full pr-2 pl-2 m-0"
-                                id="staffNumber"
-                                helperText={<span style={{color: 'red'}}>{validation.numberOfStaff.message}</span>}
-                                label="Antal"
-                                type="number"
-                                margin="normal"
-                                value={numberOfStaff}
-                                variant="outlined"
-                                onChange={changeHandler}
-                            />
-                        </div>
+                <div className="md:w-1/2 px-2 w-full float-right">
+                    <div className="w-1/4 float-left">
 
-                        <div className="w-full sm:w-2/3 float-left">
-                                <div className="w-1/2 float-left">
-                                    <h4 className="mb-6 ml-2">Start</h4>
-                                    <TextField
-                                        name="startTime"
-                                        className="w-full pr-2 pl-2 m-0"
-                                        id="startTime"
-                                        select
-                                        value={startTime}
-                                        helperText={<span style={{color: 'red'}}>{validation.startTime.message}</span>}
-                                        label="Tid"
-                                        margin="normal"
-                                        variant="outlined"
-                                        onChange={changeHandler}
-                                    >{time.map((val, index) => (
-                                        <MenuItem key={index} value={val.val}>
-                                            {val.val}
-                                        </MenuItem>
-                                    ))}
-                                    </TextField>
-                                </div>
-                                <div className="w-1/2 float-left">
-                                    <h4 className="mb-6 ml-2">Slut</h4>
-                                    <TextField
-                                        name="endTime"
-                                        className="w-full pr-2 pl-2 m-0"
-                                        id="endTime"
-                                        select
-                                        helperText={<span style={{color: 'red'}}>{validation.endTime.message}</span>}
-                                        value={endTime}
-                                        label="Tid"
-                                        margin="normal"
-                                        variant="outlined"
-                                        onChange={changeHandler}
-                                    >
-                                        {time.map((val, index) => (
-                                            <MenuItem key={index} value={val.val}>
-                                                {val.val}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                            </div>
-                        </div>
+                        <TextField
+                            name="startTime"
+                            className="w-full pr-2 pl-2 m-0"
+                            id="startTime"
+                            select
+                            value={startTime}
+                            helperText={<span style={{ color: 'red' }}>{validation.startTime.message}</span>}
+                            label="Start(H)"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={changeHandler}
+                        >{time.map((val, index) => (
+                            <MenuItem 
+                            key={index} 
+                            value={val.val}
+                            style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px'}}>
+                                {val.val}
+                            </MenuItem>
+                        ))}
+                        </TextField>
+                    </div>
+
+                    <div className="w-1/4 float-left">
+                        <TextField
+                            name="startTime"
+                            className="w-full pr-2 pl-2 m-0"
+                            id="startTime"
+                            select
+                            value={"00"}
+                            helperText={<span style={{ color: 'red' }}>{validation.startTime.message}</span>}
+                            label="Start(M)"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={changeHandler}
+                        >{minutes.map((val, index) => (
+                            <MenuItem key={index} value={val.val}>
+                                {val.val}
+                            </MenuItem>
+                        ))}
+                        </TextField>
+                    </div>
+
+
+                    <div className="w-1/4 float-left">
+
+                        <TextField
+                            name="endTime"
+                            className="w-full pr-2 pl-2 m-0"
+                            id="endTime"
+                            select
+                            helperText={<span style={{ color: 'red' }}>{validation.endTime.message}</span>}
+                            value={endTime}
+                            label="Slut(H)"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={changeHandler}
+                        >
+                            {time.map((val, index) => (
+                                <MenuItem 
+                                key={index} 
+                                value={val.val}
+                                style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px'}}>
+                                    {val.val}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </div>
+                    <div className="w-1/4 float-left">
+                        <TextField
+                            name="endTime"
+                            className="w-full pr-2 pl-2 m-0"
+                            id="endTime"
+                            select
+                            helperText={<span style={{ color: 'red' }}>{validation.endTime.message}</span>}
+                            value={"00"}
+                            label="Slut(M)"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={changeHandler}
+                        >
+                            {minutes.map((val, index) => (
+                                <MenuItem key={index} value={val.val}>
+                                    {val.val}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </div>
+
                 </div>
             </div>
 

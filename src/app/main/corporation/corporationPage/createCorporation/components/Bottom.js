@@ -9,12 +9,13 @@ const Bottom = (props) => {
     const {
         contactPerson,
         department,
-        name,
+        email,
         phoneNumber,
         billingEmail,
         ean,
         changeHandler,
-        validation
+        validation,
+        
 
     } = props;
 
@@ -26,7 +27,7 @@ const Bottom = (props) => {
                     <div className="p-2 w-full sm:w-1/2">
                         <TextField
                             name="contactPerson"
-                            label="Kontakt person"
+                            label="Kontaktperson"
                             className="w-full"
                             helperText={<span style={{color: 'red'}}>{validation.contactPerson.message}</span>}
                             value={contactPerson}
@@ -36,12 +37,11 @@ const Bottom = (props) => {
                     </div>
                     <div className="p-2 w-full sm:w-1/2">
                         <TextField
-                            name="name"
-                            label="Virksomhedens navn"
-                            className="w-full "
-                            helperText={<span style={{color: 'red'}}>{validation.name.message}</span>}
-                            id="name"
-                            value={name}
+                            name="email"
+                            label="Email"
+                            className="w-full"
+                            helperText={<span style={{color: 'red'}}>{validation.email.message}</span>}
+                            value={email}
                             variant="outlined"
                             onChange={changeHandler}
                         />
@@ -49,7 +49,7 @@ const Bottom = (props) => {
                     <div className="p-2 w-full sm:w-1/2">
                         <TextField
                             name="billingEmail"
-                            label="Email til faktur"
+                            label="Email til faktura"
                             className="w-full "
                             helperText={<span style={{color: 'red'}}>{validation.billingEmail.message}</span>}
                             value={billingEmail}
@@ -61,7 +61,7 @@ const Bottom = (props) => {
                         <TextField
                             name="department"
                             label="Afdeling"
-                            helperText={<span style={{color: 'red'}}>{validation.department.message}</span>}
+                            helperText={<span style={{color: 'red'}}>{}</span>}
                             className="w-full"
                             value={department}
                             variant="outlined"
@@ -83,7 +83,7 @@ const Bottom = (props) => {
                         <TextField
                             name="ean"
                             label="EAN"
-                            helperText={<span style={{color: 'red'}}>{validation.ean.message}</span>}
+                            helperText={<span style={{color: 'red'}}>{}</span>}
                             className="w-full "
                             value={ean}
                             variant="outlined"

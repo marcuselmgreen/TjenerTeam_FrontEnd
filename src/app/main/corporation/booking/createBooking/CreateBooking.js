@@ -31,7 +31,7 @@ class CreateBooking extends Component {
                     createdByCorporation_user: this.props.user._id,
                     label: "Ny",
                     staffType: "",
-                    numberOfStaff: 1,
+                    numberOfStaff: null,
                     date: new Date(),
                     startTime: "",
                     endTime: "",

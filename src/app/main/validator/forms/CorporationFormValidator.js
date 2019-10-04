@@ -27,10 +27,12 @@ export const CorparationFormValidator =
         {
             field: 'cvr',
             method: 'isLength',
-            args: [{min:8, max: 8}],
+            args: [{ min: 8, max: 8 }],
             validWhen: true,
             message: 'Ikke gyldigt CVR'
         },
+
+
         {
             field: 'address',
             method: 'isEmpty',
@@ -43,6 +45,15 @@ export const CorparationFormValidator =
             validWhen: false,
             message: 'Mangler post nr.'
         },
+
+        {
+            field: 'zipCode',
+            method: 'isLength',
+            args: [{ min: 4, max: 4 }],
+            validWhen: true,
+            message: 'Ugyldigt post nr.'
+        },
+
         {
             field: 'city',
             method: 'isEmpty',
@@ -55,12 +66,12 @@ export const CorparationFormValidator =
             validWhen: false,
             message: 'Mangler kontaktperson'
         },
-        {
+       /*{
             field: 'department',
             method: 'isEmpty',
             validWhen: false,
             message: 'Mangler afdeling'
-        },
+        },*/
         {
             field: 'phoneNumber',
             method: 'isEmpty',
@@ -79,12 +90,19 @@ export const CorparationFormValidator =
             validWhen: true,
             message: 'Ikke gyldig email'
         },
-        {
+        /*{
             field: 'ean',
             method: 'isEmpty',
             validWhen: false,
             message: 'Mangler EAN'
-        },
+        },*/
+        /*{
+            field: 'ean',
+            method: 'isLength',
+            args: [{ min: 13, max: 13 }],
+            validWhen: false,
+            message: 'Ugyldigt EAN nr.'
+        },*/
         {
             field: 'password',
             method: 'isEmpty',
@@ -112,9 +130,8 @@ export const CorparationFormValidator =
         {
             field: 'gdpr',
             method: 'isLength',
-            args: [{min:5, max: 5}],
+            args: [{ min: 5, max: 5 }],
             validWhen: false,
             message: 'Tryk "ja" for at oprette en virksomhed'
         }
     ];
-

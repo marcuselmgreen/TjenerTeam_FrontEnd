@@ -16,17 +16,17 @@ const ContactInformation = (props) => {
 
     return (
 
-        <div className="w-full">
+        <form autoComplete="off" className="w-full">
             <div className="flex flex-wrap sm:my-2">
                 <div className="p-2 w-full sm:w-1/2">
-                    <h4 className="mb-6 ml-2">Adresse for arrangement</h4>
                     <TextField
                         name="address"
                         className="w-full pl-2 pr-2 m-0"
                         id="udfyld"
+                        autoComplete="none"
                         helperText={<span style={{color: 'red'}}>{validation.address.message}</span>}
                         value={address}
-                        label="Eks. Gammel kongevej 15"
+                        label="Adresse for arrangement"
                         margin="normal"
                         variant="outlined"
                         onChange={changeHandler}
@@ -35,29 +35,29 @@ const ContactInformation = (props) => {
 
                 <div className="p-2 w-full sm:w-1/2">
                     <div className="w-1/3 float-left">
-                        <h4 className="mb-6 ml-2">Post nr.</h4>
                         <TextField
                             name="zipCode"
                             className="w-full pl-2 pr-2 m-0"
                             id="zipCode"
+                            autoComplete="none"
                             helperText={<span style={{color: 'red'}}>{validation.zipCode.message}</span>}
                             type="number"
                             value={zipCode}
-                            label="Eks. 1610"
+                            label="Post nr."
                             margin="normal"
                             variant="outlined"
                             onChange={changeHandler}
                         />
                     </div>
                     <div className="w-2/3 float-left">
-                        <h4 className="mb-6 ml-2">By</h4>
                         <TextField
                             name="city"
                             className="w-full pl-2 pr-2 m-0"
                             id="city"
+                            autoComplete="none"
                             helperText={<span style={{color: 'red'}}>{validation.city.message}</span>}
                             value={city}
-                            label="Eks. København V"
+                            label="By"
                             margin="normal"
                             variant="outlined"
                             onChange={changeHandler}
@@ -65,28 +65,28 @@ const ContactInformation = (props) => {
                     </div>
                 </div>
                 <div className="p-2 w-full sm:w-1/2">
-                    <h4 className="mb-6 ml-2">Ansvarlig for bookinger</h4>
                     <TextField
                         name="bookingPerson"
                         className="w-full pl-2 pr-2 m-0"
                         id="bookingPerson"
+                        autoComplete="none"
                         value={bookingPerson}
                         helperText={<span style={{color: 'red'}}>{validation.bookingPerson.message}</span>}
-                        label="Eks. Thomas Marcussen"
+                        label="Ansvarlig for bookinger"
                         margin="normal"
                         variant="outlined"
                         onChange={changeHandler}
                     />
                 </div>
                 <div className="p-2 w-full sm:w-1/2">
-                    <h4 className="mb-6 ml-2">Mobil tlf. nr. (sms)</h4>
                     <TextField
                         name="phoneNumber"
                         className="w-full pl-2 pr-2 m-0"
                         id="phoneNumber"
+                        autoComplete="none"
                         helperText={<span style={{color: 'red'}}>{validation.phoneNumber.message}</span>}
                         type="number"
-                        label="Eks. 12345678"
+                        label="Mobil tlf. nr. (sms)"
                         value={phoneNumber}
                         margin="normal"
                         variant="outlined"
@@ -94,7 +94,7 @@ const ContactInformation = (props) => {
                     />
                 </div>
             </div>
-        </div>
+        </form>
 
 
 
