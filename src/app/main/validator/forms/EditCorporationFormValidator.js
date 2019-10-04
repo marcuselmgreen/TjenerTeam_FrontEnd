@@ -55,12 +55,12 @@ export const EditCorparationFormValidator =
             validWhen: false,
             message: 'Mangler kontaktperson'
         },
-        {
+        /*{
             field: 'department',
             method: 'isEmpty',
             validWhen: false,
             message: 'Mangler afdeling'
-        },
+        },*/
         {
             field: 'phoneNumber',
             method: 'isEmpty',
@@ -79,11 +79,11 @@ export const EditCorparationFormValidator =
             validWhen: true,
             message: 'Ikke gyldig email'
         },
-        {
+        /*{
             field: 'ean',
             method: 'isEmpty',
             validWhen: false,
             message: 'Mangler EAN'
-        }
+        }*/
     ];
 

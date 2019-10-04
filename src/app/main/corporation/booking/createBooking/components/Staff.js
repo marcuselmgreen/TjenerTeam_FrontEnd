@@ -79,9 +79,9 @@ const Staff = (props) => {
                     >
                         {staffAmount.map((val, index) => (
                             <MenuItem
-                            key={index}
-                            value={val.val}
-                            style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px'}}>
+                                key={index}
+                                value={val.val}
+                                style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px' }}>
                                 {val.val}
                             </MenuItem>
                         ))}
@@ -89,7 +89,7 @@ const Staff = (props) => {
                 </div>
 
 
-                <div className="flex flex-row md:w-1/2 px-2 w-full">
+                <div className="flex flex-row md:w-1/2 px-2 w-full" id="time">
                     <div className="w-2/12">
 
                         <TextField
@@ -99,22 +99,22 @@ const Staff = (props) => {
                             select
                             value={startTime}
                             helperText={<span style={{ color: 'red' }}>{validation.startTime.message}</span>}
-                            label="Start(H)"
+                            label="(H)"
                             margin="normal"
                             variant="outlined"
                             onChange={changeHandler}
                         >{time.map((val, index) => (
-                            <MenuItem 
-                            key={index} 
-                            value={val.val}
-                            style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px'}}>
+                            <MenuItem
+                                key={index}
+                                value={val.val}
+                                style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px' }}>
                                 {val.val}
                             </MenuItem>
                         ))}
                         </TextField>
                     </div>
                     <div className="w-1/12">
-                    <h1 className="">:</h1>
+                        <h1 className="flex justify-center mt-3">:</h1>
                     </div>
                     <div className="w-2/12">
                         <TextField
@@ -124,7 +124,7 @@ const Staff = (props) => {
                             select
                             value={"00"}
                             helperText={<span style={{ color: 'red' }}>{validation.startTime.message}</span>}
-                            label="Start(M)"
+                            label="(M)"
                             margin="normal"
                             variant="outlined"
                             onChange={changeHandler}
@@ -136,6 +136,9 @@ const Staff = (props) => {
                         </TextField>
                     </div>
 
+                    <div className="w-2/12 flex justify-center mt-5">
+                        <h3>Tid</h3>
+                    </div>
 
                     <div className="w-2/12">
 
@@ -146,20 +149,23 @@ const Staff = (props) => {
                             select
                             helperText={<span style={{ color: 'red' }}>{validation.endTime.message}</span>}
                             value={endTime}
-                            label="Slut(H)"
+                            label="(H)"
                             margin="normal"
                             variant="outlined"
                             onChange={changeHandler}
                         >
                             {time.map((val, index) => (
-                                <MenuItem 
-                                key={index} 
-                                value={val.val}
-                                style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px'}}>
+                                <MenuItem
+                                    key={index}
+                                    value={val.val}
+                                    style={{ minHeight: '30px', paddingtop: '0px', paddingBottom: '0px' }}>
                                     {val.val}
                                 </MenuItem>
                             ))}
                         </TextField>
+                    </div>
+                    <div className="w-1/12 align-middle">
+                        <h1 className="flex justify-center mt-3">:</h1>
                     </div>
                     <div className="w-2/12">
                         <TextField
@@ -169,7 +175,7 @@ const Staff = (props) => {
                             select
                             helperText={<span style={{ color: 'red' }}>{validation.endTime.message}</span>}
                             value={"00"}
-                            label="Slut(M)"
+                            label="(M)"
                             margin="normal"
                             variant="outlined"
                             onChange={changeHandler}

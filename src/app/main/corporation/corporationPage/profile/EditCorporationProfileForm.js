@@ -25,7 +25,7 @@ const EditCorporationProfileForm = (props) => {
                         <div className="w-full">
 
                             <Top
-                                email={corporationUser.email}
+                                name={corporationUser.name}
                                 cvr={corporationUser.cvr}
                                 address={corporationUser.address}
                                 zipCode={corporationUser.zipCode}
@@ -42,9 +42,9 @@ const EditCorporationProfileForm = (props) => {
 
                     <div className="flex flex-wrap ">
                         <Bottom
+                            email={corporationUser.email}
                             contactPerson={corporationUser.contactPerson}
                             department={corporationUser.department}
-                            name={corporationUser.name}
                             phoneNumber={corporationUser.phoneNumber}
                             billingEmail={corporationUser.billingEmail}
                             ean={corporationUser.ean}

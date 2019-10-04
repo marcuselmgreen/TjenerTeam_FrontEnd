@@ -147,7 +147,7 @@ class EditCorporationProfile extends Component {
                         <Tab label={<span><Icon className="float-left" fontSize="small">info</Icon><span className="ml-2 float-left" style={{ fontSize: '12px' }}>Firmaoplysninger</span></span>} />
                         <Tab label={<span><Icon className="float-left" fontSize="small">payment</Icon><span className="ml-2 float-left" style={{ fontSize: '12px' }}>Betalingsoplysninger</span></span>} />
                         <Tab label={<span><Icon className="float-left" fontSize="small">lock</Icon><span className="ml-2 float-left" style={{ fontSize: '12px' }}>Skift kodeord</span></span>} />
-                        <Tab value={3} onClick={this.displayModalHandler} label={<span><Icon className="float-left" fontSize="small">delete</Icon><span className="ml-2 float-left" style={{ fontSize: '12px' }}>Slet profil</span></span>} />
+                        <Tab onClick={this.displayModalHandler} label={<span><Icon className="float-left" fontSize="small">delete</Icon><span className="ml-2 float-left" style={{ fontSize: '12px' }}>Slet profil</span></span>} />
                         <Dialog
                             open={displayModal}
                         >
