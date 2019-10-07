@@ -114,7 +114,7 @@ const Booking = (props) => {
                     <FuseAnimate duration={700} animation="transition.fadeIn">
                         <div className="w-full">
                             <div className="w-full mt-12">
-                                <h2 className="font-serif text-gray-800 text-md ">OM JOBBET</h2>
+                                <h2 className="font-serif text-gray-800 text-md ">OMKRING JOBBET?</h2>
                                 <hr style={{borderTop: '1px solid #cccccc',}}/>
                             </div>
 
@@ -129,14 +129,8 @@ const Booking = (props) => {
                                 foodIncluded={booking.foodIncluded}
                                 accessInformation={booking.accessInformation}
                                 jobDescription={booking.jobDescription}
-                                validation={validation}/>
+                                validation={validation}
 
-                            <div className="w-full mt-12 mb-80">
-                                <hr style={{borderTop: '1px solid #cccccc'}}/>
-                            </div>
-
-                            <Clothing
-                                changeHandler={changeHandler}
                                 upperDressSelection={upperDressSelection}
                                 upperDressCode={booking.upperDressCode}
                                 upperDressCodeOther={booking.upperDressCodeOther}
@@ -147,8 +141,11 @@ const Booking = (props) => {
                                 shoeSelection={shoeSelection}
                                 shoesDressCodeOther={booking.shoesDressCodeOther}
                                 itemToBring={booking.itemToBring}
-                                validation={validation}
-                            />
+                                />
+
+                            <div className="w-full mt-12 mb-80">
+                                <hr style={{borderTop: '1px solid #cccccc'}}/>
+                            </div>
 
                             {/*<div className="w-full mt-12 mb-20">*/}
                             {/*    <hr style={{borderTop: '1px solid gray'}}/>*/}

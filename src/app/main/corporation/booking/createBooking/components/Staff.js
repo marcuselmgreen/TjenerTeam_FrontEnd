@@ -1,7 +1,10 @@
 import React from 'react';
-import { MenuItem, TextField } from "@material-ui/core";
+import { MenuItem, TextField, Icon } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import '../Booking.css';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+
+
 
 import {
     DatePicker,
@@ -137,7 +140,8 @@ const Staff = (props) => {
                     </div>
 
                     <div className="w-2/12 flex justify-center mt-5">
-                        <h3>Tid</h3>
+                        <Icon fontSize="medium" color="primary"
+                            className="ml-8 mr-3 mt-2">schedule</Icon>
                     </div>
 
                     <div className="w-2/12">

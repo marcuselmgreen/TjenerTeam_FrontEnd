@@ -16,7 +16,7 @@ export const BookingFormValidator =
         {
             field: 'numberOfStaff',
             method: 'isInt',
-            args: [{min: 1, max: 1000}],
+            args: [{ min: 1, max: 1000 }],
             validWhen: true,
             message: 'Der skal minimum vælges 1'
         },
@@ -154,7 +154,7 @@ export const BookingFormValidator =
         {
             field: 'hourlyWage',
             method: 'isNumeric',
-            args: [{no_symbols: true}],
+            args: [{ no_symbols: true }],
             validWhen: true,
             message: 'Kommatal er ikke muligt'
         }

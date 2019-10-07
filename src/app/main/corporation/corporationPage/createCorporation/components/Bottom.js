@@ -1,7 +1,7 @@
 import React from 'react';
-import {TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
-import {green, red} from "@material-ui/core/colors";
+import { green, red } from "@material-ui/core/colors";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const Bottom = (props) => {
@@ -15,7 +15,7 @@ const Bottom = (props) => {
         ean,
         changeHandler,
         validation,
-        
+        message
 
     } = props;
 
@@ -29,7 +29,7 @@ const Bottom = (props) => {
                             name="contactPerson"
                             label="Kontaktperson"
                             className="w-full"
-                            helperText={<span style={{color: 'red'}}>{validation.contactPerson.message}</span>}
+                            helperText={<span style={{ color: 'red' }}>{validation.contactPerson.message}</span>}
                             value={contactPerson}
                             variant="outlined"
                             onChange={changeHandler}
@@ -40,7 +40,7 @@ const Bottom = (props) => {
                             name="email"
                             label="Email"
                             className="w-full"
-                            helperText={<span style={{color: 'red'}}>{validation.email.message}</span>}
+                            helperText={<span style={{ color: 'red' }}>{validation.email.message}</span>}
                             value={email}
                             variant="outlined"
                             onChange={changeHandler}
@@ -51,7 +51,7 @@ const Bottom = (props) => {
                             name="billingEmail"
                             label="Email til faktura"
                             className="w-full "
-                            helperText={<span style={{color: 'red'}}>{validation.billingEmail.message}</span>}
+                            helperText={<span style={{ color: 'red' }}>{validation.billingEmail.message}</span>}
                             value={billingEmail}
                             variant="outlined"
                             onChange={changeHandler}
@@ -61,7 +61,7 @@ const Bottom = (props) => {
                         <TextField
                             name="department"
                             label="Afdeling"
-                            helperText={<span style={{color: 'red'}}>{}</span>}
+                            helperText={<span style={{ color: 'red' }}>{}</span>}
                             className="w-full"
                             value={department}
                             variant="outlined"
@@ -72,7 +72,7 @@ const Bottom = (props) => {
                         <TextField
                             name="phoneNumber"
                             label="Telefon nr."
-                            helperText={<span style={{color: 'red'}}>{validation.phoneNumber.message}</span>}
+                            helperText={<span style={{ color: 'red' }}>{validation.phoneNumber.message}</span>}
                             className="w-full"
                             value={phoneNumber}
                             variant="outlined"
@@ -83,7 +83,7 @@ const Bottom = (props) => {
                         <TextField
                             name="ean"
                             label="EAN"
-                            helperText={<span style={{color: 'red'}}>{}</span>}
+                            helperText={<span style={{ color: 'red' }}>{}</span>}
                             className="w-full "
                             value={ean}
                             variant="outlined"
@@ -95,7 +95,7 @@ const Bottom = (props) => {
             </div>
 
             <div className="w-full mt-12">
-                <hr style={{borderTop: '1px solid #cccccc'}}/>
+                <hr style={{ borderTop: '1px solid #cccccc' }} />
             </div>
 
         </div>

@@ -18,6 +18,20 @@ const ContactInformation = (props) => {
 
         <form autoComplete="off" className="w-full">
             <div className="flex flex-wrap sm:my-2">
+            <div className="p-2 w-full sm:w-1/2">
+                    <TextField
+                        name="bookingPerson"
+                        className="w-full pl-2 pr-2 m-0"
+                        id="bookingPerson"
+                        autoComplete="none"
+                        value={bookingPerson}
+                        helperText={<span style={{color: 'red'}}>{validation.bookingPerson.message}</span>}
+                        label="Ansvarlig for bookingen"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={changeHandler}
+                    />
+                </div>
                 <div className="p-2 w-full sm:w-1/2">
                     <TextField
                         name="address"
@@ -32,7 +46,24 @@ const ContactInformation = (props) => {
                         onChange={changeHandler}
                     />
                 </div>
+                
 
+                
+                <div className="p-2 w-full sm:w-1/2">
+                    <TextField
+                        name="phoneNumber"
+                        className="w-full pl-2 pr-2 m-0"
+                        id="phoneNumber"
+                        autoComplete="none"
+                        helperText={<span style={{color: 'red'}}>{validation.phoneNumber.message}</span>}
+                        type="number"
+                        label="Kontakt til ansvarlig - Mobil tlf. nr."
+                        value={phoneNumber}
+                        margin="normal"
+                        variant="outlined"
+                        onChange={changeHandler}
+                    />
+                </div>
                 <div className="p-2 w-full sm:w-1/2">
                     <div className="w-1/3 float-left">
                         <TextField
@@ -64,35 +95,8 @@ const ContactInformation = (props) => {
                         />
                     </div>
                 </div>
-                <div className="p-2 w-full sm:w-1/2">
-                    <TextField
-                        name="bookingPerson"
-                        className="w-full pl-2 pr-2 m-0"
-                        id="bookingPerson"
-                        autoComplete="none"
-                        value={bookingPerson}
-                        helperText={<span style={{color: 'red'}}>{validation.bookingPerson.message}</span>}
-                        label="Ansvarlig for bookinger"
-                        margin="normal"
-                        variant="outlined"
-                        onChange={changeHandler}
-                    />
-                </div>
-                <div className="p-2 w-full sm:w-1/2">
-                    <TextField
-                        name="phoneNumber"
-                        className="w-full pl-2 pr-2 m-0"
-                        id="phoneNumber"
-                        autoComplete="none"
-                        helperText={<span style={{color: 'red'}}>{validation.phoneNumber.message}</span>}
-                        type="number"
-                        label="Mobil tlf. nr. (sms)"
-                        value={phoneNumber}
-                        margin="normal"
-                        variant="outlined"
-                        onChange={changeHandler}
-                    />
-                </div>
+                
+                
             </div>
         </form>
 

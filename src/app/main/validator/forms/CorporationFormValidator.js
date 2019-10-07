@@ -90,19 +90,9 @@ export const CorparationFormValidator =
             validWhen: true,
             message: 'Ikke gyldig email'
         },
-        /*{
-            field: 'ean',
-            method: 'isEmpty',
-            validWhen: false,
-            message: 'Mangler EAN'
-        },*/
-        /*{
-            field: 'ean',
-            method: 'isLength',
-            args: [{ min: 13, max: 13 }],
-            validWhen: false,
-            message: 'Ugyldigt EAN nr.'
-        },*/
+        
+        
+    
         {
             field: 'password',
             method: 'isEmpty',
@@ -135,3 +125,4 @@ export const CorparationFormValidator =
             message: 'Tryk "ja" for at oprette en virksomhed'
         }
     ];
+

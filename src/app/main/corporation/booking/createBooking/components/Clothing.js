@@ -18,10 +18,10 @@ const Clothing = (props) => {
     } = props;
 
     return (
-        <div className="w-full">
-            <div className="flex flex-wrap my-2">
-                <div className="w-full sm:w-1/2 ">
-                    <h4 className="mb-3">Beskriv påklædningskrav</h4>
+        <div className="flex flex-wrap w-1/2">
+            <div className="mt-5 ">
+                <div className="w-full sm:w-1/2 mt-5 ">
+                    
                     {/*<h4 className="mb-5">Overtøj</h4>*/}
                     <div className="w-full">
                         <TextField
