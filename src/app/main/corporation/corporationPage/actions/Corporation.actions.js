@@ -176,6 +176,7 @@ export function createCorporationAndBooking(Corporation, bookings){
 
 export function changePassword(user, password) {
     return function (dispatch) {
+        if (password.newPassword === password.confirmNewPassword) {
         return corporationApi.updateCorporationUserPassword(user, password)
             .then(user => {
                 dispatch(setUserData(user));
@@ -192,6 +193,12 @@ export function changePassword(user, password) {
                 }));
                 dispatch(updateCorporationFailed(error))
             })
+        } else {
+            dispatch(showMessage({
+                message: 'Kodeordene stemmer ikke overens',
+                ...snackbarConfig.errorMessage
+            }));
+        }
     }
 }
 
