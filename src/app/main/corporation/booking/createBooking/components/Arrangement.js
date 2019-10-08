@@ -58,78 +58,7 @@ const Arrangement = (props) => {
                     </div>
                 </div>
 
-
-
-
-                <div className="p-2 w-full sm:w-1/2">
-                    <h4>Er mad inkluderet?</h4>
-                    <FormControl>
-                        <RadioGroup
-                            row
-                            name="foodIncluded"
-                            className="mt-8 ml-20"
-                            onChange={changeHandler}
-                            value={foodIncluded}>
-                            <FormControlLabel
-                                style={{ transform: "scale(0.8, 0.8)" }}
-                                value="true"
-                                control={<Radio color="primary" />}
-                                label="Ja"
-                                labelPlacement="bottom"
-                            />
-
-                            <FormControlLabel
-                                style={{ transform: "scale(0.8, 0.8)" }}
-                                className=""
-                                value="false"
-                                control={<Radio color="primary" />}
-                                label="Nej"
-                                labelPlacement="bottom"
-                            />
-                        </RadioGroup>
-                        <FormHelperText><span
-                            style={{ color: 'red' }}>{validation.foodIncluded.message}</span></FormHelperText>
-                    </FormControl>
-                </div>
-
-
-                <div className="p-2 w-full sm:w-1/2">
-                    <h4 className="mb-3">Kan der forekomme overarbejde?</h4>
-                    <FormControl>
-                        <RadioGroup
-                            row
-                            name="extraWorkHours"
-                            className="w-full m-0"
-                            select
-                            value={extraWorkHours}
-                            helperText={<span style={{ color: 'red' }}>{validation.extraWorkHours.message}</span>}
-                            label="Overarbejdes?"
-                            margin="normal"
-                            variant="outlined"
-                            onChange={changeHandler}
-                        >
-                            {extraHours.map((val, index) => (
-                                <MenuItem key={index} value={val.value}>
-                                    {val.name}
-                                </MenuItem>
-                            ))}
-                        </RadioGroup>
-                    </FormControl>
-                </div>
-                <div className="p-2 w-full sm:w-1/2">
-                    {arrangementType === "Andet" &&
-                        <TextField
-                            className="w-full m-0"
-                            name="arrangementTypeOther"
-                            id="arrangementName"
-                            label="Arrangement type."
-                            margin="normal"
-                            variant="outlined"
-                            value={arrangementTypeOther}
-                            onChange={changeHandler}
-                        />
-                    }
-                </div>
+         
                 <div className="p-2 w-1/2">
                     <h4 className="mb-3">Beskriv arrangementet kort, evt opgaver? (jobbeskrivelse)</h4>
                     <TextField
@@ -179,6 +108,75 @@ const Arrangement = (props) => {
                     />
                 </div>
             </div>
+
+                <div className="p-2 w-full sm:w-1/2">
+                    <h4>Er mad inkluderet?</h4>
+                    <FormControl>
+                        <RadioGroup
+                            row
+                            name="foodIncluded"
+                            className="mt-8 ml-20"
+                            onChange={changeHandler}
+                            value={foodIncluded}>
+                            <FormControlLabel
+                                style={{ transform: "scale(0.8, 0.8)" }}
+                                value="true"
+                                control={<Radio color="primary" />}
+                                label="Ja"
+                                labelPlacement="bottom"
+                            />
+
+                            <FormControlLabel
+                                style={{ transform: "scale(0.8, 0.8)" }}
+                                className=""
+                                value="false"
+                                control={<Radio color="primary" />}
+                                label="Nej"
+                                labelPlacement="bottom"
+                            />
+                        </RadioGroup>
+                        <FormHelperText><span
+                            style={{ color: 'red' }}>{validation.foodIncluded.message}</span></FormHelperText>
+                    </FormControl>
+                </div>
+
+                       <div className="p-2 w-full sm:w-1/2">
+                    <h4 className="mb-3">Kan der forekomme overarbejde?</h4>
+                    <FormControl>
+                        <RadioGroup
+                            row
+                            name="extraWorkHours"
+                            className="w-full m-0"
+                            select
+                            value={extraWorkHours}
+                            helperText={<span style={{ color: 'red' }}>{validation.extraWorkHours.message}</span>}
+                            label="Overarbejdes?"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={changeHandler}
+                        >
+                            {extraHours.map((val, index) => (
+                                <MenuItem key={index} value={val.value}>
+                                    {val.name}
+                                </MenuItem>
+                            ))}
+                        </RadioGroup>
+                    </FormControl>
+                </div>
+                <div className="p-2 w-full sm:w-1/2">
+                    {arrangementType === "Andet" &&
+                        <TextField
+                            className="w-full m-0"
+                            name="arrangementTypeOther"
+                            id="arrangementName"
+                            label="Arrangement type."
+                            margin="normal"
+                            variant="outlined"
+                            value={arrangementTypeOther}
+                            onChange={changeHandler}
+                        />
+                    }
+                </div>
             <Clothing
                 changeHandler={changeHandler}
                 upperDressSelection={upperDressSelection}

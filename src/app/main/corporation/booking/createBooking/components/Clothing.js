@@ -19,7 +19,7 @@ const Clothing = (props) => {
 
     return (
         <div className="flex flex-wrap w-1/2">
-            <div className="mt-5 ">
+            <div className="flex mt-5 ">
                 <div className="w-full sm:w-1/2 mt-5 ">
                     
                     {/*<h4 className="mb-5">Overtøj</h4>*/}

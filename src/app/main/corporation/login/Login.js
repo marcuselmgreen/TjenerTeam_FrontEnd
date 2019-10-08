@@ -18,6 +18,11 @@ import * as bookingActions from '../booking/actions/Booking.actions'
 import CircularProgress from "@material-ui/core/CircularProgress";
 import AppHeader from "../toolbar/AppHeaderCorp";
 
+const styles = {
+    fontSize: "17px"
+};
+
+
 class Login extends Component {
     constructor(props) {
         super(props);
